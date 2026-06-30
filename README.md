@@ -46,7 +46,7 @@ To create a **user-friendly, responsive web-based HR system** that demonstrates 
 | Adam | [@adamjattiem12-gif](https://github.com/adamjattiem12-gif) | Time-Off Page |
 | Elijah | [@Elijah736](https://github.com/Elijah736) | Attendance Page |
 | Lisekho | [@TaShepsta](https://github.com/TaShepsta) | Employees Page |
-| Khaalid | [@Khaalid-hattass](https://github.com/Khaalid-hattass) | Dashboard & Reports |
+| Khaalid | [@Khaalid-hattass](https://github.com/Khaalid-hattass) | Dashboard & Reports Page |
 | Lerato | [@leratoyapi](https://github.com/leratoyapi) | Payslip Page and Github |
 
 ---
