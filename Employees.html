@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ModernTech HR - Dashboard</title>
+  <link rel="stylesheet" href="Employees-style.css">
+</head>
+<body>
+  <div class="hr-dashboard">
+    <!-- Header -->
+    <header class="header">
+      <h2>Employees</h2>
+      <div class="header-actions">
+        <input type="search" id="searchInput" placeholder="Search by name or ID...">
+        <button class="btn-primary" id="addBtn">Add Employee</button>
+      </div>
+      <p class="subtext"><span id="totalCount">10</span> total employees</p>
+    </header>
+    <!-- KPI Cards -->
+     <section class="kpi">
+      <div class="kpi-card">
+        <span>Total Employees</span>
+        <h3 id="totalEmployees">250</h3>
+        <small>+12 this quarter</small>
+      </div>
+      <div class="kpi-card">
+        <span>Monthly Payroll</span>
+        <h3 id="monthlyPayroll">R</h3>
+        <small>+5% this month</small>
+      </div>
+      <div class="kpi-card">
+        <span>Leave Requests</span>
+        <h3 id="leaveRequests">15</h3>
+        <small>+3 this week pending approval</small>
+      </div>
+      <div class="kpi-card">
+        <span>Average Attendance</span>
+        <h3 id="averageAttendance">92%</h3>
+        <small>+2% this month</small>
+      </div>
+     </section>
+     <!-- Employee List -->
+      <div class="table-wrap">
+        <table id="employeeTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Department</th>
+              <th>Position</th>
+              <th>Salary</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="employeeTableBody">
+            <!-- Employee rows will be populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+  </div>
+  <!-- Simple Add Modal -->
+   <dialog id="addModal">
+    <form id="employeeForm" method="dialog">
+      <h3>Add Employee</h3>
+      <input id="name" placeholder="Full Name" required>
+      <input id="department" placeholder="Department" required>
+      <input id="position" placeholder="Position" required>
+      <input id="salary" type="number" placeholder="Salary" required>
+      <div class="modal-actions">
+        <button type="submit" class="btn-primary">Save</button>
+        <button type="button" oneclick="addModal.close()">Cancel</button>
+      </div>
+    </form>
+   </dialog>
+  <script src="Employees-script.js"></script>
+  
+</body>
+</html>
