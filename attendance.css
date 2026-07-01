@@ -1,0 +1,361 @@
+
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+/* Top Header Bar - Always Visible Everywhere */
+.main-header {
+    background-color: #243864;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Offcanvas Sidebar Drawer Panel Customization */
+.offcanvas-sidebar {
+    width: 280px !important;
+    background-color: #243864 !important;
+}
+
+.offcanvas-sidebar .nav-link {
+    color: #A3B1CC;
+    font-size: 16px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    transition: all 0.2s;
+    text-decoration: none;
+}
+
+.offcanvas-sidebar .nav-link:hover {
+    color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.offcanvas-sidebar .nav-link.active {
+    background: #4E65F7;
+    color: #FFFFFF;
+}
+
+.brand-icon {
+    width: 32px;
+    height: 32px;
+    background: #3B82F6;
+    border-radius: 8px;
+}
+
+
+/* ==================== */
+      /* Heading */
+/* ==================== */
+body {
+    background-color: #F4F6FA;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #1E293B;
+}
+
+.attendance-heading {
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 30px;
+    width: calc(100% - 250px);
+}
+
+
+.attendance-heading p{
+    font-size: 0.8rem;
+    color: grey;
+}
+
+
+/* ==================== */
+/* ==================== */
+
+
+.attendance-average{
+    padding: 30px;
+    display: flex;
+    gap: 30px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+
+.attendance-present{
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    width: 500px;
+    height: 100px;
+}
+
+
+.attendance-present p{
+    color: gray;
+    font-size: 0.8rem;
+}
+
+
+.attendance-absent{
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    width: 500px;
+    height: 100px;
+}
+
+
+.attendance-absent p{
+    color: gray;
+    font-size: 0.8rem;
+}
+
+
+.attendance-late{
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    width: 500px;
+    height: 100px;
+}
+
+
+.attendance-late p{
+    color: gray;
+    font-size: 0.8rem;
+}
+
+
+/* --------------------------- */
+
+
+/* graph */
+
+
+.attendance-graph{
+    background-color: white;
+    margin-left: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 30px;
+    border-radius: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+
+.attendance-markers{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    font-size: 0.8rem;
+    color: gray;
+}
+
+
+.graph {
+    margin: 0 auto;
+    box-sizing: border-box;
+    width: 100%;
+    background: white;
+    padding: 30px;
+}
+
+/* 
+.y-axis {
+    margin-top: 10px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: right;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+} */
+
+/* ============================ */
+/*            Chart */
+/* ============================ */
+
+.chart {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 300px;
+    padding: 10px;
+}
+
+
+span {
+    font-size: 0.8rem;
+    color: grey;
+}
+
+
+.bar-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-end;
+    margin: 0 5px;
+}
+
+
+.inner-bar{
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.bar {
+    width: 20px;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+
+/* Different Heights */
+.bar1 { height: 238px; background: #3498db; }
+.bar2 { height: 6px; background: rgb(227, 227, 24); }
+.bar3 { height: 6px;  background: rgb(202, 45, 45); }
+
+
+.bar4 { height: 241px; background: #3498db; }
+.bar5 { height: 5px; background: rgb(227, 227, 24); }
+.bar6 { height: 4px; background: rgb(202, 45, 45); }
+
+
+.bar7 { height: 235px;  background: #238bd0; }
+.bar8 { height: 8px; background: rgb(227, 227, 24); }
+.bar9 { height: 7px; background: rgb(202, 45, 45); }
+
+
+.bar10 { height: 240px;  background: #3498db; }
+.bar11 { height: 4px;  background: rgb(227, 227, 24); }
+.bar12 { height: 6px;  background: rgb(202, 45, 45); }
+
+
+.bar13 { height: 229px;  background: #3498db; }
+.bar14 { height: 12px;  background: rgb(227, 227, 24); }
+.bar15 { height: 9px;  background: rgb(202, 45, 45); }
+
+
+/* =================================== */
+/*            Table                    */
+/* =================================== */
+
+
+.table-container{
+    margin-left: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 1455px;
+    background:#fff;
+    border-radius:12px;
+    padding:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    overflow-x:auto;
+    margin-top:30px;
+}
+
+
+.table-container h3{
+    font-size:14px;
+    color:#555;
+    margin-bottom:15px;
+    font-weight:600;
+}
+
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+
+th{
+    text-align:left;
+    padding:14px;
+    color:#777;
+    font-size:13px;
+    border-bottom:1px solid #eee;
+}
+
+
+td{
+    padding:16px 14px;
+    border-bottom:1px solid #eee;
+    font-size:14px;
+}
+
+
+.present{
+    color:#0b8f62;
+    font-weight:600;
+}
+
+
+.absent{
+    color:#d97706;
+    font-weight:600;
+}
+
+
+.late{
+    color:#ef4444;
+    font-weight:600;
+}
+
+
+.progress{
+    display:inline-block;
+    width:80px;
+    height:8px;
+    background:#e5e7eb;
+    border-radius:20px;
+    overflow:hidden;
+    margin-right: 10px;
+    vertical-align:middle;
+}
+
+
+.fill{
+    height:100%;
+    background:#3b5bfd;
+    border-radius:20px;
+}
+
+
+td:last-child{
+    display:flex;
+    align-items:center;
+}
+
+
+tbody tr:hover{
+    background:#f8f9fc;
+}
+
+
+@media(max-width:768px){
+
+
+    th,
+    td{
+        padding:12px 8px;
+        font-size:12px;
+    }
+
+
+    .progress{
+        width:60px;
+    }
+}
+
+
+/* ============================================== */
+
