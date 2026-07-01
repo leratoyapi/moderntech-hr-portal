@@ -1,0 +1,206 @@
+/* Custom Interface Styling Variables matching the original UI */
+body {
+    background-color: #F4F6FA;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #1E293B;
+}
+
+/* Header Text styling overrides */
+.header-title {
+    color: #0F172A;
+    font-size: 1.8rem;
+}
+
+.fs-7 {
+    font-size: 0.825rem;
+}
+
+/* Card layout wrapper style */
+.card-box {
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 18px;
+    border: none;
+    box-shadow: 0 4px 12px rgba(240, 244, 250, 0.6);
+}
+
+.card-box h6 {
+    font-size: 0.68rem;
+    color: #64748B !important;
+    letter-spacing: 0.05em;
+}
+
+.card-box h2 {
+    font-size: 1.65rem;
+    color: #0F172A;
+}
+
+.growth-text {
+    font-size: 0.78rem;
+    color: #64748B !important;
+}
+
+.section-heading {
+    font-size: 1.05rem;
+    color: #1E293B;
+}
+
+/* Badge Icon Containers */
+.metric-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blue-bg {
+    background-color: #EEF2FF;
+}
+
+.green-bg {
+    background-color: #ECFDF5;
+}
+
+.orange-bg {
+    background-color: #FFFBEB;
+}
+
+.lightblue-bg {
+    background-color: #ECFEFF;
+}
+
+/* Navbar Overrides */
+.navbar {
+    background-color: #FFFFFF !important;
+}
+
+.profile-avatar {
+    width: 36px;
+    height: 36px;
+    background-color: #3B82F6;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 0.85rem;
+    border-radius: 50%;
+}
+
+/* Offcanvas Sidebar Menu Styling matching original dark tint colors */
+.sidebar-panel {
+    background-color: #243864;
+    width: 280px !important;
+}
+
+.brand-icon {
+    width: 32px;
+    height: 32px;
+    background: #3B82F6;
+    border-radius: 8px;
+}
+
+.sidebar {
+    background: #f9f9f9;
+}
+
+.sidebar .nav-link {
+    color: #6f8198;
+    font-size: 18px;
+}
+
+.sidebar .nav-link:hover {
+    color: #ffffff;
+}
+
+.sidebar .nav-link.active {
+    background: #303f59;
+    color: #ffffff;
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 220px;
+}
+
+.donut-container {
+    position: relative;
+    width: 160px;
+    height: 160px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.bg-indigo {
+    background-color: #3B82F6;
+}
+
+.bg-cyan {
+    background-color: #06B6D4;
+}
+
+.bg-purple {
+    background-color: #A855F7;
+}
+
+.bg-orange {
+    background-color: #F59E0B;
+}
+
+.bg-emerald {
+    background-color: #10B981;
+}
+
+.bg-rose {
+    background-color: #EF4444;
+}
+
+.status-badge {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.status-pending {
+    background-color: #EFF6FF;
+    color: #2563EB;
+}
+
+.status-approved {
+    background-color: #ECFDF5;
+    color: #059669;
+}
+
+.avatar-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-jo {
+    background-color: #0284C7;
+}
+
+.avatar-pn {
+    background-color: #0891B2;
+}
+
+.avatar-mw {
+    background-color: #D97706;
+}
+
+.avatar-dr {
+    background-color: #0D9488;
+}
