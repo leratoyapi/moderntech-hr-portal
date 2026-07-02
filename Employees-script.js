@@ -45,7 +45,7 @@ function render(list = employees) {
       <td>${emp.position}</td>
       <td>${emp.salary.toLocaleString()}</td>
       <td><span class="status active">Active</span></td>
-      <td><button onclick="deleteEmp(${emp.employeeId})">Delete</button></td>
+      <td><button class="btn-delete" onclick="deleteEmp(${emp.employeeId})">🗑️</button></td>
       `;
     tbody.appendChild(tr);
   });
@@ -71,3 +71,25 @@ function deleteEmp(id) {
   render();
 }
 document.addEventListener('DOMContentLoaded', loadEmployees);
+
+// Sidebar toggle functionality
+const menuBtn = document.getElementById('menuBtn');
+const closeBtn = document.getElementById('closeBtn');
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+
+sidebar.classList.remove('open');
+overlay.classList.remove('show');
+
+const openSidebar = () => {
+  sidebar.classList.add('open');
+  overlay.classList.add('show');
+};
+const closeSidebar = () => {
+  sidebar.classList.remove('open');
+  overlay.classList.remove('show');
+};
+
+menuBtn.addEventListener('click', openSidebar);
+closeBtn.addEventListener('click', closeSidebar);
+overlay.addEventListener('click', closeSidebar);
