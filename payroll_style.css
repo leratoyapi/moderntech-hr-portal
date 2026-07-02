@@ -1,6 +1,4 @@
-* {
-  box-sizing: border-box;
-}
+
 
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -9,18 +7,15 @@ body {
   padding: 0;
 }
 
-/* the nav-bar */
+/* =================================== */
+/*            Nav Bar                 */
+/* =================================== */
 
-.wrapper {
-  max-width: 1440px;
+.payroll-wrapper {
   margin: 0 auto;
   background: #ffffff;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.03);
   min-height: 100vh;
-
-  /* display: flex;
-  width: 100%;
-  flex-direction: column; */
 }
 
 .main-header {
@@ -28,20 +23,10 @@ body {
   padding: 14px 28px !important;
   border-bottom: 1px solid #1f334f;
 
-  /* background-color: #243864;
-  display: lex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 24px; */
-  /* shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05); */
 }
 
-/* Offcanvas Sidebar Drawer Panel Customization */
 .offcanvas-sidebar {
   background: #0b1a33 !important;
-
-  /* width: 280px !important;
-  background-color: #243864 !important; */
 }
 
 .offcanvas-sidebar .nav-link.active {
@@ -72,28 +57,6 @@ body {
   opacity: 1;
 }
 
-
-/* .offcanvas-sidebar .nav-link {
-  color: #a3b1cc;
-  font-size: 16px;
-  padding: 12px 20px;
-  display: flex;
-  align-items: center;
-  border-radius: 8px;
-  transition: all 0.2s;
-  text-decoration: none;
-}
-
-.offcanvas-sidebar .nav-link:hover {
-  color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-.offcanvas-sidebar .nav-link.active {
-  background: #4e65f7;
-  color: #ffffff;
-} */
-
 .brand-icon {
   background: #2a7de1 !important;
   width: 38px;
@@ -105,11 +68,6 @@ body {
   justify-content: center;
   color: white;
   font-weight: 700;
-
-  /* width: 32px;
-  height: 32px;
-  background: #3b82f6;
-  border-radius: 8px; */
 }
 
 .main-header h5 {
@@ -118,14 +76,19 @@ body {
   font-size: 17.6px;
 }
 
+/* =================================== */
+/*            Main Content             */
+/* =================================== */
 
-/* the main content */
 main.container {
   max-width: 1200px;
   padding: 16px 20px 40px;
 }
 
- /* the headers */
+
+/* =================================== */
+/*            The Headers              */
+/* =================================== */
 .payroll-header {
   display: flex;
   justify-content: space-between;
@@ -175,7 +138,10 @@ main.container {
   transform: translateY(-1px);
 }
 
-/* the payroll cards */
+/* =================================== */
+/*            Payroll Cards            */
+/* =================================== */
+
 .payroll-card {
   background: #ffffff;
   border: none;
@@ -190,15 +156,13 @@ main.container {
   min-height: 90px;
 }
 
-/* please check what this does */
+/* the colors on the side of the cards */
 .card-one {
   border-left: 5px solid #2a7de1;
 }
-
 .card-two {
   border-left: 5px solid #e67e22;
 }
-
 .card-three {
   border-left: 5px solid #27ae60;
 }
@@ -250,8 +214,10 @@ main.container {
   min-width: 200px;
 }
 
+/* =================================== */
+/*            Payroll Tables          */
+/* =================================== */
 
-/* the payroll table */
 .payroll-table {
   margin-top: 28px;
   background: #ffffff;
@@ -314,14 +280,13 @@ main.container {
   font-weight: 600;
 }
 
+
 .table tbody td:nth-child(6) {
   color: #c0392b;
 }
-
 .table tbody td:nth-child(7) {
   color: #c0392b;
 }
-
 .table tbody td:nth-child(8) {
   color: #1f7b4d;
 }
@@ -345,14 +310,18 @@ main.container {
   border-color: #2a7de1;
 }
 
-/* responsiveness */
+/* =================================== */
+/*            Media Queries            */
+/* =================================== */
 
 @media (max-width: 768px) {
   .main-header h5 {
     font-size: 14.4px;
   }
 
-/* the cards */
+/* =================================== */
+/*            Payroll Cards            */
+/* =================================== */
   .card-one .card-text,
   .card-two .card-text,
   .card-three .card-text {
@@ -363,7 +332,10 @@ main.container {
     font-size: 25.6px;
   }
 
-  /* the table */
+  /* =================================== */
+/*            Payroll Table           */
+/* =================================== */
+
   .table {
     font-size: 12.8px;
   }
@@ -433,5 +405,5 @@ main.container {
   filter: brightness(0) invert(1);
   opacity: 0.8;
 }
-
-
+  
+/* the payslip */
