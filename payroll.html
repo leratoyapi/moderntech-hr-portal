@@ -68,7 +68,7 @@
   
 
   <!-- Main Content -->
-  <main class="container mt-4">
+  <main class="payroll-container mt-4">
     <div class="payroll-header">
 
       <div class="payroll-header-left">
@@ -79,45 +79,47 @@
       <div class="payroll-header-right">
         <button type="button" class="btn btn-primary">
           <span class="bi bi-download me-2"></span>Export All Payslips
-        </button><br></br>
+        </button>
       </div>
 
     </div>
           
-    <!-- the cards -->
+    <!-- THE PAYROLL CARDS -->
     <div class="row-cards">
       <div class="col-md-4">
-        <div class="payroll-card card-one">
-          <div class="card-body">
-            <h5 class="card-title mb-2 text-body-secondary">GROSS PAYROLL</h5>
-            <h2 class="card-text"><b>R36 667</b></h2>
+        <div class="pr-card pr-card-gross">
+          <div class="pr-card-body">
+            <h5 class="pr-card-title">GROSS PAYROLL</h5>
+            <h2 class="pr-card-text"><b>R36 667</b></h2>
+          </div>
+        </div>
+      </div><br>
+
+    <!-- mb-2 text-body-secondary -->
+
+      <div class="col-md-4">
+        <div class="pr-card pr-card-deductions">
+          <div class="pr-card-body">
+            <h5 class="pr-card-title">TOTAL DEDUCTIONS</h5>
+            <h2 class="pr-card-text"><b>R12 467</b></h2>
           </div>
         </div>
       </div><br>
 
       <div class="col-md-4">
-        <div class="payroll-card card-two">
-          <div class="card-body">
-            <h5 class="card-title mb-2 text-body-secondary">TOTAL DEDUCTIONS</h5>
-            <h2 class="card-text"><b>R12 467</b></h2>
-          </div>
-        </div>
-      </div><br>
-
-      <div class="col-md-4">
-        <div class="payroll-card card-three">
-          <div class="card-body">
-            <h5 class="card-title mb-2 text-body-secondary">NET PAYROLL</h5>
-            <h2 class="card-text"><b>R24 200</b></h2>
+        <div class="pr-card pr-card-net">
+          <div class="pre-card-body">
+            <h5 class="pr-card-title">NET PAYROLL</h5>
+            <h2 class="pr-card-text"><b>R24 200</b></h2>
           </div>
         </div>
       </div><br>
     </div>
     
-    <!-- the employees data -->
+    <!-- the Employees data -->
 
     <div class="payroll-table">      
-      <table class="table">
+      <table class="pr-table">
 
         <thead>
           <tr>
@@ -143,7 +145,7 @@
             <td>-R 792</td>
             <td>- R 1 900</td>
             <td>R 5 225</td>
-            <td><a  onclick="generatePDF" href="payslip.html" class="btn btn-sm btn-outline-primary">Generate</a></td>
+            <td><a href="payslip.html" class="btn btn-sm btn-outline-primary">Generate</a></td>
           </tr>
 
           <tr>

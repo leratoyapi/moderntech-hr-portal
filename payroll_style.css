@@ -80,7 +80,7 @@ body {
 /*            Main Content             */
 /* =================================== */
 
-main.container {
+main.payroll-container.mt-4 {
   max-width: 1200px;
   padding: 16px 20px 40px;
 }
@@ -142,7 +142,7 @@ main.container {
 /*            Payroll Cards            */
 /* =================================== */
 
-.payroll-card {
+.pr-card {
   background: #ffffff;
   border: none;
   border-radius: 20px;
@@ -154,29 +154,15 @@ main.container {
   align-items: center;
   border: 1px solid #eef2f7;
   min-height: 90px;
+  width: 100%
 }
 
-/* the colors on the side of the cards */
-.card-one {
-  border-left: 5px solid #2a7de1;
-}
-.card-two {
-  border-left: 5px solid #e67e22;
-}
-.card-three {
-  border-left: 5px solid #27ae60;
-}
-
-.card-one .card-body,
-.card-two .card-body,
-.card-three .card-body {
+.pr-card-body {
   padding: 0;
-  width: 100%;
+  width: 100%
 }
 
-.card-one .card-title,
-.card-two .card-title,
-.card-three .card-title {
+.pr-card-title {
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.8px;
@@ -185,9 +171,7 @@ main.container {
   margin-bottom: 4px !important;
 }
 
-.card-one .card-text,
-.card-two .card-text,
-.card-three .card-text {
+.pr-card-text {
   font-size: 28px;
   font-weight: 700;
   color: #0b1a33;
@@ -196,10 +180,15 @@ main.container {
   line-height: 1.2;
 }
 
-.card-one .card-text b,
-.card-two .card-text b,
-.card-three .card-text b {
-  font-weight: 700;
+/* the colors on the side of the cards */
+.pr-card-gross {
+  border-left: 5px solid #2a7de1;
+}
+.pr-card-deductions {
+  border-left: 5px solid #e67e22;
+}
+.pr-card-net {
+  border-left: 5px solid #27ae60;
 }
 
 .row-cards {
@@ -228,7 +217,7 @@ main.container {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.02);
 }
 
-.table {
+.pr-table {
   margin-bottom: 0;
   font-size: 14px;
   border-collapse: collapse;
@@ -236,7 +225,8 @@ main.container {
   white-space: nowrap;
 }
 
-.table thead th {
+/* The Tables headers */
+.pr-table thead th {
   border-bottom: 2px solid #c8d0d9;
   color: #4a5b72;
   font-weight: 600;
@@ -248,7 +238,8 @@ main.container {
   border-top: none;
 }
 
-.table tbody td {
+/* The table body */
+.pr-table tbody td {
   padding: 14px 14px;
   border-bottom: 1.5px solid #dce1e8;
   vertical-align: middle;
@@ -256,40 +247,52 @@ main.container {
   font-weight: 500;
 }
 
-.table tbody tr:last-child td {
+/* This removes the border from the last row */
+.pr-table tbody tr:last-child td {
   border-bottom: none;
 }
 
-.table tbody tr:hover {
+/* This highlights the row when you hover over it */
+.pr-table tbody tr:hover {
   background: #f8faff;
 }
 
-.table tbody td:first-child {
+/* This makes the employees names bold */
+.pr-table tbody td:first-child {
   font-weight: 600;
   color: #0b1a33;
 }
 
-.table tbody td:nth-child(2) {
+/* The dept names lighter */
+.pr-table tbody td:nth-child(2) {
   color: #3d506b;
 }
-    
-.table tbody td:nth-child(3),
-.table tbody td:nth-child(6),
-.table tbody td:nth-child(7),
-.table tbody td:nth-child(8) {
+
+/* Make salary, deductions, tax, net pay bold */
+.pr-table tbody td:nth-child(3),
+.pr-table tbody td:nth-child(6),
+.pr-table tbody td:nth-child(7),
+.pr-table tbody td:nth-child(8) {
   font-weight: 600;
 }
 
+/* Makes the deductions  and the tax red */
+.pr-table tbody td:nth-child(6) {
+  color: #c0392b;
+}
+.pr-table tbody td:nth-child(7) {
+  color: #c0392b;
+}
 
-.table tbody td:nth-child(6) {
-  color: #c0392b;
-}
-.table tbody td:nth-child(7) {
-  color: #c0392b;
-}
-.table tbody td:nth-child(8) {
+/* Makes the net pay green */
+.pr-table tbody td:nth-child(8) {
   color: #1f7b4d;
 }
+
+ 
+/* =================================== */
+/*            Buttons                  */
+/* =================================== */
 
 .btn-outline-primary {
   border-radius: 30px;
@@ -311,7 +314,7 @@ main.container {
 }
 
 /* =================================== */
-/*            Media Queries            */
+/*            RESPONSIVE               */
 /* =================================== */
 
 @media (max-width: 768px) {
@@ -322,9 +325,9 @@ main.container {
 /* =================================== */
 /*            Payroll Cards            */
 /* =================================== */
-  .card-one .card-text,
-  .card-two .card-text,
-  .card-three .card-text {
+  .pr-card-gross .pr-card-text,
+  .pr-card-deductions .pr-card-text,
+  .pr-card-net .pr-card-text {
     font-size: 22px;
   }
 
@@ -336,12 +339,12 @@ main.container {
 /*            Payroll Table           */
 /* =================================== */
 
-  .table {
+  .pr-table {
     font-size: 12.8px;
   }
 
-  .table thead th,
-  .table tbody td {
+  .pr-table thead th,
+  .pr-table tbody td {
     padding: 10px 8px;
   }
 
@@ -374,22 +377,23 @@ main.container {
 }
 }
 
+
 @media (max-width: 576px) {
   /* the cards */
-  .card-one .card-text,
-  .card-two .card-text,
-  .card-three .card-text {
+  .pr-card-gross .pr-card-text,
+  .pr-card-deductions .pr-card-text,
+  .pr-card-net .pr-card-text {
     font-size: 20px;
   }
 
-  .card-one .card-title,
-  .card-two .card-title,
-  .card-three .card-title {
+  .pr-card-gross .pr-card-title,
+  .pr-card-deductions .pr-card-title,
+  .pr-card-net .pr-card-title {
     font-size: 10px;
   }
 }
 
-  
+  /* REMOVES THE EXTRA THE SPACE BETWEEN THE ROWS */
 .row-cards {
   margin-left: 0;
   margin-right: 0;
@@ -406,4 +410,127 @@ main.container {
   opacity: 0.8;
 }
   
-/* the payslip */
+/* =================================== */
+/*         PAYSLIP STYLES              */
+/* =================================== */
+
+
+/* Selection Card */
+.pr-select-card {
+  border-left: 4px solid #007bff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Payslip Card */
+.pr-payslip-card {
+  border: 2px solid #2c3e50;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.pr-payslip-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Payslip Header */
+.pr-payslip-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px 10px 0 0 !important;
+}
+
+/* Payslip Body */
+.pr-payslip-body {
+  padding: 25px;
+  background: #f8f9fa;
+}
+
+/* Dividers */
+.pr-divider {
+  border-top: 2px dashed #dee2e6;
+  margin: 20px 0;
+}
+
+/* Employee Info */
+.pr-employee-info p {
+  margin-bottom: 8px;
+}
+
+/* Salary Details */
+.pr-salary-details h4 {
+  font-weight: 600;
+}
+
+/* Final Salary */
+.pr-final-salary {
+  background: #e9ecef;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.pr-final-salary h2 {
+  font-weight: 700;
+}
+
+/* Payslip Footer */
+.pr-payslip-footer {
+  background: #f1f3f5;
+  border-radius: 0 0 10px 10px !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .pr-payslip-card {
+    margin: 10px 0;
+  }
+    
+  .pr-salary-details .col-md-4 {
+    margin-bottom: 15px;
+  }
+    
+  .pr-employee-info .col-md-6 {
+    margin-bottom: 10px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .pr-select-card {
+    display: none !important;
+  }
+    
+  .pr-payslip-card {
+    border: 1px solid #000 !important;
+    box-shadow: none !important;
+  }
+    
+  .pr-payslip-header {
+    background: #333 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+/* Loading State */
+.pr-loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Success Animation */
+.pr-payslip-card {
+  animation: prFadeIn 0.5s ease;
+}
+
+@keyframes prFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
