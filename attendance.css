@@ -1,10 +1,23 @@
+body {
+    background: #f4f6fb;
+    color: #1E293B;
+}
+
+
+
+
+/* ================================== */
+/*            Nav Bar */
+/* ================================== */
 
 
 .wrapper {
     display: flex;
     width: 100%;
     flex-direction: column;
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
+
 
 /* Top Header Bar - Always Visible Everywhere */
 .main-header {
@@ -16,11 +29,13 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
+
 /* Offcanvas Sidebar Drawer Panel Customization */
 .offcanvas-sidebar {
     width: 280px !important;
     background-color: #243864 !important;
 }
+
 
 .offcanvas-sidebar .nav-link {
     color: #A3B1CC;
@@ -33,15 +48,18 @@
     text-decoration: none;
 }
 
+
 .offcanvas-sidebar .nav-link:hover {
     color: #FFFFFF;
     background-color: rgba(255, 255, 255, 0.05);
 }
 
+
 .offcanvas-sidebar .nav-link.active {
     background: #4E65F7;
     color: #FFFFFF;
 }
+
 
 .brand-icon {
     width: 32px;
@@ -50,22 +68,23 @@
     border-radius: 8px;
 }
 
+/* =============================== */
+/* =============================== */
+
 
 /* ==================== */
       /* Heading */
 /* ==================== */
-body {
-    background-color: #F4F6FA;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    color: #1E293B;
-}
+
 
 .attendance-heading {
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     padding: 30px;
     width: calc(100% - 250px);
 }
+
+
 
 
 .attendance-heading p{
@@ -73,176 +92,250 @@ body {
     color: grey;
 }
 
+/* ==================== */
+/* ==================== */
 
-/* ==================== */
-/* ==================== */
+
+
+
+/* =============================== */
+/*             input */
+/* =============================== */
+
+
+/* .attendance-input {
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+
+
+
+.attendance-input input{
+    margin-top: 20px;
+    width: 100%;
+    height: 30px;
+    max-width: 300px;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+} */
+
+/* =============================== */
+/* =============================== */
+
+
+/* =============================== */
+/*              Cards */
+/* =============================== */
+
+
 
 
 .attendance-average{
     padding: 30px;
     display: flex;
     gap: 30px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
 
 
-.attendance-present{
+.attendance-card{
+    padding: 8px 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+
+.attendance-card1{
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 5px;
+    border-radius: 8px;
+    border-left: 5px solid #27AE60;
+}
+
+.attendance-card2{
+    padding: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     border-radius: 8px;
-    width: 500px;
-    height: 100px;
+    border-left: 5px solid #E67E22;
 }
 
-
-.attendance-present p{
-    color: gray;
-    font-size: 0.8rem;
-}
-
-
-.attendance-absent{
+.attendance-card3{
+    padding: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     border-radius: 8px;
-    width: 500px;
-    height: 100px;
+    border-left: 5px solid #d60404;
 }
 
-
-.attendance-absent p{
-    color: gray;
-    font-size: 0.8rem;
-}
-
-
-.attendance-late{
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    width: 500px;
-    height: 100px;
-}
-
-
-.attendance-late p{
-    color: gray;
-    font-size: 0.8rem;
-}
-
-
-/* --------------------------- */
-
-
-/* graph */
-
-
-.attendance-graph{
-    background-color: white;
+.attendance-card p{
     margin-left: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    padding: 30px;
-    border-radius: 8px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
+    text-align: left;
+    color: gray;
+    font-size: 0.8rem;
+}
+
+.attendance-card h3{
+    margin-left: 10px;
+    text-align: left;
 }
 
 
 .attendance-markers{
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
     font-size: 0.8rem;
-    color: gray;
-}
-
-
-.graph {
-    margin: 0 auto;
-    box-sizing: border-box;
-    width: 100%;
-    background: white;
-    padding: 30px;
-}
-
-/* 
-.y-axis {
-    margin-top: 10px;
-    height: 300px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: right;
-    font-weight: bold;
-    font-size: 14px;
-    color: #333;
-} */
-
-/* ============================ */
-/*            Chart */
-/* ============================ */
-
-.chart {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    height: 300px;
-    padding: 10px;
+    gap: 20px;
 }
 
 
-span {
-    font-size: 0.8rem;
-    color: grey;
+
+/* =============================== */
+/* --------------------------- */
+
+
+/* =============================== */
+/*           Bar Graph */
+/* =============================== */
+
+
+.chart-card{
+    width: 92%;
+    max-width: 2000px;
+    height: 500px;
+    margin: 30px auto;
+    background: #fff;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
 }
 
 
-.bar-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex: 1;
-    justify-content: flex-end;
-    margin: 0 5px;
+.chart-header{
+    margin-bottom:20px;
 }
 
 
-.inner-bar{
-    display: flex;
-    align-items: flex-end;
-    width: 100%;
+.chart-wrapper{
+    display:flex;
+    gap:20px;
 }
 
-.bar {
-    width: 20px;
+
+.y-axis{
+    height:260px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    color:#8b8b8b;
+    font-size:13px;
+    margin-bottom: 20px;
+}
+
+
+.chart{
+    flex:1;
+    margin-top: 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    height:260px;
+    border-left:1px solid #e5e7eb;
+    border-bottom:1px solid #e5e7eb;
+    padding:0 10px;
+    background:
+        repeating-linear-gradient(
+            to top,
+            transparent,
+            transparent 64px,
+            #ececec 65px
+        );
+}
+
+
+.day{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    flex:1;
+}
+
+
+.bars{
+    height:220px;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+    gap:4px;
+}
+
+
+.bar{
+    width:12px;
     border-radius: 3px;
-    transition: 0.3s;
 }
 
 
-/* Different Heights */
-.bar1 { height: 238px; background: #3498db; }
-.bar2 { height: 6px; background: rgb(227, 227, 24); }
-.bar3 { height: 6px;  background: rgb(202, 45, 45); }
+.present{
+    background:#4361EE;
+}
 
 
-.bar4 { height: 241px; background: #3498db; }
-.bar5 { height: 5px; background: rgb(227, 227, 24); }
-.bar6 { height: 4px; background: rgb(202, 45, 45); }
+.absent{
+    background:#F59E0B;
+}
 
 
-.bar7 { height: 235px;  background: #238bd0; }
-.bar8 { height: 8px; background: rgb(227, 227, 24); }
-.bar9 { height: 7px; background: rgb(202, 45, 45); }
+.late{
+    background:#EF4444;
+}
 
 
-.bar10 { height: 240px;  background: #3498db; }
-.bar11 { height: 4px;  background: rgb(227, 227, 24); }
-.bar12 { height: 6px;  background: rgb(202, 45, 45); }
+.day p{
+    margin-top:12px;
+    font-size:12px;
+    color:#666;
+    text-align:center;
+}
 
 
-.bar13 { height: 229px;  background: #3498db; }
-.bar14 { height: 12px;  background: rgb(227, 227, 24); }
-.bar15 { height: 9px;  background: rgb(202, 45, 45); }
+@media(max-width:768px){
+
+
+    .chart-wrapper{
+        overflow-x:auto;
+    }
+
+
+    .chart{
+        min-width:700px;
+    }
+
+
+    .bar{
+        width:8px;
+    }
+
+
+    .day p{
+        font-size:10px;
+    }
+}
+
+/* =============================== */
+/* =============================== */
+
+
+
 
 
 /* =================================== */
@@ -250,17 +343,21 @@ span {
 /* =================================== */
 
 
+
+
 .table-container{
-    margin-left: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 1455px;
-    background:#fff;
-    border-radius:12px;
-    padding:20px;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
-    overflow-x:auto;
-    margin-top:30px;
+    width: 92%;
+    max-width: 2000px;
+    height: 500px;
+    margin: 30px auto;
+    background: #fff;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    overflow-x: auto;
 }
+
+
 
 
 .table-container h3{
@@ -271,10 +368,14 @@ span {
 }
 
 
+
+
 table{
     width:100%;
     border-collapse:collapse;
 }
+
+
 
 
 th{
@@ -292,23 +393,26 @@ td{
     font-size:14px;
 }
 
-
-.present{
+.att-present{
     color:#0b8f62;
     font-weight:600;
 }
 
 
-.absent{
+.att-absent{
     color:#d97706;
     font-weight:600;
 }
 
 
-.late{
+
+
+.att-late{
     color:#ef4444;
     font-weight:600;
 }
+
+
 
 
 .progress{
@@ -323,11 +427,15 @@ td{
 }
 
 
+
+
 .fill{
     height:100%;
     background:#3b5bfd;
     border-radius:20px;
 }
+
+
 
 
 td:last-child{
@@ -336,12 +444,18 @@ td:last-child{
 }
 
 
+
+
 tbody tr:hover{
     background:#f8f9fc;
 }
 
 
+
+
 @media(max-width:768px){
+
+
 
 
     th,
@@ -351,11 +465,18 @@ tbody tr:hover{
     }
 
 
+
+
     .progress{
         width:60px;
     }
 }
 
 
-/* ============================================== */
+
+/* =============================== */
+/* =============================== */
+
+
+
 
