@@ -1,11 +1,16 @@
-.wrapper {
+/* =============================================
+   TimeOff Page — All custom classes prefixed
+   with "timeoff-" to avoid merge conflicts
+   ============================================= */
+
+.timeoff-wrapper {
     display: flex;
     width: 100%;
     flex-direction: column;
 }
 
-/* Top Header Bar - Always Visible Everywhere */
-.main-header {
+/* Top Header Bar */
+.timeoff-main-header {
     background-color: #243864;
     display: flex;
     justify-content: space-between;
@@ -14,13 +19,13 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-/* Offcanvas Sidebar Drawer Panel Customization */
-.offcanvas-sidebar {
+/* Offcanvas Sidebar */
+.timeoff-offcanvas-sidebar {
     width: 280px !important;
     background-color: #243864 !important;
 }
 
-.offcanvas-sidebar .nav-link {
+.timeoff-offcanvas-sidebar .nav-link {
     color: #a3b1cc;
     font-size: 16px;
     padding: 12px 20px;
@@ -31,19 +36,114 @@
     text-decoration: none;
 }
 
-.offcanvas-sidebar .nav-link:hover {
+.timeoff-offcanvas-sidebar .nav-link:hover {
     color: #ffffff;
     background-color: rgba(255, 255, 255, 0.05);
 }
 
-.offcanvas-sidebar .nav-link.active {
+.timeoff-offcanvas-sidebar .nav-link.active {
     background: #4e65f7;
     color: #ffffff;
 }
 
-.brand-icon {
+/* Brand Icon */
+.timeoff-brand-icon {
     width: 32px;
     height: 32px;
     background: #3B82F6;
     border-radius: 8px;
+}
+
+/* Table */
+.timeoff-custom-table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.timeoff-custom-table thead th {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #8a99ad;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #edf2f7;
+    padding: 16px 12px;
+}
+
+.timeoff-custom-table tbody tr td {
+    padding: 16px 12px;
+    border-bottom: 1px solid #edf2f7;
+    color: #4a5568;
+    font-size: 14px;
+}
+
+.timeoff-custom-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+/* Employee Name */
+.timeoff-employee-name {
+    font-weight: 500;
+    color: #2d3748;
+}
+
+/* Avatar Circle */
+.timeoff-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Status Badges */
+.timeoff-badge-status {
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.timeoff-status-pending {
+    background-color: #eff6ff;
+    color: #3b82f6;
+}
+
+.timeoff-status-approved {
+    background-color: #f0fdf4;
+    color: #16a34a;
+}
+
+.timeoff-status-denied {
+    background-color: #fef2f2;
+    color: #dc2626;
+}
+
+/* Action Buttons */
+.timeoff-btn-action {
+    padding: 4px 12px;
+    font-size: 13px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.timeoff-btn-action.btn-outline-success {
+    border-color: #16a34a;
+    color: #16a34a;
+}
+
+.timeoff-btn-action.btn-outline-success:hover {
+    background-color: #16a34a;
+    color: white;
+}
+
+.timeoff-btn-action.btn-outline-danger {
+    border-color: #dc2626;
+    color: #dc2626;
+}
+
+.timeoff-btn-action.btn-outline-danger:hover {
+    background-color: #dc2626;
+    color: white;
 }
