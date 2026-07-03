@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Review Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f6fa;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        .wrapper {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+        }
+
+        /* Top Header Bar */
+        .main-header {
+            background-color: #243864;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        /* Offcanvas Sidebar Drawer Panel Customization */
+        .offcanvas-sidebar {
+            width: 280px !important;
+            background-color: #243864 !important;
+        }
+
+        .offcanvas-sidebar .nav-link {
+            color: #a3b1cc;
+            font-size: 16px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .offcanvas-sidebar .nav-link:hover {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .offcanvas-sidebar .nav-link.active {
+            background: #4e65f7;
+            color: #ffffff;
+        }
+
+        .brand-icon {
+            width: 32px;
+            height: 32px;
+            background: #3B82F6;
+            border-radius: 8px;
+        }
+
+        .avatar-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .card-custom {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            background-color: #ffffff;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .employee-item {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .employee-item:hover, .employee-item.active {
+            background-color: #edf2f9;
+        }
+
+        .btn-toggle-group .btn {
+            border-color: #e2e8f0;
+            color: #64748b;
+            background-color: #f8fafc;
+            transition: all 0.2s ease;
+        }
+
+        .btn-toggle-group .btn.active {
+            background-color: #4e65f7 !important;
+            color: white !important;
+            border-color: #4e65f7 !important;
+        }
+
+        .btn-primary-custom {
+            background-color: #4e65f7;
+            border-color: #4e65f7;
+            color: white;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: #3b50df;
+            color: white;
+        }
+
+        .text-muted-sm {
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-entry {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        @media (min-width: 992px) {
+            .sticky-sidebar {
+                position: sticky;
+                top: 24px; 
+                max-height: calc(100vh - 80px);
+                display: flex;
+                flex-direction: column;
+            }
+            #employeeListContainer {
+                max-height: none !important;
+                flex-grow: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <header class="main-header text-white">
+        <div class="d-flex align-items-center">
+            <div class="brand-icon me-2 d-flex align-items-center justify-content-center fw-bold text-white">HR</div>
+            <h5 class="m-0 fw-bold">ModernTech HR Portal</h5>
+        </div>
+        <button class="btn btn-outline-light border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#reviewAppSidebar" aria-controls="reviewAppSidebar">
+            <i class="bi bi-list fs-2"></i>
+        </button>
+    </header>
+
+    <div class="offcanvas offcanvas-start offcanvas-sidebar p-3" tabindex="-1" id="reviewAppSidebar" aria-labelledby="reviewAppSidebarLabel">
+        <div class="offcanvas-header text-white justify-content-between align-items-center mb-2">
+            <div class="d-flex align-items-center">
+                <div class="brand-icon me-2 d-flex align-items-center justify-content-center fw-bold text-white">HR</div>
+                <h5 class="m-0 fw-bold" id="reviewAppSidebarLabel">ModernTech HR Portal</h5>
+            </div>
+            <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body p-0">
+            <nav class="nav flex-column gap-2 w-100">
+                <a class="nav-link" href="index.html">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-3"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg> Dashboard
+                </a>
+                <a class="nav-link " href="Employees.html">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-3"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> Employees
+                </a>
+                <a class="nav-link" href="Payroll.html">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-3"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg> Payroll
+                </a>
+                <a class="nav-link" href="TimeOff.html">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-3"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Time Off
+                </a>
+                <a class="nav-link" href="Attendance.html">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-3"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Attendance
+                </a>
+                <a class="nav-link" href="Reports.html">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-3"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg> Reports
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="main-content container-fluid px-md-4 py-4">
+        <div class="row g-4">
+            
+            <div class="col-12 col-md-5 col-lg-4">
+                <div class="sticky-sidebar">
+                    
+                    <div class="card card-custom p-3 mb-3 border-start border-primary border-4">
+                        <h6 class="text-uppercase text-muted fw-bold mb-3" style="font-size: 0.8rem; letter-spacing: 0.5px;">Quick Actions</h6>
+                        <button class="btn btn-outline-primary btn-sm w-100 py-2 fw-semibold" data-bs-toggle="collapse" data-bs-target="#addEmployeeForm">
+                            <i class="bi bi-plus-lg me-1"></i> Add New Employee to List
+                        </button>
+                        
+                        <div class="collapse mt-3" id="addEmployeeForm">
+                            <div class="p-2 border rounded bg-light">
+                                <div class="mb-2">
+                                    <label class="form-label small fw-bold text-secondary mb-1">Full Name</label>
+                                    <input type="text" id="newEmpName" class="form-control form-control-sm" placeholder="e.g., Sarah Mitchell">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label small fw-bold text-secondary mb-1">Position</label>
+                                    <input type="text" id="newEmpPos" class="form-control form-control-sm" placeholder="e.g., Senior Developer">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold text-secondary mb-1">Department</label>
+                                    <select id="newEmpDept" class="form-select form-select-sm">
+                                        <option value="Engineering">Engineering</option>
+                                        <option value="Sales">Sales</option>
+                                        <option value="Marketing">Marketing</option>
+                                        <option value="HR">HR</option>
+                                        <option value="Customer Support">Customer Support</option>
+                                        <option value="QA">QA</option>
+                                    </select>
+                                </div>
+                                <button type="button" onclick="addNewEmployee()" class="btn btn-primary-custom btn-sm w-100">Add to System</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card card-custom mb-3 overflow-hidden d-flex flex-column">
+                        <div class="p-3 pb-2 d-flex justify-content-between align-items-center">
+                            <h6 class="text-uppercase text-muted fw-bold m-0" style="font-size: 0.8rem; letter-spacing: 0.5px;">Select Employee</h6>
+                            <input type="text" id="searchInput" class="form-control form-control-sm w-50" placeholder="Filter...">
+                        </div>
+                        <div id="employeeListContainer" class="list-group list-group-flush border-top overflow-auto" style="max-height: 400px;">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-12 col-md-7 col-lg-8">
+                
+                <div class="card card-custom p-3 mb-3">
+                    <div class="d-flex align-items-center">
+                        <div id="activeAvatar" class="avatar-circle me-3" style="background-color: #6c757d;">--</div>
+                        <div>
+                            <h5 id="activeName" class="m-0 fw-bold" style="font-size: 1.2rem;">Select an Employee</h5>
+                            <p id="activeRole" class="m-0 text-muted small">No active profile chosen</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card card-custom mb-4">
+                    <div class="p-3 border-bottom">
+                        <h5 class="m-0 fw-bold" style="font-size: 1rem;">New Entry</h5>
+                    </div>
+                    <div class="p-3">
+                        <div class="row g-3 mb-3">
+                            <div class="col-12 col-sm-6">
+                                <label class="form-label small text-muted mb-1">Review Type</label>
+                                <select id="reviewType" class="form-select bg-light">
+                                    <option>Check-in</option>
+                                    <option>Performance</option>
+                                    <option>Commendation</option>
+                                    <option>Disciplinary</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <label class="form-label small text-muted mb-1">Visibility</label>
+                                <div class="btn-group btn-toggle-group w-100" role="group" id="visibilityGroup">
+                                    <button type="button" class="btn active py-2 fw-semibold" onclick="toggleVisibility(this)">Private</button>
+                                    <button type="button" class="btn py-2 fw-semibold" onclick="toggleVisibility(this)">Shared</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small text-muted mb-1">Comment <span class="text-danger">*</span></label>
+                            <textarea id="reviewComment" class="form-control bg-light" rows="4" placeholder="Notes from today's check-in — topics discussed, action items, employee feedback..." oninput="updateCharCount(this)"></textarea>
+                            <div id="charCount" class="text-end text-muted small mt-1">0 chars</div>
+                        </div>
+                        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 mt-3">
+                            <span class="text-muted small">Logged as <strong>Admin User</strong><br><span class="text-muted-sm">2026/07/02</span></span>
+                            <button class="btn btn-primary-custom px-5 py-2 font-weight-bold" onclick="saveReviewEntry()">Save Entry</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3 px-1">
+                    <span id="historyHeader" class="text-uppercase text-muted fw-bold" style="font-size: 0.85rem; letter-spacing: 0.5px;">History · 0 Entries</span>
+                </div>
+
+                <div id="historyContainer" class="d-flex flex-column gap-3">
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // State arrays mapped directly from your logic variables
+    let employees = [];
+    let selectedEmployeeId = null;
+    let activeVisibility = 'Private';
+
+    // Fallback seed array parsed into flat database contexts
+    const seedEmployees = [
+        {
+            "employeeId": 1,
+            "name": "Sibongile Nkosi",
+            "position": "Software Engineer",
+            "department": "Development",
+            "salary": 70000,
+            "employmentHistory": [],
+            "contact": "sibongile.nkosi@moderntech.com"
+        },
+        {
+            "employeeId": 2,
+            "name": "Lungile Moyo",
+            "position": "HR Manager",
+            "department": "HR",
+            "salary": 80000,
+            "employmentHistory": [],
+            "contact": "lungile.moyo@moderntech.com"
+        },
+        {
+            "employeeId": 3,
+            "name": "Thabo Molefe",
+            "position": "Quality Analyst",
+            "department": "QA",
+            "salary": 55000,
+            "employmentHistory": [],
+            "contact": "thabo.molefe@moderntech.com"
+        },
+        {
+            "employeeId": 4,
+            "name": "Keshav Naidoo",
+            "position": "Sales Representative",
+            "department": "Sales",
+            "salary": 60000,
+            "employmentHistory": [],
+            "contact": "keshav.naidoo@moderntech.com"
+        },
+        {
+            "employeeId": 5,
+            "name": "Zanele Khumalo",
+            "position": "Marketing Specialist",
+            "department": "Marketing",
+            "salary": 58000,
+            "employmentHistory": [],
+            "contact": "zanele.khumalo@moderntech.com"
+        },
+        {
+            "employeeId": 6,
+            "name": "Sipho Zulu",
+            "position": "UI/UX Designer",
+            "department": "Design",
+            "salary": 65000,
+            "employmentHistory": [],
+            "contact": "sipho.zulu@moderntech.com"
+        },
+        {
+            "employeeId": 7,
+            "name": "Naledi Moeketsi",
+            "position": "DevOps Engineer",
+            "department": "IT",
+            "salary": 72000,
+            "employmentHistory": [],
+            "contact": "naledi.moeketsi@moderntech.com"
+        },
+        {
+            "employeeId": 8,
+            "name": "Farai Gumbo",
+            "position": "Content Strategist",
+            "department": "Marketing",
+            "salary": 56000,
+            "employmentHistory": [],
+            "contact": "farai.gumbo@moderntech.com"
+        },
+        {
+            "employeeId": 9,
+            "name": "Karabo Dlamini",
+            "position": "Accountant",
+            "department": "Finance",
+            "salary": 62000,
+            "employmentHistory": [],
+            "contact": "karabo.dlamini@moderntech.com"
+        },
+        {
+            "employeeId": 10,
+            "name": "Fatima Patel",
+            "position": "Customer Support Lead",
+            "department": "Support",
+            "salary": 58000,
+            "employmentHistory": [],
+            "contact": "fatima.patel@moderntech.com"
+        }
+    ];
+
+    // Core async initializer engine
+    async function loadEmployees() {
+        try {
+            const res = await fetch('./employee_info.json');
+            if (!res.ok) throw new Error('Network file fetch context missing');
+            const data = await res.json();
+            
+            // Map incoming data schema to support your employmentHistory reviews array
+            employees = data.employeeInformation.map(emp => ({
+                employeeId: emp.employeeId,
+                name: emp.name,
+                department: emp.department,
+                position: emp.position || "Staff Associate",
+                createdDate: new Date().toISOString().split('T')[0],
+                employmentHistory: Array.isArray(emp.employmentHistory) ? emp.employmentHistory : []
+            }));
+        } catch (err) {
+            console.error("JSON Loading Error:", err); 
+            console.warn("Using local seeded employee database context instead.");
+            
+            // Process default seeds through normalization step
+            employees = seedEmployees.map(emp => ({
+                ...emp,
+                createdDate: new Date().toISOString().split('T')[0]
+            }));
+        }        
+        
+        renderList();
+        
+        // Auto-select first item on boot
+        if (employees.length > 0) {
+            selectEmployee(employees[0].employeeId);
+        }
+    }
+
+    function getInitials(name) {
+        return name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
+    }
+
+    function stringToColor(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            hash = str.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        return `hsl(${Math.abs(hash) % 360}, 65%, 50%)`;
+    }
+
+    // Refactored dynamic listing render loop with real-time text matching
+    function renderList() {
+        const container = document.getElementById('employeeListContainer');
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        container.innerHTML = '';
+
+        // Defensively filter to prevent crashes on undefined/null properties
+        const filtered = employees.filter(emp => {
+            const name = (emp.name || '').toLowerCase();
+            const department = (emp.department || '').toLowerCase();
+            const position = (emp.position || '').toLowerCase();
+
+            return name.includes(searchTerm) || 
+                   department.includes(searchTerm) || 
+                   position.includes(searchTerm);
+        });
+
+        filtered.forEach(emp => {
+            const color = stringToColor(emp.name || 'EE');
+            const initials = getInitials(emp.name || 'EE');
+            const isActive = emp.employeeId === selectedEmployeeId ? 'active' : '';
+            const textClass = emp.employeeId === selectedEmployeeId ? 'text-primary text-decoration-underline' : 'text-secondary';
+            const count = emp.employmentHistory ? emp.employmentHistory.length : 0;
+            const targetDate = emp.createdDate || "2026-07-02";
+
+            const itemHtml = `
+                <div class="list-group-item employee-item d-flex align-items-center justify-content-between py-2 border-0 border-bottom ${isActive}" 
+                     onclick="selectEmployee(${emp.employeeId})">
+                    <div class="d-flex align-items-center min-w-0">
+                        <div class="avatar-circle me-3" style="background-color: ${color};">${initials}</div>
+                        <div class="text-truncate">
+                            <div class="fw-bold ${textClass} text-truncate" style="font-size: 0.95rem;">${emp.name || 'Unknown'}</div>
+                            <div class="text-muted small text-truncate">${emp.department || 'General'}</div>
+                        </div>
+                    </div>
+                    <div class="text-end flex-shrink-0">
+                        <span class="badge text-dark bg-transparent p-0 small fw-bold">${count}</span>
+                        <div class="text-muted-sm">${targetDate}</div>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', itemHtml);
+        });
+    }
+
+    // Synchronizes structural review views upon selection toggles
+    function selectEmployee(id) {
+        selectedEmployeeId = id;
+        const emp = employees.find(e => e.employeeId === id);
+        if (!emp) return;
+
+        // Repaint selection active highlights
+        renderList();
+
+        // Bind main review card info
+        document.getElementById('activeName').innerText = emp.name;
+        document.getElementById('activeRole').innerText = `${emp.position} · ${emp.department}`;
+        
+        const activeAvatar = document.getElementById('activeAvatar');
+        activeAvatar.innerText = getInitials(emp.name);
+        activeAvatar.style.backgroundColor = stringToColor(emp.name);
+
+        // Repaint history list space container Workspace
+        renderHistory(emp);
+    }
+
+    function renderHistory(emp) {
+        const historyContainer = document.getElementById('historyContainer');
+        historyContainer.innerHTML = '';
+        
+        const entries = emp.employmentHistory || [];
+        document.getElementById('historyHeader').innerText = `History · ${entries.length} Entries`;
+
+        if (entries.length === 0) {
+            historyContainer.innerHTML = `<div class="text-center text-muted py-4 small card card-custom">No logs found for this employee profile context.</div>`;
+            return;
+        }
+
+        // Render entries backwards chronologically
+        [...entries].reverse().forEach(entry => {
+            let badgeColorClass = 'text-primary border-primary-subtle';
+            if (entry.type === 'Check-in') badgeColorClass = 'text-info border-info-subtle';
+            if (entry.type === 'Performance') badgeColorClass = 'text-warning border-warning-subtle';
+            if (entry.type === 'Commendation') badgeColorClass = 'text-success border-success-subtle';
+            if (entry.type === 'Disciplinary') badgeColorClass = 'text-danger border-danger-subtle';
+
+            const privateBadge = entry.visibility === 'Private' 
+                ? `<span class="badge bg-light text-secondary border px-2 py-1 ms-1">Private</span>` 
+                : '';
+
+            const cardHtml = `
+                <div class="card card-custom p-3 animate-entry">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div>
+                            <span class="badge bg-light ${badgeColorClass} border px-2 py-1">${entry.type}</span>
+                            ${privateBadge}
+                        </div>
+                        <div class="text-end">
+                            <div class="fw-semibold text-muted-sm text-dark">${entry.date}</div>
+                            <div class="text-muted-sm">Admin User</div>
+                        </div>
+                    </div>
+                    <p class="small text-secondary m-0" style="line-height: 1.6;">${entry.text}</p>
+                </div>
+            `;
+            historyContainer.insertAdjacentHTML('beforeend', cardHtml);
+        });
+    }
+
+    // Pipeline handling updates directly into dynamic data storage context models
+    function saveReviewEntry() {
+        if (!selectedEmployeeId) {
+            alert('Please select an active employee profile track first.');
+            return;
+        }
+
+        const commentBox = document.getElementById('reviewComment');
+        const commentText = commentBox.value.trim();
+        const reviewType = document.getElementById('reviewType').value;
+
+        if (!commentText) {
+            alert('Please enter a comment before saving.');
+            return;
+        }
+
+        const targetEmployee = employees.find(emp => emp.employeeId === selectedEmployeeId);
+        if (!targetEmployee) return;
+
+        // Append to state model structure layer
+        targetEmployee.employmentHistory.push({
+            type: reviewType,
+            visibility: activeVisibility,
+            date: new Date().toISOString().split('T')[0],
+            text: commentText
+        });
+
+        // Reset tracking entry layout components
+        commentBox.value = '';
+        document.getElementById('charCount').innerText = '0 chars';
+
+        // Refresh layouts locally
+        selectEmployee(selectedEmployeeId);
+    }
+
+    function addNewEmployee() {
+        const nameInput = document.getElementById('newEmpName');
+        const posInput = document.getElementById('newEmpPos');
+        const deptInput = document.getElementById('newEmpDept');
+        
+        const name = nameInput.value.trim();
+        const position = posInput.value.trim() || "Staff Associate";
+        const department = deptInput.value;
+
+        if (!name) {
+            alert('Please enter an employee name');
+            return;
+        }
+
+        // Generate dynamic unique key tracking indexes
+        const newId = employees.length > 0 ? Math.max(...employees.map(emp => emp.employeeId)) + 1 : 1;
+
+        const newEmp = {
+            employeeId: newId,
+            name: name,
+            department: department,
+            position: position,
+            createdDate: new Date().toISOString().split('T')[0],
+            employmentHistory: []
+        };
+
+        employees.push(newEmp);
+        
+        // Reset Inputs
+        nameInput.value = '';
+        posInput.value = '';
+        
+        // Close form dropdown clean structure handles
+        const collapseEl = document.getElementById('addEmployeeForm');
+        const bsCollapse = bootstrap.Collapse.getInstance(collapseEl);
+        if (bsCollapse) bsCollapse.hide();
+
+        // Switch selection context view automatically over to newly created employee tracking fields
+        selectEmployee(newId);
+    }
+
+    function toggleVisibility(element) {
+        const group = document.getElementById('visibilityGroup');
+        group.querySelectorAll('.btn').forEach(btn => btn.classList.remove('active'));
+        element.classList.add('active');
+        activeVisibility = element.innerText;
+    }
+
+    function updateCharCount(textarea) {
+        document.getElementById('charCount').innerText = `${textarea.value.length} chars`;
+    }
+
+    // Attach local search tracking events natively 
+    document.getElementById('searchInput').addEventListener('input', renderList);
+    document.addEventListener('DOMContentLoaded', loadEmployees);
+</script>
+</body>
+</html>

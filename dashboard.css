@@ -5,8 +5,8 @@ body {
     color: #1E293B;
 }
 
-/* Header Text styling overrides */
-.header-title {
+ Header Text styling overrides 
+ .header-title {
     color: #0F172A;
     font-size: 1.8rem;
 }
@@ -87,35 +87,59 @@ body {
 }
 
 /* Offcanvas Sidebar Menu Styling matching original dark tint colors */
-.sidebar-panel {
-    background-color: #243864;
-    width: 280px !important;
-}
+        .wrapper {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+        }
+
+        /* Top Header Bar */
+        .main-header {
+            background-color: #243864;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        /* Offcanvas Sidebar Drawer Panel Customization */
+        .offcanvas-sidebar {
+            width: 280px !important;
+            background-color: #243864 !important;
+        }
+
+        .offcanvas-sidebar .nav-link {
+            color: #a3b1cc;
+            font-size: 16px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .offcanvas-sidebar .nav-link:hover {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .offcanvas-sidebar .nav-link.active {
+            background: #4e65f7;
+            color: #ffffff;
+        }
+
 
 .brand-icon {
-    width: 32px;
-    height: 32px;
-    background: #3B82F6;
-    border-radius: 8px;
+width: 32px;
+height: 32px;
+background: #3B82F6;
+border-radius: 8px;
+
 }
 
-.sidebar {
-    background: #f9f9f9;
-}
 
-.sidebar .nav-link {
-    color: #6f8198;
-    font-size: 18px;
-}
-
-.sidebar .nav-link:hover {
-    color: #ffffff;
-}
-
-.sidebar .nav-link.active {
-    background: #303f59;
-    color: #ffffff;
-}
 
 .chart-container {
     position: relative;
@@ -172,6 +196,11 @@ body {
     color: #2563EB;
 }
 
+.status-denied {
+    background-color: #eff6ff;
+    color: #EF4444;
+}
+
 .status-approved {
     background-color: #ECFDF5;
     color: #059669;
@@ -189,18 +218,19 @@ body {
     justify-content: center;
 }
 
-.avatar-jo {
+.avatar-lm {
     background-color: #0284C7;
 }
 
-.avatar-pn {
+.avatar-kn {
     background-color: #0891B2;
 }
 
-.avatar-mw {
+.avatar-fp {
     background-color: #D97706;
 }
 
-.avatar-dr {
+.avatar-kd {
     background-color: #0D9488;
 }
+
