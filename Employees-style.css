@@ -193,13 +193,25 @@ dialog form {
   font-weight: 800;
   font-size: 14px;
 }
-.burger-btn {
-  background: none;
+.em-burger-btn {
+  background: transparent;
   border: none;
   color: #fff;
   font-size: 24px;
   cursor: pointer;
   line-height: 1;
+  border-radius: 8px;
+  padding: 8px 10px;
+  transition: background .2s ease, transform .1s ease;
+}
+.em-burger-btn:hover {
+  color:white;
+  background: rgba(255,255,255,0.12);
+}
+.em-burger-btn:active {
+  color:white;
+  background: rgba(255,255,255,0.2);
+  transform: scale(0.95)
 }
 .em-sidebar {
   position: fixed;
@@ -207,7 +219,7 @@ dialog form {
   left: -450px;
   width: 380px;
   height: 100vh;
-  background: #1e293b;
+  background: #243864;
   color: #fff;
   padding: 20px;
   transition: left 0.3s ease;
@@ -263,11 +275,11 @@ dialog form {
   flex-shrink: 0;
 }
 .nav-link:hover{
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
 }
 .nav-link.active {
-  background: rgba(255, 255, 255, 0.2);
+  background: #4E65F7;
   color: #fff;
   font-weight: 700;
 }
