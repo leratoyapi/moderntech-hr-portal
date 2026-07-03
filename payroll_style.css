@@ -1,6 +1,7 @@
 
 
-body {
+
+.pr-body {
   font-family: 'Plus Jakarta Sans', sans-serif;
   background: #f4f6fb;
   margin: 0;
@@ -13,7 +14,6 @@ body {
 
 .payroll-wrapper {
   margin: 0 auto;
-  background: #ffffff;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.03);
   min-height: 100vh;
 }
@@ -81,7 +81,6 @@ body {
 /* =================================== */
 
 main.payroll-container.mt-4 {
-  max-width: 1200px;
   padding: 16px 20px 40px;
 }
 

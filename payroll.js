@@ -6,27 +6,12 @@ let pr_allEmployee = [];
 let pr_allAttendance=[]
 
 // console.log('Starting to load data from payroll_data.json...');
-
-fetch('data/employee_info.json')
+ cs
+fetch('data/payroll_data.json')
 .then(response => response.json())
 .then(data => {
   pr_allPayroll = data.payrollData;
   console.log('SUCCESS! Payroll data loaded', pr_allPayroll.length);
-})
-   
-fetch('data/employee_info.json')
-.then(response => reponse.json())
-.then(data => {
-  allEmplyees = data.employeeData;
-  console.log('SUCCESS! Employee data loaded', allEmployees.lenght);
-})
-
-fetch('data/attendance.json')
-.then(response => response.json())
-.then(data => {
-  allAttendance = data.attendanceData;
-  console.log('SUCCESS! Attendance data loaded', allAttendance.lenght);
-
 })
 
 // here im combining the data using function and then i will  will be using that data to generate the payslip
@@ -35,8 +20,8 @@ function combinneData(){
   let combined= [];
 
   // basically this will to find the employee's payroll info
-  for (let employee of allEmployee){
-    let payrollInfo = allPayroll.find(p => p.employeeId === employee.employeeId);
+  for (let employee of pr_allEmployee){
+    let payrollInfo = pr_allPayroll.find(p => p.employeeId === employee.employeeId);
 
     if (payrollInfo) {
       combined.push({

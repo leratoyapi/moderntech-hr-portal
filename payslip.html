@@ -23,19 +23,22 @@
   <div class="container mt-4">
     <h1 class="text-center">Generate Payslip</h1>
 
-    <div class="card pr-select-card mb-4">
-      <div class="card-body">
-        <h5 class="card-title">Select Employee</h5>
+    <div class="pr-card pr-select-card mb-4">
+      <div class="pr-card-body">
+        <h5 class="pr-card-title">Select Employee</h5>
           <div class="row">
             <div class="col-md-8">
-              <label for="pr-employee-select" class="form-label">Choose Employee:</label>
+              <!-- <label for="pr-employee-select" class="form-label">Choose Employee:</label> -->
               <select id="pr-employee-select" class="form-select">
                 <option value="">-- Select an employee --</option>
-              </select>
+              </select><br>
             </div>
-                    
+
+            <!-- the buttons -->
             <div class="col-md-4 d-flex align-items-end">
               <button id="pr-generate-btn" class="btn btn-primary w-100">Generate Payslip</button>
+
+              
             </div>
           </div>
         </div>
@@ -47,13 +50,13 @@
 
 
 
-  <div class="payslip-container">
+  <!-- <div class="payslip-container">
     <h1>Payslip for <span id="name"></span></h1>
     <p>Employee ID: <span id="id"></span></p>
     <p>OT Hours: <span id="hoursWorked"></span></p>
     <p>Deductions: <span id="leaveDeductions"></span></p>
     <p>Final Salary: R<span id="salary"></span></p>
-  </div>
+  </div> -->
 
   </body>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
