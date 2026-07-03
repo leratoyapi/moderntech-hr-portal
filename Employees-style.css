@@ -50,27 +50,32 @@ body {
 /* KPI Cards */
 .kpi {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220ppx, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
   margin-bottom: 24px;
 }
 .kpi-card {
   background: var(--card);
-  padding: 16px;
+  padding: 16px 20px;
   border-radius: 12px;
-  border: 1px solid var(--border);
+  border-left: 6px solid var(--green);
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 .kpi-card span {
-  font-size: 0.75rem;
+  font-size: 14px;
   color: var(--muted);
-  letter-spacing: .5px;
+  font-weight: 500;
+  margin-bottom:4px;
 }
 .kpi-card h3 {
-  margin: 8px 0;
-  font-size: 1.5rem;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
 }
 .kpi-card small {
   color: var(--green);
+  margin-top: 4px;
+  font-size: 12px;
 }
 /* Table */
 .table-wrap {
@@ -157,7 +162,7 @@ dialog form {
   background: #fee2e2;
   color: #dc2626;
 }
-.main-header {
+.em-main-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -172,12 +177,12 @@ dialog form {
   margin-right: -20px;
   margin-top: -20px;
 }
-.brand-area {
+.em-brand-area {
   display: flex;
   align-items: center;
   gap: 12px;
 }
-.brand-icon {
+.em-brand-icon {
   width: 36px;
   height: 36px;
   border-radius: 8px;
@@ -196,7 +201,7 @@ dialog form {
   cursor: pointer;
   line-height: 1;
 }
-.sidebar {
+.em-sidebar {
   position: fixed;
   top: 0;
   left: -450px;
@@ -209,16 +214,16 @@ dialog form {
   z-index: 1001;
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.25);
 }
-.sidebar.open {
+.em-sidebar.open {
   left: 0;
 }
-.sidebar-header {
+.em-sidebar-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 32px;
 }
-.sidebar-header h2 {
+.em-sidebar-header h2 {
   margin: 0;
   font-size: 18px;
   line-height: 1.2;
@@ -235,7 +240,7 @@ dialog form {
 .close-btn:hover {
   opacity: 1;
 }
-.sidebar-nav {
+.em-sidebar-nav {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -266,13 +271,13 @@ dialog form {
   color: #fff;
   font-weight: 700;
 }
-.overlay {
+.em-overlay {
   display: none;
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1000;
 }
-.overlay.show{
+.em-overlay.show{
   display: block;
 }
