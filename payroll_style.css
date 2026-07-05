@@ -1,8 +1,5 @@
-
-
-
 .pr-body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   background: #f4f6fb;
   margin: 0;
   padding: 0;
@@ -22,7 +19,6 @@
   background: #0b1a33 !important;
   padding: 14px 28px !important;
   border-bottom: 1px solid #1f334f;
-
 }
 
 .offcanvas-sidebar {
@@ -84,7 +80,6 @@ main.payroll-container.mt-4 {
   padding: 16px 20px 40px;
 }
 
-
 /* =================================== */
 /*            The Headers              */
 /* =================================== */
@@ -95,7 +90,6 @@ main.payroll-container.mt-4 {
   flex-wrap: wrap;
   margin-bottom: 16px;
 }
-
 
 .payroll-header-left h2 {
   font-weight: 700;
@@ -118,7 +112,6 @@ main.payroll-container.mt-4 {
   align-items: center;
   padding-top: 4px;
 }
-
 
 .payroll-header-right .btn-primary {
   background: #2a7de1;
@@ -146,19 +139,21 @@ main.payroll-container.mt-4 {
   border: none;
   border-radius: 20px;
   padding: 16px 20px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.02);
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.03),
+    0 2px 6px rgba(0, 0, 0, 0.02);
   transition: 0.2s;
   height: 100%;
   display: flex;
   align-items: center;
   border: 1px solid #eef2f7;
   min-height: 90px;
-  width: 100%
+  width: 100%;
 }
 
 .pr-card-body {
   padding: 0;
-  width: 100%
+  width: 100%;
 }
 
 .pr-card-title {
@@ -288,7 +283,6 @@ main.payroll-container.mt-4 {
   color: #1f7b4d;
 }
 
- 
 /* =================================== */
 /*            Buttons                  */
 /* =================================== */
@@ -321,9 +315,9 @@ main.payroll-container.mt-4 {
     font-size: 14.4px;
   }
 
-/* =================================== */
-/*            Payroll Cards            */
-/* =================================== */
+  /* =================================== */
+  /*            Payroll Cards            */
+  /* =================================== */
   .pr-card-gross .pr-card-text,
   .pr-card-deductions .pr-card-text,
   .pr-card-net .pr-card-text {
@@ -335,8 +329,8 @@ main.payroll-container.mt-4 {
   }
 
   /* =================================== */
-/*            Payroll Table           */
-/* =================================== */
+  /*            Payroll Table           */
+  /* =================================== */
 
   .pr-table {
     font-size: 12.8px;
@@ -370,12 +364,11 @@ main.payroll-container.mt-4 {
     width: 100%;
   }
 
-.payroll-header-right .btn-primary {
-  width: 100%;
-  justify-content: center;
+  .payroll-header-right .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
 }
-}
-
 
 @media (max-width: 576px) {
   /* the cards */
@@ -392,7 +385,7 @@ main.payroll-container.mt-4 {
   }
 }
 
-  /* REMOVES THE EXTRA THE SPACE BETWEEN THE ROWS */
+/* REMOVES THE EXTRA THE SPACE BETWEEN THE ROWS */
 .row-cards {
   margin-left: 0;
   margin-right: 0;
@@ -402,134 +395,337 @@ main.payroll-container.mt-4 {
   padding-left: 0;
   padding-right: 0;
 }
- 
+
 /* offcanvas close button alignment */
 .offcanvas-header .btn-close {
   filter: brightness(0) invert(1);
   opacity: 0.8;
 }
-  
+
 /* =================================== */
 /*         PAYSLIP STYLES              */
 /* =================================== */
 
-
-/* Selection Card */
 .pr-select-card {
-  border-left: 4px solid #007bff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #2a7de1 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  min-height: auto !important;
+  padding: 12px 20px !important;
+}
+
+.pr-select-card .pr-card-title {
+  font-size: 13px;
+  color: #4a5b72 !important;
+  margin-bottom: 6px !important;
+}
+
+.pr-select-card .form-select {
+  border-radius: 8px;
+  border: 1.5px solid #dce1e8;
+  padding: 8px 14px;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.pr-select-card .form-select:focus {
+  border-color: #2a7de1;
+  box-shadow: 0 0 0 0.2rem rgba(42, 125, 225, 0.15);
+}
+
+.pr-select-card .btn-primary {
+  background: #2a7de1;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: 0.2s;
+  box-shadow: 0 4px 10px rgba(42, 125, 225, 0.2);
+}
+
+.pr-select-card .btn-primary:hover {
+  background: #1b5fb0;
+  transform: translateY(-1px);
 }
 
 /* Payslip Card */
 .pr-payslip-card {
-  border: 2px solid #2c3e50;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  margin-top: 20px;
-  transition: all 0.3s ease;
+  background: #ffffff;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  animation: prFadeIn 0.4s ease;
+  margin-top: 16px;
+  border: 1px solid #eef2f7;
 }
 
-.pr-payslip-card:hover {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* Payslip Header */
 .pr-payslip-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 10px 10px 0 0 !important;
+  background: #0b1a33;
+  padding: 14px 24px;
+  border-bottom: 1px solid #1f334f;
 }
 
-/* Payslip Body */
+.pr-payslip-header h4 {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.3px;
+}
+
 .pr-payslip-body {
-  padding: 25px;
-  background: #f8f9fa;
+  padding: 20px 24px;
 }
 
-/* Dividers */
-.pr-divider {
-  border-top: 2px dashed #dee2e6;
-  margin: 20px 0;
+/* Payslip Table */
+#prPayslipTable {
+  margin-bottom: 0;
+  font-size: 14px;
 }
 
-/* Employee Info */
-.pr-employee-info p {
-  margin-bottom: 8px;
+#prPayslipTable th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #0b1a33;
+  padding: 10px 16px;
+  width: 35%;
+  border-color: #dce1e8;
 }
 
-/* Salary Details */
-.pr-salary-details h4 {
+#prPayslipTable td {
+  padding: 10px 16px;
+  font-weight: 500;
+  color: #1f2a3f;
+  width: 65%;
+  border-color: #dce1e8;
+}
+
+#prPayslipTable tr.table-success td {
+  background-color: #d4edda !important;
+  font-weight: 700;
+  font-size: 1.05em;
+}
+
+#prPayslipTable .text-danger {
   font-weight: 600;
 }
 
-/* Final Salary */
-.pr-final-salary {
-  background: #e9ecef;
-  padding: 15px;
-  border-radius: 8px;
-  margin: 10px 0;
+/* Download Button */
+#prDownloadBtn {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  border: none;
+  padding: 8px 30px;
+  font-weight: 600;
+  border-radius: 30px;
+  transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.25);
+  font-size: 14px;
 }
 
-.pr-final-salary h2 {
-  font-weight: 700;
+#prDownloadBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.35);
 }
 
-/* Payslip Footer */
-.pr-payslip-footer {
-  background: #f1f3f5;
-  border-radius: 0 0 10px 10px !important;
+#prDownloadBtn i {
+  font-size: 1em;
 }
 
-/* Responsive Design */
+/* Back button in navbar */
+.main-header .btn-outline-light {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  padding: 6px 18px;
+  font-weight: 500;
+  transition: 0.3s;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.main-header .btn-outline-light:hover {
+  background-color: #ffffff;
+  color: #0b1a33;
+  border-color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+}
+
+.main-header .btn-outline-light i {
+  font-size: 0.9em;
+}
+
+/* Animation */
+@keyframes prFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Error message */
+#prErrorContainer .alert {
+  padding: 10px 18px;
+  font-size: 14px;
+  border-radius: 12px;
+  margin-top: 12px;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Responsive for Payslip */
 @media (max-width: 768px) {
-  .pr-payslip-card {
-    margin: 10px 0;
+  .pr-select-card {
+    padding: 10px 16px !important;
   }
-    
-  .pr-salary-details .col-md-4 {
-    margin-bottom: 15px;
+
+  .pr-select-card .pr-card-title {
+    font-size: 12px;
   }
-    
-  .pr-employee-info .col-md-6 {
-    margin-bottom: 10px;
+
+  .pr-select-card .form-select {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  .pr-select-card .btn-primary {
+    font-size: 13px;
+    padding: 6px 16px;
+  }
+
+  .pr-payslip-body {
+    padding: 16px;
+  }
+
+  #prPayslipTable {
+    font-size: 13px;
+  }
+
+  #prPayslipTable th,
+  #prPayslipTable td {
+    padding: 8px 12px;
+  }
+
+  #prPayslipTable tr.table-success td {
+    font-size: 14px;
+  }
+
+  .pr-payslip-header h4 {
+    font-size: 16px;
+  }
+
+  .pr-payslip-header {
+    padding: 10px 18px;
+  }
+
+  #prDownloadBtn {
+    font-size: 13px;
+    padding: 6px 24px;
+  }
+
+  .main-header .btn-outline-light {
+    font-size: 12px;
+    padding: 4px 14px;
+  }
+
+  .main-header h5 {
+    font-size: 14px !important;
+  }
+
+  .brand-icon {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 13px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .pr-select-card .row {
+    gap: 6px;
+  }
+
+  .pr-select-card .col-md-4 {
+    margin-top: 6px;
+  }
+
+  .pr-payslip-body {
+    padding: 12px;
+  }
+
+  #prPayslipTable {
+    font-size: 12px;
+  }
+
+  #prPayslipTable th,
+  #prPayslipTable td {
+    padding: 6px 10px;
+  }
+
+  #prPayslipTable tr.table-success td {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  #prDownloadBtn {
+    font-size: 12px;
+    padding: 6px 20px;
+    width: 100%;
+  }
+
+  .main-header .btn-outline-light {
+    font-size: 11px;
+    padding: 3px 10px;
+  }
+
+  .main-header {
+    padding: 10px 16px !important;
   }
 }
 
 /* Print Styles */
 @media print {
+  .main-header {
+    display: none !important;
+  }
+
   .pr-select-card {
     display: none !important;
   }
-    
-  .pr-payslip-card {
-    border: 1px solid #000 !important;
-    box-shadow: none !important;
+
+  #prDownloadBtn {
+    display: none !important;
   }
-    
+
+  .pr-payslip-card {
+    border: 2px solid #000 !important;
+    box-shadow: none !important;
+    animation: none !important;
+    margin-top: 0 !important;
+    border-radius: 0 !important;
+  }
+
   .pr-payslip-header {
     background: #333 !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
-}
 
-/* Loading State */
-.pr-loading {
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-/* Success Animation */
-.pr-payslip-card {
-  animation: prFadeIn 0.5s ease;
-}
-
-@keyframes prFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+  #prPayslipTable th {
+    background-color: #f0f0f0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  #prPayslipTable tr.table-success td {
+    background-color: #d4edda !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .payroll-wrapper {
+    min-height: auto !important;
   }
 }

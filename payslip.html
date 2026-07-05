@@ -1,64 +1,124 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ModernTech | Generate Payslip</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="payroll_style.css">
-  
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ModernTech | Generate Payslip</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="payroll_style.css" />
+  </head>
+  <body class="pr-body">
+    <div class="payroll-wrapper">
+      <!-- Navigation with Back to Payroll Button -->
+      <header
+        class="main-header text-white py-3 px-4 d-flex align-items-center justify-content-between"
+      >
+        <div class="d-flex align-items-center">
+          <div
+            class="brand-icon me-2 d-flex align-items-center justify-content-center fw-bold text-white bg-primary rounded"
+          >
+            HR
+          </div>
+          <h5 class="m-0 fw-bold">ModernTech HR Portal</h5>
+        </div>
 
-</head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="#">
-        <img src="hr.png" alt="Logo" height="30" class="me-2">ModernTech HR
-      </a>
-    </div>
-  </nav>
-  
+        <!-- Back to Payroll Button in Navbar -->
+        <a href="payroll.html" class="btn btn-outline-light border-0">
+          <i class="bi bi-arrow-left me-1"></i>Back to Payroll
+        </a>
+      </header>
 
-   <!-- the main content  with a dropdown menu-->
-  <div class="container mt-4">
-    <h1 class="text-center">Generate Payslip</h1>
+      <!-- Main Content -->
+      <main class="payroll-container mt-4">
+        <!-- Title -->
+        <div class="payroll-header">
+          <div class="payroll-header-left">
+            <h2><strong>Employee Payslip</strong></h2>
+          </div>
+        </div>
 
-    <div class="pr-card pr-select-card mb-4">
-      <div class="pr-card-body">
-        <h5 class="pr-card-title">Select Employee</h5>
-          <div class="row">
-            <div class="col-md-8">
-              <!-- <label for="pr-employee-select" class="form-label">Choose Employee:</label> -->
-              <select id="pr-employee-select" class="form-select">
-                <option value="">-- Select an employee --</option>
-              </select><br>
+        <!-- Loading State -->
+        <div id="prLoadingState" class="text-center py-4">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <p class="mt-2 text-muted">Loading payslip data...</p>
+        </div>
+
+        <!-- Payslip Display Card (HIDDEN by default) -->
+        <div id="prPayslipCard" class="pr-payslip-card" style="display: none">
+          <div class="pr-payslip-header">
+            <h4 class="mb-0">
+              <i class="bi bi-file-earmark-text me-2"></i>Payslip Details
+            </h4>
+          </div>
+          <div class="pr-payslip-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="prPayslipTable">
+                <tbody>
+                  <tr>
+                    <th><i class="bi bi-person-badge me-1"></i>Employee ID</th>
+                    <td id="prDisplayEmployeeId">-</td>
+                  </tr>
+                  <tr>
+                    <th><i class="bi bi-clock me-1"></i>Hours Worked</th>
+                    <td id="prDisplayHoursWorked">-</td>
+                  </tr>
+                  <tr>
+                    <th>
+                      <i class="bi bi-calendar-minus me-1"></i>Leave Deductions
+                    </th>
+                    <td id="prDisplayLeaveDeductions">-</td>
+                  </tr>
+                  <tr>
+                    <th>
+                      <i class="bi bi-currency-dollar me-1"></i>Base Salary
+                    </th>
+                    <td id="prDisplayBaseSalary">-</td>
+                  </tr>
+                  <tr>
+                    <th><i class="bi bi-dash-circle me-1"></i>Deductions</th>
+                    <td class="text-danger" id="prDisplayDeductions">-</td>
+                  </tr>
+                  <tr class="table-success">
+                    <th>
+                      <strong
+                        ><i class="bi bi-currency-dollar me-1"></i>Final
+                        Salary</strong
+                      >
+                    </th>
+                    <td><strong id="prDisplayFinalSalary">-</strong></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
-            <!-- the buttons -->
-            <div class="col-md-4 d-flex align-items-end">
-              <button id="pr-generate-btn" class="btn btn-primary w-100">Generate Payslip</button>
-
-              
+            <!-- Download Button -->
+            <div class="text-center mt-3">
+              <button class="btn btn-success" id="prDownloadBtn">
+                <i class="bi bi-download me-2"></i>Download Payslip
+              </button>
             </div>
           </div>
         </div>
-      </div>
 
-      
-        </div>
+        <!-- Error container -->
+        <div id="prErrorContainer"></div>
+      </main>
     </div>
 
-
-
-  <!-- <div class="payslip-container">
-    <h1>Payslip for <span id="name"></span></h1>
-    <p>Employee ID: <span id="id"></span></p>
-    <p>OT Hours: <span id="hoursWorked"></span></p>
-    <p>Deductions: <span id="leaveDeductions"></span></p>
-    <p>Final Salary: R<span id="salary"></span></p>
-  </div> -->
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="payroll.js"></script>
   </body>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script href="payroll.js"></script>
 </html>
