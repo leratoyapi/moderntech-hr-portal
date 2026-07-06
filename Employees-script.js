@@ -4,6 +4,7 @@ const tbody = document.getElementById('employeeTableBody');
 const searchInput = document.getElementById('searchInput');
 const addModal = document.getElementById('addModal');
 const form = document.getElementById('employeeForm');
+const addBtn = document.getElementById('addBtn');
 
 // function to create the employee table
 async function loadEmployees() {
@@ -93,3 +94,29 @@ const closeSidebar = () => {
 menuBtn.addEventListener('click', openSidebar);
 closeBtn.addEventListener('click', closeSidebar);
 overlay.addEventListener('click', closeSidebar);
+// Add Employee Button
+addBtn.addEventListener('click', () => {
+  addModal.showModal();
+});
+
+// Darkmode
+const darkToggle = document.getElementById('darkToggle');
+// Load saved theme on start
+if(localStorage.getItem('theme') === 'dark') {
+  document.body.classList.add('dark');
+  darkToggle.innerHTML = '☀️';
+} else {
+  darkToggle.innerHTML = '🌙';
+}
+// Toggle click
+darkToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+
+  if (document.body.classList.contains('dark')){
+    localStorage.setItem('theme', 'dark');
+    darkToggle.innerHTML = '☀️';
+  }else {
+    localStorage.setItem('theme', 'light');
+    darkToggle.innerHTML = '🌙';
+  }
+});
