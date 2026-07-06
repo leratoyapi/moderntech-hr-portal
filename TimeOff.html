@@ -88,6 +88,15 @@
                 Reports
             </a>
         </nav>
+
+        <div class="timeoff-sidebar-footer">
+            <button class="toggle-btn" id="darkModeToggle" type="button" aria-pressed="false">
+                <span class="toggle-icon" aria-hidden="true">
+                    <i class="bi bi-moon-stars"></i>
+                </span>
+                <span id="toggleText">Dark Mode</span>
+            </button>
+        </div>
     </aside>
 
     <!-- Main Content -->
@@ -168,29 +177,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="TimeOff.js"></script>
-<script>
-    // Sidebar toggle logic (no Bootstrap offcanvas dependency)
-    const menuToggle = document.getElementById('timeoffMenuToggle');
-    const sidebar = document.getElementById('timeoffSidebar');
-    const overlay = document.getElementById('timeoffSidebarOverlay');
-    const closeBtn = document.getElementById('timeoffSidebarClose');
-
-    function timeoffOpenSidebar() {
-        sidebar.classList.add('timeoff-sidebar--open');
-        overlay.classList.add('timeoff-sidebar-overlay--visible');
-        document.body.classList.add('timeoff-no-scroll');
-    }
-
-    function timeoffCloseSidebar() {
-        sidebar.classList.remove('timeoff-sidebar--open');
-        overlay.classList.remove('timeoff-sidebar-overlay--visible');
-        document.body.classList.remove('timeoff-no-scroll');
-    }
-
-    menuToggle.addEventListener('click', timeoffOpenSidebar);
-    closeBtn.addEventListener('click', timeoffCloseSidebar);
-    overlay.addEventListener('click', timeoffCloseSidebar);
-</script>
 
 </body>
 </html>

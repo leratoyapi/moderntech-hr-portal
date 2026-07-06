@@ -4,8 +4,57 @@ const state = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    setupSidebarControls();
+    setupThemeToggle();
     loadTimeOffData();
 });
+
+function setupSidebarControls() {
+    const menuToggle = document.getElementById('timeoffMenuToggle');
+    const sidebar = document.getElementById('timeoffSidebar');
+    const overlay = document.getElementById('timeoffSidebarOverlay');
+    const closeBtn = document.getElementById('timeoffSidebarClose');
+
+    if (!menuToggle || !sidebar || !overlay || !closeBtn) return;
+
+    const openSidebar = () => {
+        sidebar.classList.add('timeoff-sidebar--open');
+        overlay.classList.add('timeoff-sidebar-overlay--visible');
+        document.body.classList.add('timeoff-no-scroll');
+    };
+
+    const closeSidebar = () => {
+        sidebar.classList.remove('timeoff-sidebar--open');
+        overlay.classList.remove('timeoff-sidebar-overlay--visible');
+        document.body.classList.remove('timeoff-no-scroll');
+    };
+
+    menuToggle.addEventListener('click', openSidebar);
+    closeBtn.addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+}
+
+function setupThemeToggle() {
+    const themeToggle = document.getElementById('darkModeToggle');
+    const toggleText = document.getElementById('toggleText');
+
+    if (!themeToggle || !toggleText) return;
+
+    const applyTheme = (isDarkMode) => {
+        document.body.classList.toggle('dark-mode', isDarkMode);
+        themeToggle.classList.toggle('dark-mode', isDarkMode);
+        toggleText.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
+        themeToggle.setAttribute('aria-pressed', String(isDarkMode));
+        localStorage.setItem('darkMode', String(isDarkMode));
+    };
+
+    const storedPreference = localStorage.getItem('darkMode') === 'true';
+    applyTheme(storedPreference);
+
+    themeToggle.addEventListener('click', () => {
+        applyTheme(!document.body.classList.contains('dark-mode'));
+    });
+}
 
 async function loadTimeOffData() {
     try {
@@ -57,7 +106,6 @@ async function loadTimeOffData() {
         }
 
         state.requests = allRequests;
-
         state.payroll = payrollData.payrollData || [];
     } catch (error) {
         console.error('Time Off data could not be loaded:', error);
@@ -73,10 +121,15 @@ function render() {
     const approvedCount = state.requests.filter((request) => request.status.toLowerCase() === 'approved').length;
     const deniedCount = state.requests.filter((request) => request.status.toLowerCase() === 'denied').length;
 
-    document.getElementById('pendingCount').textContent = pendingCount;
-    document.getElementById('approvedCount').textContent = approvedCount;
-    document.getElementById('deniedCount').textContent = deniedCount;
-    document.getElementById('timeoffHeaderSummary').textContent = `${pendingCount} pending review • ${state.requests.length} total requests`;
+    const pendingNode = document.getElementById('pendingCount');
+    const approvedNode = document.getElementById('approvedCount');
+    const deniedNode = document.getElementById('deniedCount');
+    const summaryNode = document.getElementById('timeoffHeaderSummary');
+
+    if (pendingNode) pendingNode.textContent = pendingCount;
+    if (approvedNode) approvedNode.textContent = approvedCount;
+    if (deniedNode) deniedNode.textContent = deniedCount;
+    if (summaryNode) summaryNode.textContent = `${pendingCount} pending review • ${state.requests.length} total requests`;
 
     renderPayrollSnapshot();
     renderRequests();
@@ -114,6 +167,8 @@ function renderPayrollSnapshot() {
 
 function renderRequests() {
     const tbody = document.getElementById('timeoffTableBody');
+
+    if (!tbody) return;
 
     if (!state.requests.length) {
         tbody.innerHTML = '<tr><td colspan="9" class="text-center text-secondary py-4">No leave requests were found.</td></tr>';
