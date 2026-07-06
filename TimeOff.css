@@ -3,71 +3,306 @@
    with "timeoff-" to avoid merge conflicts
    ============================================= */
 
-.timeoff-wrapper {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
+/* ── Reset & Base ─────────────────────────── */
+.timeoff-body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: #f8fafc;
+    color: #4a5568;
 }
 
-/* Top Header Bar */
+.timeoff-no-scroll {
+    overflow: hidden;
+}
+
+/* ── Page Wrapper ─────────────────────────── */
+.timeoff-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* ── Top Header Bar ───────────────────────── */
 .timeoff-main-header {
     background-color: #243864;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 24px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    padding: 14px 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-/* Offcanvas Sidebar */
-.timeoff-offcanvas-sidebar {
-    width: 280px !important;
-    background-color: #243864 !important;
-}
-
-.timeoff-offcanvas-sidebar .nav-link {
-    color: #a3b1cc;
-    font-size: 16px;
-    padding: 12px 20px;
+.timeoff-header-brand {
     display: flex;
     align-items: center;
-    border-radius: 8px;
-    transition: all 0.2s;
-    text-decoration: none;
+    gap: 10px;
 }
 
-.timeoff-offcanvas-sidebar .nav-link:hover {
+.timeoff-header-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
     color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.05);
 }
 
-.timeoff-offcanvas-sidebar .nav-link.active {
+/* ── Brand Icon ───────────────────────────── */
+.timeoff-brand-icon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    background: #3b82f6;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 12px;
+    color: #ffffff;
+}
+
+/* ── Menu Toggle Button ───────────────────── */
+.timeoff-menu-btn {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    line-height: 1;
+    transition: background 0.2s;
+}
+
+.timeoff-menu-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Sidebar Overlay ──────────────────────── */
+.timeoff-sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 200;
+}
+
+.timeoff-sidebar-overlay--visible {
+    display: block;
+}
+
+/* ── Sidebar ──────────────────────────────── */
+.timeoff-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100%;
+    background-color: #243864;
+    z-index: 300;
+    padding: 16px;
+    box-sizing: border-box;
+    transform: translateX(-100%);
+    transition: transform 0.28s ease;
+    overflow-y: auto;
+}
+
+.timeoff-sidebar--open {
+    transform: translateX(0);
+}
+
+.timeoff-sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.timeoff-sidebar-close {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.timeoff-sidebar-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Sidebar Nav ──────────────────────────── */
+.timeoff-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.timeoff-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: #a3b1cc;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.timeoff-nav-link:hover {
+    background: rgba(255, 255, 255, 0.07);
+    color: #ffffff;
+}
+
+.timeoff-nav-link--active {
     background: #4e65f7;
     color: #ffffff;
 }
 
-/* Brand Icon */
-.timeoff-brand-icon {
-    width: 32px;
-    height: 32px;
-    background: #3B82F6;
-    border-radius: 8px;
+.timeoff-nav-icon {
+    flex-shrink: 0;
 }
 
-/* Summary card enhancements */
+/* ── Main Content ─────────────────────────── */
+.timeoff-main {
+    flex: 1;
+    background-color: #f8fafc;
+    padding: 24px 16px;
+}
+
+.timeoff-content {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ── Page Header ──────────────────────────── */
+.timeoff-page-header {
+    margin-bottom: 24px;
+}
+
+.timeoff-page-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 4px 0;
+}
+
+.timeoff-page-subtitle {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0;
+}
+
+/* ── Summary Cards Grid ───────────────────── */
+.timeoff-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
 .timeoff-summary-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.07);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .timeoff-summary-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08) !important;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.1);
 }
 
-/* Table */
+.timeoff-card-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.timeoff-card-icon--blue {
+    background-color: #eff6ff;
+    color: #3b82f6;
+}
+
+.timeoff-card-icon--green {
+    background-color: #f0fdf4;
+    color: #16a34a;
+}
+
+.timeoff-card-icon--red {
+    background-color: #fef2f2;
+    color: #dc2626;
+}
+
+.timeoff-card-count {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 2px 0;
+    line-height: 1;
+}
+
+.timeoff-card-label {
+    font-size: 14px;
+    color: #64748b;
+}
+
+/* ── Table Card ───────────────────────────── */
+.timeoff-table-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.07);
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.timeoff-table-card-header {
+    padding: 20px 20px 12px 20px;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.timeoff-table-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 4px 0;
+}
+
+.timeoff-table-card-subtitle {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0;
+}
+
+/* ── Table Scroll Wrapper ─────────────────── */
+.timeoff-table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ── Table Styles ─────────────────────────── */
 .timeoff-custom-table {
-    border-collapse: separate;
-    border-spacing: 0;
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
 }
 
 .timeoff-custom-table thead th {
@@ -76,43 +311,72 @@
     text-transform: uppercase;
     color: #8a99ad;
     letter-spacing: 0.5px;
+    padding: 14px 16px;
     border-bottom: 1px solid #edf2f7;
-    padding: 16px 12px;
+    white-space: nowrap;
+    background: #ffffff;
 }
 
-.timeoff-custom-table tbody tr td {
-    padding: 16px 12px;
+.timeoff-custom-table tbody td {
+    padding: 14px 16px;
     border-bottom: 1px solid #edf2f7;
     color: #4a5568;
     font-size: 14px;
+    vertical-align: middle;
 }
 
 .timeoff-custom-table tbody tr:last-child td {
     border-bottom: 0;
 }
 
-/* Employee Name */
+.timeoff-custom-table tbody tr:hover td {
+    background-color: #f8fafc;
+}
+
+.timeoff-th-center {
+    text-align: center;
+}
+
+.timeoff-td-loading {
+    text-align: center;
+    color: #64748b;
+    padding: 32px 16px;
+}
+
+/* ── Employee Cell ────────────────────────── */
+.timeoff-employee-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .timeoff-employee-name {
     font-weight: 500;
     color: #2d3748;
 }
 
-/* Avatar Circle */
+/* ── Avatar Circle ────────────────────────── */
 .timeoff-avatar {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
     border-radius: 50%;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
 }
 
-/* Status Badges */
+/* ── Status Badges ────────────────────────── */
 .timeoff-badge-status {
     padding: 4px 12px;
     border-radius: 4px;
     font-size: 12px;
     font-weight: 500;
     display: inline-block;
+    white-space: nowrap;
 }
 
 .timeoff-status-pending {
@@ -130,58 +394,132 @@
     color: #dc2626;
 }
 
-/* Action Buttons */
-.timeoff-btn-action {
-    padding: 4px 12px;
-    font-size: 13px;
-    border-radius: 4px;
-    font-weight: 500;
+/* ── Action Buttons ───────────────────────── */
+.timeoff-actions-cell {
+    text-align: center;
+    white-space: nowrap;
 }
 
-.timeoff-btn-action.btn-outline-success {
+.timeoff-btn-approve,
+.timeoff-btn-deny {
+    padding: 5px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid;
+    transition: background 0.2s, color 0.2s;
+    display: inline-block;
+}
+
+.timeoff-btn-approve {
     border-color: #16a34a;
     color: #16a34a;
+    background: transparent;
+    margin-right: 6px;
 }
 
-.timeoff-btn-action.btn-outline-success:hover {
+.timeoff-btn-approve:hover {
     background-color: #16a34a;
-    color: white;
+    color: #ffffff;
 }
 
-.timeoff-btn-action.btn-outline-danger {
+.timeoff-btn-deny {
     border-color: #dc2626;
     color: #dc2626;
+    background: transparent;
 }
 
-.timeoff-btn-action.btn-outline-danger:hover {
+.timeoff-btn-deny:hover {
     background-color: #dc2626;
-    color: white;
+    color: #ffffff;
 }
 
-.timeoff-insight-list {
-    display: grid;
-    gap: 12px;
-}
-
-.timeoff-insight-item {
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    padding: 12px 14px;
-    background-color: #f8fafc;
-}
-
-.timeoff-insight-item strong {
-    display: block;
-    color: #0f172a;
-    margin-bottom: 4px;
-}
-
-.timeoff-insight-item span {
-    color: #64748b;
+.timeoff-btn-revert {
+    padding: 5px 12px;
     font-size: 13px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid #94a3b8;
+    color: #475569;
+    background: transparent;
+    transition: background 0.2s, color 0.2s;
 }
 
+.timeoff-btn-revert:hover {
+    background-color: #475569;
+    color: #ffffff;
+    border-color: #475569;
+}
+
+/* ── Muted Text ───────────────────────────── */
 .timeoff-muted-text {
     color: #64748b;
     font-size: 13px;
+}
+
+/* ── Ref Cell ─────────────────────────────── */
+.timeoff-ref-cell {
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748b;
+    white-space: nowrap;
+}
+
+/* ── Responsive: Tablet (≤ 768px) ────────── */
+@media (max-width: 768px) {
+    .timeoff-main-header {
+        padding: 12px 16px;
+    }
+
+    .timeoff-main {
+        padding: 16px 12px;
+    }
+
+    .timeoff-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .timeoff-page-title {
+        font-size: 18px;
+    }
+
+    .timeoff-card-count {
+        font-size: 24px;
+    }
+
+    .timeoff-table-card-header {
+        padding: 16px 16px 10px 16px;
+    }
+}
+
+/* ── Responsive: Mobile (≤ 480px) ────────── */
+@media (max-width: 480px) {
+    .timeoff-header-title {
+        font-size: 14px;
+    }
+
+    .timeoff-summary-card {
+        padding: 14px;
+        gap: 12px;
+    }
+
+    .timeoff-card-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        font-size: 17px;
+    }
+
+    .timeoff-page-title {
+        font-size: 17px;
+    }
+
+    .timeoff-btn-approve,
+    .timeoff-btn-deny {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
 }

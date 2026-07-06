@@ -26,29 +26,37 @@ async function loadTimeOffData() {
         const employeeMap = new Map((employeeData.employeeInformation || []).map((employee) => [employee.employeeId, employee]));
         const payrollMap = new Map((payrollData.payrollData || []).map((entry) => [entry.employeeId, entry]));
 
-        state.requests = (attendanceData.attendanceAndLeave || []).flatMap((employeeEntry) => {
+        const allRequests = [];
+        let refCounter = 1;
+
+        for (const employeeEntry of (attendanceData.attendanceAndLeave || [])) {
             const employee = employeeMap.get(employeeEntry.employeeId) || {
                 name: employeeEntry.name || 'Unknown Employee',
                 position: 'Employee',
                 department: 'HR'
             };
 
-            return (employeeEntry.leaveRequests || []).map((request, index) => ({
-                id: `${employeeEntry.employeeId}-${index}`,
-                employeeId: employeeEntry.employeeId,
-                employeeName: employee.name,
-                employeeTitle: employee.position || 'Employee',
-                department: employee.department || 'HR',
-                initials: getInitials(employee.name),
-                type: request.reason || 'Leave',
-                reason: request.reason || 'Leave request',
-                fromDate: request.date,
-                toDate: request.date,
-                days: 1,
-                status: request.status || 'Pending',
-                payroll: payrollMap.get(employeeEntry.employeeId) || null
-            }));
-        });
+            for (const [index, request] of (employeeEntry.leaveRequests || []).entries()) {
+                allRequests.push({
+                    id: `${employeeEntry.employeeId}-${index}`,
+                    ref: `TOR-${String(refCounter++).padStart(3, '0')}`,
+                    employeeId: employeeEntry.employeeId,
+                    employeeName: employee.name,
+                    employeeTitle: employee.position || 'Employee',
+                    department: employee.department || 'HR',
+                    initials: getInitials(employee.name),
+                    type: request.reason || 'Leave',
+                    reason: request.reason || 'Leave request',
+                    fromDate: request.date,
+                    toDate: request.date,
+                    days: 1,
+                    status: request.status || 'Pending',
+                    payroll: payrollMap.get(employeeEntry.employeeId) || null
+                });
+            }
+        }
+
+        state.requests = allRequests;
 
         state.payroll = payrollData.payrollData || [];
     } catch (error) {
@@ -76,6 +84,8 @@ function render() {
 
 function renderPayrollSnapshot() {
     const container = document.getElementById('payrollSnapshot');
+
+    if (!container) return;
 
     if (!state.payroll.length) {
         container.innerHTML = '<div class="timeoff-insight-item"><strong>No payroll data available</strong><span>Upload the payroll JSON file to view payroll insights.</span></div>';
@@ -106,7 +116,7 @@ function renderRequests() {
     const tbody = document.getElementById('timeoffTableBody');
 
     if (!state.requests.length) {
-        tbody.innerHTML = '<tr><td colspan="8" class="text-center text-secondary py-4">No leave requests were found.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="9" class="text-center text-secondary py-4">No leave requests were found.</td></tr>';
         return;
     }
 
@@ -117,9 +127,10 @@ function renderRequests() {
 
     tbody.innerHTML = sortedRequests.map((request) => `
         <tr>
+            <td class="timeoff-ref-cell">${escapeHtml(request.ref)}</td>
             <td>
-                <div class="d-flex align-items-center">
-                    <div class="timeoff-avatar me-3 d-flex align-items-center justify-content-center fw-bold text-white" style="background-color: ${getAvatarColor(request.employeeName)};">${request.initials}</div>
+                <div class="timeoff-employee-cell">
+                    <div class="timeoff-avatar" style="background-color: ${getAvatarColor(request.employeeName)};">${request.initials}</div>
                     <div>
                         <div class="timeoff-employee-name">${escapeHtml(request.employeeName)}</div>
                         <div class="timeoff-muted-text">${escapeHtml(request.department)}</div>
@@ -129,16 +140,16 @@ function renderRequests() {
             <td>${escapeHtml(request.type)}</td>
             <td>${formatDate(request.fromDate)}</td>
             <td>${formatDate(request.toDate)}</td>
-            <td class="fw-bold">${request.days}</td>
+            <td><strong>${request.days}</strong></td>
             <td>${escapeHtml(request.reason)}</td>
             <td><span class="timeoff-badge-status ${getStatusClass(request.status)}">${escapeHtml(request.status)}</span></td>
-            <td class="text-center">
+            <td class="timeoff-actions-cell">
                 ${request.status.toLowerCase() === 'pending'
                     ? `
-                        <button class="btn btn-outline-success timeoff-btn-action me-2" data-action="approve" data-request-id="${request.id}">Approve</button>
-                        <button class="btn btn-outline-danger timeoff-btn-action" data-action="deny" data-request-id="${request.id}">Deny</button>
+                        <button class="timeoff-btn-approve" data-action="approve" data-request-id="${request.id}">Approve</button>
+                        <button class="timeoff-btn-deny" data-action="deny" data-request-id="${request.id}">Deny</button>
                     `
-                    : '<span class="timeoff-muted-text">Reviewed</span>'}
+                    : `<button class="timeoff-btn-revert" data-action="revert" data-request-id="${request.id}">↩ Revert</button>`}
             </td>
         </tr>
     `).join('');
@@ -150,7 +161,9 @@ function renderRequests() {
             const matchedRequest = state.requests.find((request) => request.id === requestId);
 
             if (matchedRequest) {
-                matchedRequest.status = action === 'approve' ? 'Approved' : 'Denied';
+                if (action === 'approve') matchedRequest.status = 'Approved';
+                else if (action === 'deny') matchedRequest.status = 'Denied';
+                else if (action === 'revert') matchedRequest.status = 'Pending';
                 render();
             }
         });
