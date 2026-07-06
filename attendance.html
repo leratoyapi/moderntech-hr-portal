@@ -27,6 +27,8 @@
         </header>
 
 
+
+
         <!-- Hidden Sidebar Drawer (Only appears when Burger Menu is clicked) -->
         <div class="offcanvas offcanvas-start offcanvas-sidebar p-3" tabindex="-1" id="reviewAppSidebar" aria-labelledby="reviewAppSidebarLabel">
             <div class="offcanvas-header text-white justify-content-between align-items-center mb-2">
@@ -61,13 +63,12 @@
         </div>
     </div><br>
     <div class="attendance-input">
-        <input type="text" name="username" placeholder="Search Employee..."><p><i class="fa-regular fa-bell"></i></p>
+        <input type="text" name="username" placeholder="Search Employee...">
         <div class="attendance-icon">
             <div class="brand-icon me-2 d-flex align-items-center justify-content-center text-white">HR</div>
         </div>
     </div>
     <br><br>
-    <hr>
     <div class="attendance-container">
         <div class="attendance-heading">
             <h1>Attendance Tracking</h1>
@@ -93,6 +94,10 @@
                 </div>
             </div>
         </div>
+
+
+
+
 
 
 
@@ -199,19 +204,19 @@
     <div class="attendance-table-container">
         <h3>DAILY LOG</h3>
    
-        <table>
-            <thead>
-                <tr>
-                    <th>DATE</th>
-                    <th>PRESENT</th>
-                    <th>ABSENT</th>
-                    <th>LATE</th>
-                    <th>ATTENDANCE RATE</th>
+        <table class="att-table1">
+            <thead class="att-head1">
+                <tr class="att-tablerow1">
+                    <th class="att-tableth1">DATE</th>
+                    <th class="att-tableth1">PRESENT</th>
+                    <th class="att-tableth1">ABSENT</th>
+                    <th class="att-tableth1">LATE</th>
+                    <th class="att-tableth1">ATTENDANCE RATE</th>
                 </tr>
             </thead>
    
-            <tbody>
-                <tr>
+            <tbody class="att-body">
+                <tr class="att-tablerow1">
                     <td>Mon Jul 1</td>
                     <td class="att-present">238</td>
                     <td class="att-absent">6</td>
@@ -224,7 +229,7 @@
                     </td>
                 </tr>
    
-                <tr>
+                <tr class="att-tablerow1">
                     <td>Tue Jul 2</td>
                     <td class="att-present">241</td>
                     <td class="att-absent">5</td>
@@ -237,7 +242,7 @@
                     </td>
                 </tr>
    
-                <tr>
+                <tr class="att-tablerow1">
                     <td>Wed Jul 3</td>
                     <td class="att-present">235</td>
                     <td class="att-absent">8</td>
@@ -250,7 +255,7 @@
                     </td>
                 </tr>
    
-                <tr>
+                <tr class="att-tablerow1">
                     <td>Thu Jul 4</td>
                     <td class="att-present">240</td>
                     <td class="att-absent">4</td>
@@ -263,7 +268,7 @@
                     </td>
                 </tr>
    
-                <tr>
+                <tr class="att-tablerow1">
                     <td>Fri Jul 5</td>
                     <td class="att-present">229</td>
                     <td class="att-absent">12</td>
@@ -276,7 +281,7 @@
                     </td>
                 </tr>
    
-                <tr>
+                <tr class="att-tablerow1">
                     <td>Mon Jul 8</td>
                     <td class="att-present">243</td>
                     <td class="att-absent">3</td>
@@ -289,7 +294,7 @@
                     </td>
                 </tr>
    
-                <tr>
+                <tr class="att-tablerow1">
                     <td>Tue Jul 9</td>
                     <td class="att-present">239</td>
                     <td class="att-absent">7</td>
@@ -301,12 +306,41 @@
                         <span>95.6%</span>
                     </td>
                 </tr>
-   
             </tbody>
         </table>
+    </div>
+
+
+    <div class="attendance-section">
+
+
+        <h2 class="attendance-title">
+            ModernTech Employee Attendance
+        </h2>
+   
+        <table class="attendance-table">
+   
+            <thead class="attendance-table-head">
+   
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Employee Name</th>
+                    <th>Current Status</th>
+                    <th>Attendance History</th>
+                </tr>
+   
+            </thead>
+   
+            <tbody id="attendanceTableBody">
+   
+            </tbody>
+   
+        </table>
+   
     </div>
 </body>
 
 
+    <script src="attendance.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </html>
