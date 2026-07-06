@@ -54,6 +54,16 @@
     border-radius: 8px;
 }
 
+/* Summary card enhancements */
+.timeoff-summary-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.timeoff-summary-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08) !important;
+}
+
 /* Table */
 .timeoff-custom-table {
     border-collapse: separate;
@@ -146,4 +156,32 @@
 .timeoff-btn-action.btn-outline-danger:hover {
     background-color: #dc2626;
     color: white;
+}
+
+.timeoff-insight-list {
+    display: grid;
+    gap: 12px;
+}
+
+.timeoff-insight-item {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 12px 14px;
+    background-color: #f8fafc;
+}
+
+.timeoff-insight-item strong {
+    display: block;
+    color: #0f172a;
+    margin-bottom: 4px;
+}
+
+.timeoff-insight-item span {
+    color: #64748b;
+    font-size: 13px;
+}
+
+.timeoff-muted-text {
+    color: #64748b;
+    font-size: 13px;
 }

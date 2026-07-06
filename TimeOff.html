@@ -121,182 +121,84 @@
             <!-- Page Header -->
             <div class="mb-4">
                 <h3 class="fw-bold mb-1" style="color: #1e293b; font-family: 'Plus Jakarta Sans', system-ui, sans-serif;">Time Off Requests</h3>
-                <p class="text-secondary m-0" style="font-size: 14px;">3 pending review</p>
+                <p id="timeoffHeaderSummary" class="text-secondary m-0" style="font-size: 14px;">Loading requests…</p>
             </div>
 
             <!-- Summary Cards -->
             <div class="row g-4 mb-4">
                 <div class="col-md-4">
-                    <div class="card border-0 shadow-sm p-4 d-flex flex-row align-items-center" style="border-radius: 12px;">
+                    <div class="card border-0 shadow-sm p-4 d-flex flex-row align-items-center timeoff-summary-card" style="border-radius: 12px;">
                         <div class="timeoff-avatar d-flex align-items-center justify-content-center me-3" style="width:48px;height:48px;border-radius:12px;background-color:#eff6ff;color:#3b82f6;">
                             <i class="bi bi-clock fs-5"></i>
                         </div>
                         <div>
-                            <h3 class="fw-bold mb-0 lh-1" style="color:#1e293b;font-size:28px;">3</h3>
+                            <h3 id="pendingCount" class="fw-bold mb-0 lh-1" style="color:#1e293b;font-size:28px;">0</h3>
                             <span class="text-secondary" style="font-size:14px;">Pending</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card border-0 shadow-sm p-4 d-flex flex-row align-items-center" style="border-radius: 12px;">
+                    <div class="card border-0 shadow-sm p-4 d-flex flex-row align-items-center timeoff-summary-card" style="border-radius: 12px;">
                         <div class="timeoff-avatar d-flex align-items-center justify-content-center me-3" style="width:48px;height:48px;border-radius:12px;background-color:#f0fdf4;color:#16a34a;">
                             <i class="bi bi-check-circle fs-5"></i>
                         </div>
                         <div>
-                            <h3 class="fw-bold mb-0 lh-1" style="color:#1e293b;font-size:28px;">2</h3>
+                            <h3 id="approvedCount" class="fw-bold mb-0 lh-1" style="color:#1e293b;font-size:28px;">0</h3>
                             <span class="text-secondary" style="font-size:14px;">Approved</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card border-0 shadow-sm p-4 d-flex flex-row align-items-center" style="border-radius: 12px;">
+                    <div class="card border-0 shadow-sm p-4 d-flex flex-row align-items-center timeoff-summary-card" style="border-radius: 12px;">
                         <div class="timeoff-avatar d-flex align-items-center justify-content-center me-3" style="width:48px;height:48px;border-radius:12px;background-color:#fef2f2;color:#dc2626;">
                             <i class="bi bi-x-circle fs-5"></i>
                         </div>
                         <div>
-                            <h3 class="fw-bold mb-0 lh-1" style="color:#1e293b;font-size:28px;">1</h3>
+                            <h3 id="deniedCount" class="fw-bold mb-0 lh-1" style="color:#1e293b;font-size:28px;">0</h3>
                             <span class="text-secondary" style="font-size:14px;">Denied</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Time Off Table -->
-            <div class="card border-0 shadow-sm p-4 mb-4" style="border-radius: 12px;">
-                <div class="table-responsive">
-                    <table class="table align-middle timeoff-custom-table mb-0">
-                        <thead>
-                            <tr>
-                                <th>REF</th>
-                                <th>EMPLOYEE</th>
-                                <th>TYPE</th>
-                                <th>FROM</th>
-                                <th>TO</th>
-                                <th>DAYS</th>
-                                <th>REASON</th>
-                                <th>STATUS</th>
-                                <th class="text-center">ACTIONS</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- TOR-001 -->
-                            <tr>
-                                <td>TOR-001</td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="timeoff-avatar me-3 d-flex align-items-center justify-content-center fw-bold text-white" style="background-color: #0ea5e9;">JO</div>
-                                        <span class="timeoff-employee-name">James Okafor</span>
-                                    </div>
-                                </td>
-                                <td>Annual Leave</td>
-                                <td>2024-07-15</td>
-                                <td>2024-07-19</td>
-                                <td class="fw-bold">5</td>
-                                <td>Family vacation</td>
-                                <td><span class="timeoff-badge-status timeoff-status-pending">Pending</span></td>
-                                <td class="text-center">
-                                    <button class="btn btn-outline-success timeoff-btn-action me-2">Approve</button>
-                                    <button class="btn btn-outline-danger timeoff-btn-action">Deny</button>
-                                </td>
-                            </tr>
-                            <!-- TOR-002 -->
-                            <tr>
-                                <td>TOR-002</td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="timeoff-avatar me-3 d-flex align-items-center justify-content-center fw-bold text-white" style="background-color: #0284c7;">PN</div>
-                                        <span class="timeoff-employee-name">Priya Nair</span>
-                                    </div>
-                                </td>
-                                <td>Sick Leave</td>
-                                <td>2024-07-08</td>
-                                <td>2024-07-09</td>
-                                <td class="fw-bold">2</td>
-                                <td>Medical appointment</td>
-                                <td><span class="timeoff-badge-status timeoff-status-approved">Approved</span></td>
-                                <td class="text-center"></td>
-                            </tr>
-                            <!-- TOR-003 -->
-                            <tr>
-                                <td>TOR-003</td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="timeoff-avatar me-3 d-flex align-items-center justify-content-center fw-bold text-white" style="background-color: #ca8a04;">MW</div>
-                                        <span class="timeoff-employee-name">Marcus Webb</span>
-                                    </div>
-                                </td>
-                                <td>Annual Leave</td>
-                                <td>2024-08-01</td>
-                                <td>2024-08-09</td>
-                                <td class="fw-bold">7</td>
-                                <td>Holiday abroad</td>
-                                <td><span class="timeoff-badge-status timeoff-status-pending">Pending</span></td>
-                                <td class="text-center">
-                                    <button class="btn btn-outline-success timeoff-btn-action me-2">Approve</button>
-                                    <button class="btn btn-outline-danger timeoff-btn-action">Deny</button>
-                                </td>
-                            </tr>
-                            <!-- TOR-004 -->
-                            <tr>
-                                <td>TOR-004</td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="timeoff-avatar me-3 d-flex align-items-center justify-content-center fw-bold text-white" style="background-color: #0ea5e9;">DR</div>
-                                        <span class="timeoff-employee-name">Daniel Reyes</span>
-                                    </div>
-                                </td>
-                                <td>Medical Leave</td>
-                                <td>2024-07-01</td>
-                                <td>2024-07-31</td>
-                                <td class="fw-bold">23</td>
-                                <td>Surgery recovery</td>
-                                <td><span class="timeoff-badge-status timeoff-status-approved">Approved</span></td>
-                                <td class="text-center"></td>
-                            </tr>
-                            <!-- TOR-005 -->
-                            <tr>
-                                <td>TOR-005</td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="timeoff-avatar me-3 d-flex align-items-center justify-content-center fw-bold text-white" style="background-color: #6366f1;">NP</div>
-                                        <span class="timeoff-employee-name">Nina Petrov</span>
-                                    </div>
-                                </td>
-                                <td>Annual Leave</td>
-                                <td>2024-07-22</td>
-                                <td>2024-07-24</td>
-                                <td class="fw-bold">3</td>
-                                <td>Personal matters</td>
-                                <td><span class="timeoff-badge-status timeoff-status-denied">Denied</span></td>
-                                <td class="text-center"></td>
-                            </tr>
-                            <!-- TOR-006 -->
-                            <tr>
-                                <td>TOR-006</td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="timeoff-avatar me-3 d-flex align-items-center justify-content-center fw-bold text-white" style="background-color: #d97706;">AT</div>
-                                        <span class="timeoff-employee-name">Aisha Thompson</span>
-                                    </div>
-                                </td>
-                                <td>Annual Leave</td>
-                                <td>2024-08-12</td>
-                                <td>2024-08-16</td>
-                                <td class="fw-bold">5</td>
-                                <td>Wedding attendance</td>
-                                <td><span class="timeoff-badge-status timeoff-status-pending">Pending</span></td>
-                                <td class="text-center">
-                                    <button class="btn btn-outline-success timeoff-btn-action me-2">Approve</button>
-                                    <button class="btn btn-outline-danger timeoff-btn-action">Deny</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="mb-4">
+                <div class="card border-0 shadow-sm p-4" style="border-radius: 12px;">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h5 class="fw-bold mb-1" style="color:#1e293b;">Leave Requests</h5>
+                            <p class="text-secondary mb-0" style="font-size: 13px;">Requests from the employee attendance data.</p>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-middle timeoff-custom-table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>EMPLOYEE</th>
+                                    <th>TYPE</th>
+                                    <th>FROM</th>
+                                    <th>TO</th>
+                                    <th>DAYS</th>
+                                    <th>REASON</th>
+                                    <th>STATUS</th>
+                                    <th class="text-center">ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody id="timeoffTableBody">
+                                <tr>
+                                    <td colspan="8" class="text-center text-secondary py-4">Loading requests…</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
         </div>
     </main>
+
+    <script src="TimeOff.js"></script>
+</body>
+</html>
 
 </div>
 
