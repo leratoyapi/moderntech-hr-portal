@@ -1,5 +1,5 @@
-body {
-    background: #f4f6fb;
+.att-body {
+    background: #f4f6fb !important;
     color: #1E293B;
 }
 
@@ -117,51 +117,6 @@ body {
 
 /* ==================== */
 /* ==================== */
-
-
-
-
-
-
-
-
-/* =============================== */
-/*             input */
-/* =============================== */
-
-
-
-
-.attendance-input {
-    display: flex;
-    float: right;
-    gap: 10px;
-    margin-right: 20px;
-
-
-}
-
-
-.attendance-icon .brand-icon{
-    border-radius: 50%;
-}
-
-
-.attendance-input input{
-    background: #e0e7f8;
-    width: 200px;
-    height: 35px;
-    max-width: 300px;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    outline: none;
-}
-
-
-/* =============================== */
-/* =============================== */
-
 
 
 
@@ -484,23 +439,10 @@ body {
 }
 
 
-
-
-
-
-
-
 .att-table1{
     width:100%;
     border-collapse:collapse;
 }
-
-
-
-
-
-
-
 
 .att-tableh1 {
     text-align:left;
@@ -509,9 +451,6 @@ body {
     font-size:13px;
     border-bottom:1.5px solid #dce1e8;
 }
-
-
-
 
 .att-table1 td {
     padding:16px 14px;
@@ -596,9 +535,9 @@ td:last-child{
 
 
 
-.att-body tr:hover{
+/* .att-body tr:hover{
     background:#f8f9fc;
-}
+} */
 
 
 
@@ -658,7 +597,7 @@ td:last-child{
     display: flex;
     flex-direction: column;
     width:95%;
-    max-width:1400px;
+    max-width:2000px;
     margin:40px auto;
     background:#fff;
     border-radius:12px;
@@ -701,12 +640,10 @@ td:last-child{
     border-bottom:1px solid #ddd;
 }
 
-
+/* 
 .attendance-table tbody tr:hover{
     background:#f5f9ff;
-
-
-}
+} */
 
 
 .attendance-status{
@@ -748,15 +685,24 @@ td:last-child{
 }
 
 
+
+
+
+
+/* ======================================= */
+/*              History                    */
+/* ======================================= */
+
+
 .attendance-history-row{
     display:none;
 }
 
 
-.attendance-history-cell{
+/* .attendance-history-cell{
     padding:20px;
     background:#f7fbff;
-}
+} */
 
 
 .attendance-history-table{
@@ -765,10 +711,10 @@ td:last-child{
 }
 
 
-.attendance-history-table th{
+/* .attendance-history-table th{
     background:#edf3fb;
     color:#333;
-}
+} */
 
 
 .attendance-history-table th,
@@ -778,9 +724,9 @@ td:last-child{
 }
 
 
-.attendance-history-table tr:nth-child(even){
+/* .attendance-history-table tr:nth-child(even){
     background:#fafafa;
-}
+} */
 
 
 /* ======================================== */
@@ -792,7 +738,26 @@ td:last-child{
 /*             Dark Mode             */
 /* ================================= */
 
-body.dark-mode .toggle-btn {
+.toggle-btn {
+  width: 100%;
+  height: 45px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+
+
+.att-body.dark-mode .toggle-btn {
+    text-align: center;
     background: rgba(255, 255, 255, 0.05) !important;
     color: #e0e0e0;
 }
@@ -812,81 +777,96 @@ body.dark-mode .toggle-btn {
 }
 
 /* Specific component overrides for your HR Portal Layout */
-body.dark-mode .card-box {
+.att-body.dark-mode .attendance-card1,
+.att-body.dark-mode .attendance-card2,
+.att-body.dark-mode .attendance-card3,
+.att-body.dark-mode .attendance-chart-card,
+.att-body.dark-mode .attendance-table-container,
+.att-body.dark-mode .att-table1 tr,
+.att-body.dark-mode .attendance-section,
+.att-body.dark-mode .progress ,
+.att-body.dark-mode .attendance-history-table,
+.att-body.dark-mode .attendance-history-cell,
+.att-body.dark-mode .attendance-history-table {
     background: #2d2d44 !important;
-    border-color: #3d3d54 !important;
+    color: white;
 }
 
-body.dark-mode .text-dark,
-body.dark-mode .header-title,
-body.dark-mode .section-heading {
+
+
+.att-body.dark-mode .text-dark,
+.att-body.dark-mode .header-title,
+.att-body.dark-mode .section-heading {
     color: #e0e0e0 !important;
 }
 
-body.dark-mode .text-secondary,
-body.dark-mode .text-muted {
+.att-body.dark-mode .text-secondary,
+.att-body.dark-mode .text-muted {
     color: #a0a0b8 !important;
 }
 
-body.dark-mode .border,
-body.dark-mode .border-light {
+.att-body.dark-mode .attendance-table-head th{
+    color: white;
+}
+
+.att-body.dark-mode .border,
+.att-body.dark-mode .border-light {
     border-color: #3d3d54 !important;
 }
 
 /* Force dark mode background across the entire layout wrapper and body container */
-body.dark-mode, 
-body.dark-mode .wrapper,
-body.dark-mode .main-body {
+.att-body.dark-mode, 
+.att-body.dark-mode .wrapper,
+.att-body.dark-mode .main-body {
    background-color: #1a1a2e !important;
 }
 
 /* Fix text contrast on the primary page title and date subtitle */
-body.dark-mode h1.header-title {
+.att-body.dark-mode h1.header-title {
     color: #ffffff !important;
 }
 
-body.dark-mode p.text-secondary {
+.att-body.dark-mode p.text-secondary {
     color: #a0a0b8 !important;
 }
 
 /* Ensure inline SVGs within metric icons retain their color or invert cleanly */
-body.dark-mode .metric-icon svg {
+.att-body.dark-mode .metric-icon svg {
     filter: brightness(1.2);
 }
 /* ==========================================================================
    Strict Text Color Overrides for Dark Mode
    ========================================================================== */
-body.dark-mode,
-body.dark-mode *,
-body.dark-mode .text-dark,
-body.dark-mode .fw-bold,
-body.dark-mode h1, 
-body.dark-mode h2, 
-body.dark-mode h3, 
-body.dark-mode h4, 
-body.dark-mode h5, 
-body.dark-mode h6 {
+.att-body.dark-mode,
+.att-body.dark-mode .text-dark,
+.att-body.dark-mode .fw-bold,
+.att-body.dark-mode h1, 
+.att-body.dark-mode h2, 
+.att-body.dark-mode h3, 
+.att-body.dark-mode h4, 
+.att-body.dark-mode h5, 
+.att-body.dark-mode h6 {
     color: #ffffff !important;
 }
 
 /* Subtle or secondary text formatting (Labels, sub-dates, counters) */
-body.dark-mode .text-muted, 
-body.dark-mode .text-secondary, 
-body.dark-mode small,
-body.dark-mode .growth-text {
+.att-body.dark-mode .text-muted, 
+.att-body.dark-mode .text-secondary, 
+.att-body.dark-mode small,
+.att-body.dark-mode .growth-text {
     color: #a0a0b8 !important;
 }
 
 /* Form element input texts & textareas */
-body.dark-mode .form-control,
-body.dark-mode .form-select,
-body.dark-mode textarea,
-body.dark-mode select {
+.att-body.dark-mode .form-control,
+.att-body.dark-mode .form-select,
+.att-body.dark-mode textarea,
+.att-body.dark-mode select {
     color: #ffffff !important;
 }
 
 /* Placeholder texts inside inputs */
-body.dark-mode .form-control::placeholder,
-body.dark-mode textarea::placeholder {
+.att-body.dark-mode .form-control::placeholder,
+.att-body.dark-mode textarea::placeholder {
     color: #6c757d !important;
 }

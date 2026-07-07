@@ -1,214 +1,69 @@
-fetch("attendance.json")
+// Attendance Data
+const attendanceData = [
+    { day: "Monday", rate: 92 },
+    { day: "Tuesday", rate: 88 },
+    { day: "Wednesday", rate: 95 },
+    { day: "Thursday", rate: 90 },
+    { day: "Friday", rate: 97 }
+];
 
+// Fill Table
+const table = document.getElementById("attendanceTable");
 
-.then(response => response.json())
-.then(data => {
-
-    const tableBody = document.getElementById("attendanceTableBody");
-
-    data.attendanceAndLeave.forEach((employee,index)=>{
-
-
-        const latestAttendance =
-        employee.attendance[employee.attendance.length-1];
-
-
-        let historyTable = "";
-
-
-        employee.attendance.forEach(record=>{
-
-
-            historyTable += `
-
-
-            <tr>
-
-
-                <td>${record.date}</td>
-
-
-                <td>
-
-
-                    <span class="attendance-status ${record.status==="Present" ? "attendance-present" : "attendance-absent"}">
-
-
-                        ${record.status}
-
-
-                    </span>
-
-
-                </td>
-
-
-            </tr>
-
-
-            `;
-
-
-        });
-
-
-        tableBody.innerHTML += `
-
-
+attendanceData.forEach(item => {
+    const row = `
         <tr>
-
-
-            <td>${employee.employeeId}</td>
-
-
-            <td>${employee.name}</td>
-
-
-            <td>
-
-
-                <span class="attendance-status ${latestAttendance.status==="Present" ? "attendance-present" : "attendance-absent"}">
-
-
-                    ${latestAttendance.status}
-
-
-                </span>
-
-
-            </td>
-
-
-            <td>
-
-
-                <button
-                class="attendance-btn"
-                onclick="toggleAttendanceHistory(${index})">
-
-
-                View History
-
-
-                </button>
-
-
-            </td>
-
-
+            <td>${item.day}</td>
+            <td>${item.rate}%</td>
         </tr>
-
-
-        <tr
-        class="attendance-history-row"
-        id="attendanceHistory${index}">
-
-
-            <td
-            colspan="4"
-            class="attendance-history-cell">
-
-
-                <table class="attendance-history-table">
-
-
-                    <thead>
-
-
-                        <tr>
-
-
-                            <th>Date</th>
-
-
-                            <th>Status</th>
-
-
-                        </tr>
-
-
-                    </thead>
-
-
-                    <tbody>
-
-
-                        ${historyTable}
-
-
-                    </tbody>
-
-
-                </table>
-
-
-            </td>
-
-
-        </tr>
-
-
-        `;
-
-
-    });
-
-
+    `;
+    table.innerHTML += row;
 });
 
+// Average Attendance
+const average =
+attendanceData.reduce((sum,item)=>sum+item.rate,0)/
+attendanceData.length;
 
-function toggleAttendanceHistory(index){
+document.getElementById("averageAttendance").textContent =
+average.toFixed(1) + "%";
 
+// Chart
+const ctx = document.getElementById("attendanceChart");
 
-    const historyRow =
-    document.getElementById("attendanceHistory"+index);
-
-
-    if(historyRow.style.display==="table-row"){
-
-
-        historyRow.style.display="none";
-
-
-    }else{
-
-
-        historyRow.style.display="table-row";
-
-
-    }
-
-
-}
-
-
-
-
-// Dark Mode
-
-document.addEventListener('DOMContentLoaded', function() {
-    const themeToggle = document.getElementById('darkModeToggle');
-    const toggleText = document.getElementById('toggleText');
-
-    const isDarkMode = localStorage.getItem('darkMode') === 'true';
-
-    if (isDarkMode) {
-        document.body.classList.add('dark-mode');
-        if (themeToggle) themeToggle.classList.add('dark-mode');
-        if (toggleText) toggleText.textContent = 'Light Mode';
-    }
-
-    if (themeToggle) {
-        themeToggle.addEventListener('click', function() {
-        document.body.classList.toggle('dark-mode');
-        themeToggle.classList.toggle('dark-mode');
-
-        const isDark = document.body.classList.contains('dark-mode');
-        localStorage.setItem('darkMode', isDark);
-
-        if (toggleText) {
-               toggleText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+new Chart(ctx,{
+    type:'bar',
+    data:{
+        labels:attendanceData.map(item=>item.day),
+        datasets:[{
+            label:'Attendance Rate (%)',
+            data:attendanceData.map(item=>item.rate),
+            backgroundColor:[
+                '#4CAF50',
+                '#2196F3',
+                '#FFC107',
+                '#FF5722',
+                '#9C27B0'
+            ],
+            borderRadius:8
+        }]
+    },
+    options:{
+        responsive:true,
+        plugins:{
+            legend:{
+                display:false
             }
-        });
+        },
+        scales:{
+            y:{
+                beginAtZero:true,
+                max:100,
+                title:{
+                    display:true,
+                    text:'Attendance (%)'
+                }
+            }
+        }
     }
 });
