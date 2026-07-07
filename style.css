@@ -1,3 +1,4 @@
+/* Employees page - default styling */
 :root {
   --bg: #f5f7fb;
   --card: #fff;
@@ -28,10 +29,6 @@
   padding: 20px;
   margin: auto;
 }
-.header h2 {
-  margin: 0;
-  font-size: 1.5rem;
-}
 .em-subtext {
   color: var(--muted);
   margin: 4px 0 16px;
@@ -59,11 +56,10 @@
   font-weight: 600;
 }
 .em-btn-secondary {
-  background: var(--primary);
-  border-radius: 8px;
+  background: transparent;
   width: 100%;
   padding: 10px;
-  border: 1px solid var(--border);
+  border: none;
   cursor: pointer;
   transition: 0.2s;
   color:#fff;
@@ -72,14 +68,7 @@
   color:white;
   background: #0056b3;
   transform: translateY(-1px)
-}
-.em-body.dark .em-btn-secondary {
-  background: #ffffff;
-  color: #1e1e1e;
-}
-.em-body.dark .em-btn-secondary {
-  background: #e5e5e5;
-}
+  }
 /* KPI Cards */
 .em-kpi {
   display: grid;
@@ -333,6 +322,6 @@ dialog form {
 }
 .em-nav-footer {
   padding: 16px;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid;
   margin-top: auto;
 }
