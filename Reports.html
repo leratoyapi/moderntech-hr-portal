@@ -383,6 +383,30 @@
             border-color: #4e65f7 !important;
             color: #ffffff !important; /* Forces visible text for the active visibility button */
         }
+
+        /* Quick Visibility Patch for Dark Mode */
+        body.dark-mode .employee-item.active {
+            background-color: #3d3d54 !important; /* Distinct background for selected item */
+        }
+        body.dark-mode .employee-item:not(.active) {
+            background-color: transparent !important;
+        }
+        body.dark-mode .employee-item:not(.active) small,
+        body.dark-mode .employee-item:not(.active) .text-muted-sm {
+            color: #a0a0b8 !important; /* Keep secondary text readable */
+        }
+        body.dark-mode #historyContainer .card {
+            background-color: #2d2d44 !important;
+        }
+        /* Fixes the white-on-white text behavior inside history badges */
+        body.dark-mode #historyContainer span, 
+        body.dark-mode #historyContainer .badge {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            padding: 4px 8px !important;
+            border-radius: 4px !important;
+        }
     </style>
 </head>
 <body>
