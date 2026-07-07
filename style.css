@@ -62,7 +62,7 @@
   border: none;
   cursor: pointer;
   transition: 0.2s;
-  color:#fff;
+  color:#a3b1cc;
 }
 .em-btn-secondary:hover {
   color:white;
@@ -285,7 +285,7 @@ dialog form {
   gap: 10px;
 }
 .em-nav-link {
-  color: rgb(255, 255, 255, 0.9);
+  color: #a3b1cc;
   text-decoration: none;
   padding: 12px 14px;
   border-radius: 10px;
@@ -304,11 +304,6 @@ dialog form {
 .em-nav-link:hover{
   background: rgba(255, 255, 255, 0.05);
   color: #ffffff;
-}
-.em-nav-link.active {
-  background: #4E65F7;
-  color: #fff;
-  font-weight: 700;
 }
 .em-overlay {
   display: none;
