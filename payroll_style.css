@@ -729,3 +729,148 @@ main.payroll-container.mt-4 {
     min-height: auto !important;
   }
 }
+
+/* The Dark mode styling */
+
+.pr-body.dark-mode .pr-toggle-btn {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #e0e0e0;
+}
+
+/* Adjust pseudo-element positioning to match alignment */
+.pe-toggle-btn::before,
+.pr-toggle-btn::after {
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.pr-toggle-btn.dark-mode::before {
+  transform: translateY(-50%) rotate(180deg);
+}
+.pr-toggle-btn.dark-mode::after {
+  transform: translateY(-50%) rotate(0deg);
+}
+
+/* Specific component overrides for your HR Portal Layout */
+.pr-body.dark-mode .card-box,
+.pr-body.dark-mode .payroll-container,
+.pr-body.dark-mode .payroll-header,
+.pr-body.dark-mode .payroll-table,
+.pr-body.dark-mode .pr-card-deductions,
+.pr-body.dark-mode .pr-card-gross,
+.pr-body.dark-mode .pr-card-net {
+  background: #2d2d44 !important;
+  border-color: #3d3d54 !important;
+}
+
+.pr-body.dark-mode .text-dark,
+.pr-body.dark-mode .header-title,
+.pr-body.dark-mode .section-heading {
+  color: #e0e0e0 !important;
+}
+
+.pr-body.dark-mode .text-secondary,
+.pr-body.dark-mode .text-muted {
+  color: #a0a0b8 !important;
+}
+
+.pr-body.dark-mode .border,
+.pr-body.dark-mode .border-light {
+  border-color: #3d3d54 !important;
+}
+
+/* Force dark mode background across the entire layout wrapper and body container */
+.pr-body.dark-mode,
+.pr-body.dark-mode .wrapper,
+.pr-body.dark-mode .main-body {
+  background-color: #1a1a2e !important;
+}
+
+/* Fix text contrast on the primary page title and date subtitle */
+.pr-body.dark-mode h1.header-title {
+  color: #ffffff !important;
+}
+
+.pr-body.dark-mode p.text-secondary {
+  color: #a0a0b8 !important;
+}
+
+/* Ensure inline SVGs within metric icons retain their color or invert cleanly */
+.pr-body.dark-mode .metric-icon svg {
+  filter: brightness(1.2);
+}
+/* ==========================================================================
+Strict Text Color Overrides for Dark Mode
+========================================================================== */
+.pr-body.dark-mode,
+.pr-body.dark-mode *,
+.pr-body.dark-mode .text-dark,
+.pr-body.dark-mode .fw-bold,
+.pr-body.dark-mode h1,
+.pr-body.dark-mode h2,
+.pr-body.dark-mode h3,
+.pr-body.dark-mode h4,
+.pr-body.dark-mode h5,
+.pr-body.dark-mode h6 {
+  color: #ffffff !important;
+}
+
+/* Subtle or secondary text formatting (Labels, sub-dates, counters) */
+.pr-body.dark-mode .text-muted,
+.pr-body.dark-mode .text-secondary,
+.pr-body.dark-mode small,
+.pr-body.dark-mode .growth-text {
+  color: #a0a0b8 !important;
+}
+
+/* Form element input texts & textareas */
+.pr-body.dark-mode .form-control,
+.pr-body.dark-mode .form-select,
+.pr-body.dark-mode textarea,
+.pr-body.dark-mode select {
+  color: #ffffff !important;
+}
+
+/* Placeholder texts inside inputs */
+.pr-body.dark-mode .form-control::placeholder,
+.pr-body.dark-mode textarea::placeholder {
+  color: #6c757d !important;
+}
+
+.sidebar-footer {
+  margin-top: auto !important;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.offcanvas-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.offcanvas-body nav {
+  flex-grow: 1;
+}
+
+body.dark-mode .employee-item.active {
+            background-color: #3d3d54 !important; /* Distinct background for selected item */
+        }
+        body.dark-mode .employee-item:not(.active) {
+            background-color: transparent !important;
+        }
+        body.dark-mode .employee-item:not(.active) small,
+        body.dark-mode .employee-item:not(.active) .text-muted-sm {
+            color: #a0a0b8 !important; /* Keep secondary text readable */
+        }
+        body.dark-mode #historyContainer .card {
+            background-color: #2d2d44 !important;
+        }
+        /* Fixes the white-on-white text behavior inside history badges */
+        body.dark-mode #historyContainer span, 
+        body.dark-mode #historyContainer .badge {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            padding: 4px 8px !important;
+            border-radius: 4px !important;
+        }

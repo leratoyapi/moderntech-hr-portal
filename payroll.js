@@ -1,3 +1,4 @@
+// let currentemployee;
 function loadlocaldata() {
   fetch("./data/payroll_data.json")
     .then((response) => {
@@ -7,12 +8,14 @@ function loadlocaldata() {
       return response.json();
     })
     .then((data) => {
+      // prShowError(error);
       console.log("Local Data Successfully Loaded:", data);
       displayPayslip(data.payrollData);
     })
     .catch((error) => {
       console.error("Failed to local data:", error);
-      prShowError("Failed to load payroll data. Check console for details.");
+      // prShowError("Failed to load payroll data. Check console for details.");
+      prShowError(error);
     });
 }
 
@@ -63,6 +66,7 @@ function prCheckUrlForEmployee(payrollData) {
 
 // Show the payslip
 function prShowPayslip(employee) {
+  currentemployee = employee;
   const card = document.getElementById("prPayslipCard");
   if (!card) return;
 
@@ -83,15 +87,12 @@ function prShowPayslip(employee) {
 
   // Show the card
   card.style.display = "block";
-
-  // Scroll to payslip
-  setTimeout(() => {
-    card.scrollIntoView({ behavior: "smooth" });
-  }, 100);
 }
 
 // Download payslip
-function prDownloadPayslip() {
+
+async function prDownloadPayslip() {
+  await loadlocaldata();
   const card = document.getElementById("prPayslipCard");
   if (!card || card.style.display === "none") {
     alert("No payslip to download! Please generate a payslip first.");
@@ -99,52 +100,60 @@ function prDownloadPayslip() {
   }
 
   const employeeId = card.dataset.employeeId || "unknown";
+  // console.log(currentemployee);
 
-  const employeeIdText = document.getElementById(
-    "prDisplayEmployeeId",
-  ).textContent;
-  const hoursWorkedText = document.getElementById(
-    "prDisplayHoursWorked",
-  ).textContent;
-  const leaveDeductionsText = document.getElementById(
-    "prDisplayLeaveDeductions",
-  ).textContent;
-  const baseSalaryText = document.getElementById(
-    "prDisplayBaseSalary",
-  ).textContent;
-  const deductionsText = document.getElementById(
-    "prDisplayDeductions",
-  ).textContent;
-  const finalSalaryText = document.getElementById(
-    "prDisplayFinalSalary",
-  ).textContent;
+  let payslipGeneratetext = `
+<div style="font-family: Arial, sans-serif; padding:20px; border:1px solid #ccc;">
+    <h2 style="text-align:center;">MODERNTECH PAYSLIP</h2>
 
-  const textContent = `
-========================================
-  MODERNTECH PAYSLIP
-========================================
+    <table style="width:100%; border-collapse:collapse;">
+        <tr>
+            <td><strong>Employee ID</strong></td>
+            <td>${currentemployee.employeeId}</td>
+        </tr>
 
-Employee ID:     ${employeeIdText}
-Hours Worked:    ${hoursWorkedText}
-Leave Deductions: ${leaveDeductionsText}
-Base Salary:     ${baseSalaryText}
-Deductions:      ${deductionsText}
-Final Salary:    ${finalSalaryText}
+        <tr>
+            <td><strong>Hours Worked</strong></td>
+            <td>${currentemployee.hoursWorked} hours</td>
+        </tr>
 
-========================================
-    Generated on: ${new Date().toLocaleDateString()}
-========================================
-  `;
+        <tr>
+            <td><strong>Leave Deductions</strong></td>
+            <td>${currentemployee.leaveDeductions} hours</td>
+        </tr>
 
-  const blob = new Blob([textContent], { type: "text/plain" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `payslip_employee_${employeeId}_${new Date().toISOString().split("T")[0]}.txt`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+        <tr>
+            <td><strong>Base Salary</strong></td>
+            <td>R ${(currentemployee.finalSalary + 1000).toFixed(2)}</td>
+        </tr>
+
+        <tr>
+            <td><strong>Deductions</strong></td>
+            <td>R 1000.00</td>
+        </tr>
+
+        <tr>
+            <td><strong>Final Salary</strong></td>
+            <td><strong>R ${currentemployee.finalSalary.toFixed(2)}</strong></td>
+        </tr>
+    </table>
+
+    <p>Generated: ${new Date().toLocaleDateString()}</p>
+</div>
+`;
+
+  html2pdf()
+    .set({
+      margin: 0, // top, right, bottom, left (mm)
+      filename: `payslip_employee_${employeeId}_${new Date().toISOString().split("T")[0]}.pdf`,
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: {
+        scale: 2,
+      },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+    })
+    .from(payslipGeneratetext) // use the card element as source
+    .save(); // trigger download
 }
 
 // Show error
@@ -179,3 +188,152 @@ document.addEventListener("DOMContentLoaded", function () {
     downloadBtn.addEventListener("click", prDownloadPayslip);
   }
 });
+
+const employeeData = {
+  1: {
+    name: "Sibongile Nkosi",
+    pos: "Software Engineer",
+    sal: "R 70 000",
+    hrs: "179h",
+    ot: "8h",
+    ded: "-R 792",
+    tax: "-R 1 900",
+    net: "R 5 225",
+  },
+  2: {
+    name: "Lungile Moyo",
+    pos: "HR Manager",
+    sal: "R 80 000",
+    hrs: "172h",
+    ot: "4h",
+    ded: "-R 650",
+    tax: "-R 1 560",
+    net: "R 4 290",
+  },
+  3: {
+    name: "Thabo Molefe",
+    pos: "Quality Analyst",
+    sal: "R 55 000",
+    hrs: "176h",
+    ot: "0h",
+    ded: "-R 600",
+    tax: "-R 1 440",
+    net: "R 3 960",
+  },
+  4: {
+    name: "Keshav Naidoo",
+    pos: "Sales Representative",
+    sal: "R 60 000",
+    hrs: "176h",
+    ot: "12h",
+    ded: "-R 708",
+    tax: "-R 1 700",
+    net: "R 4 675",
+  },
+  5: {
+    name: "Zanele Khumalo",
+    pos: "Marketing Specialist",
+    sal: "R 58 000",
+    hrs: "176h",
+    ot: "0h",
+    ded: "-R 917",
+    tax: "-R 2 200",
+    net: "R 6 050",
+  },
+  6: {
+    name: "Sipho Zulu",
+    pos: "UI/UX Designer",
+    sal: "R 65 000",
+    hrs: "176h",
+    ot: "0h",
+    ded: "-R 917",
+    tax: "-R 2 200",
+    net: "R 6 050",
+  },
+  7: {
+    name: "Naledi Moeketsi",
+    pos: "DevOps Engineer",
+    sal: "R 72 000",
+    hrs: "176h",
+    ot: "0h",
+    ded: "-R 917",
+    tax: "-R 2 200",
+    net: "R 6 050",
+  },
+  8: {
+    name: "Farai Gumbo",
+    pos: "Content Strategist",
+    sal: "R 56 000",
+    hrs: "176h",
+    ot: "0h",
+    ded: "-R 917",
+    tax: "-R 2 200",
+    net: "R 6 050",
+  },
+  9: {
+    name: "Karabo Dlamini",
+    pos: "Accountant",
+    sal: "R 62 000",
+    hrs: "176h",
+    ot: "0h",
+    ded: "-R 917",
+    tax: "-R 2 200",
+    net: "R 6 050",
+  },
+  10: {
+    name: "Fatima Patel",
+    pos: "Customer Support Lead",
+    sal: "R 58 000",
+    hrs: "176h",
+    ot: "0h",
+    ded: "-R 917",
+    tax: "-R 2 200",
+    net: "R 6 050",
+  },
+};
+
+window.onload = () => {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+  const emp = employeeData[id];
+
+  if (emp) {
+    document.getElementById("emp-name").innerText = emp.name;
+    document.getElementById("emp-position").innerText = emp.pos;
+    document.getElementById("emp-salary").innerText = emp.sal;
+    document.getElementById("emp-hours").innerText = emp.hrs;
+    document.getElementById("emp-ot").innerText = emp.ot;
+    document.getElementById("emp-deductions").innerText = emp.ded;
+    document.getElementById("emp-tax").innerText = emp.tax;
+    document.getElementById("emp-net").innerText = emp.net;
+  }
+};
+
+// Dark mode
+document.addEventListener("DOMContentLoaded", function () {
+  const themeToggle = document.getElementById("darkModeToggle");
+  const toggleText = document.getElementById("toggleText");
+
+  const isDarkMode = localStorage.getItem("darkMode") === "true";
+
+  if (isDarkMode) {
+    document.body.classList.add("dark-mode");
+    if (themeToggle) themeToggle.classList.add("dark-mode");
+    if (toggleText) toggleText.textContent = "Light Mode";
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      document.body.classList.toggle("dark-mode");
+      themeToggle.classList.toggle("dark-mode");
+
+      const isDark = document.body.classList.contains("dark-mode");
+      localStorage.setItem("darkMode", isDark);
+
+      if (toggleText) {
+        toggleText.textContent = isDark ? "Light Mode" : "Dark Mode";
+      }
+    });
+  }
+});
+
