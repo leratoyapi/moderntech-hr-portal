@@ -24,7 +24,7 @@
   --amber: #fbbf24;
   --border: #2e2e2e;
 }
-.hr-dashboard {
+.em-hr-dashboard {
   padding: 20px;
   margin: auto;
 }
@@ -59,12 +59,26 @@
   font-weight: 600;
 }
 .em-btn-secondary {
-  background: transparent;
-  border-radius: 10px
+  background: var(--primary);
+  border-radius: 8px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: 0.2s;
+  color:#fff;
 }
 .em-btn-secondary:hover {
-  color:#6b7280;
-  background: #fee2e2;
+  color:white;
+  background: #0056b3;
+  transform: translateY(-1px)
+}
+.em-body.dark .em-btn-secondary {
+  background: #ffffff;
+  color: #1e1e1e;
+}
+.em-body.dark .em-btn-secondary {
+  background: #e5e5e5;
 }
 /* KPI Cards */
 .em-kpi {
@@ -181,6 +195,7 @@ dialog form {
   background: #fee2e2;
   color: #dc2626;
 }
+/* Header  */
 .em-main-header {
   display: flex;
   align-items: center;
@@ -212,6 +227,7 @@ dialog form {
   font-weight: 800;
   font-size: 14px;
 }
+/* NavBar Styling */
 .em-burger-btn {
   background: transparent;
   border: none;
@@ -244,6 +260,9 @@ dialog form {
   transition: left 0.3s ease;
   z-index: 1001;
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .em-sidebar.open {
   left: 0;
@@ -274,7 +293,7 @@ dialog form {
 .em-sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 .em-nav-link {
   color: rgb(255, 255, 255, 0.9);
@@ -311,4 +330,9 @@ dialog form {
 }
 .em-overlay.show{
   display: block;
+}
+.em-nav-footer {
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
 }

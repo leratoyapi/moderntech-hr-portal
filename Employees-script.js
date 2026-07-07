@@ -104,9 +104,9 @@ const darkToggle = document.getElementById('darkToggle');
 // Load saved theme on start
 if(localStorage.getItem('theme') === 'dark') {
   document.body.classList.add('dark');
-  darkToggle.innerHTML = '☀️';
+  darkToggle.innerHTML = 'Light Mode';
 } else {
-  darkToggle.innerHTML = '🌙';
+  darkToggle.innerHTML = 'Dark Mode';
 }
 // Toggle click
 darkToggle.addEventListener('click', () => {
@@ -114,9 +114,9 @@ darkToggle.addEventListener('click', () => {
 
   if (document.body.classList.contains('dark')){
     localStorage.setItem('theme', 'dark');
-    darkToggle.innerHTML = '☀️';
+    darkToggle.innerHTML = 'Light Mode';
   }else {
     localStorage.setItem('theme', 'light');
-    darkToggle.innerHTML = '🌙';
+    darkToggle.innerHTML = 'Dark Mode';
   }
 });
