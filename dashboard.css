@@ -234,3 +234,160 @@ border-radius: 8px;
     background-color: #0D9488;
 }
 
+/* Fix positioning inside the sidebar button */
+.toggle-btn {
+  width: 100%;
+  height: 45px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #fff;
+}
+
+body.dark-mode .toggle-btn {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #e0e0e0;
+}
+
+/* Adjust pseudo-element positioning to match alignment */
+.toggle-btn::before, 
+.toggle-btn::after {
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.toggle-btn.dark-mode::before {
+  transform: translateY(-50%) rotate(180deg);
+}
+.toggle-btn.dark-mode::after {
+  transform: translateY(-50%) rotate(0deg);
+}
+
+/* Specific component overrides for your HR Portal Layout */
+body.dark-mode .card-box {
+  background: #2d2d44 !important;
+  border-color: #3d3d54 !important;
+}
+
+body.dark-mode .text-dark,
+body.dark-mode .header-title,
+body.dark-mode .section-heading {
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode .text-secondary,
+body.dark-mode .text-muted {
+  color: #a0a0b8 !important;
+}
+
+body.dark-mode .border,
+body.dark-mode .border-light {
+  border-color: #3d3d54 !important;
+}
+
+/* Force dark mode background across the entire layout wrapper and body container */
+body.dark-mode, 
+body.dark-mode .wrapper,
+body.dark-mode .main-body {
+    background-color: #1a1a2e !important;
+}
+
+/* Fix text contrast on the primary page title and date subtitle */
+body.dark-mode h1.header-title {
+    color: #ffffff !important;
+}
+
+body.dark-mode p.text-secondary {
+    color: #a0a0b8 !important;
+}
+
+/* Ensure inline SVGs within metric icons retain their color or invert cleanly */
+body.dark-mode .metric-icon svg {
+    filter: brightness(1.2);
+}
+/* ==========================================================================
+   Strict Text Color Overrides for Dark Mode
+   ========================================================================== */
+body.dark-mode,
+body.dark-mode *,
+body.dark-mode .text-dark,
+body.dark-mode .fw-bold,
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode h4, 
+body.dark-mode h5, 
+body.dark-mode h6 {
+    color: #ffffff !important;
+}
+
+/* Subtle or secondary text formatting (Labels, sub-dates, counters) */
+body.dark-mode .text-muted, 
+body.dark-mode .text-secondary, 
+body.dark-mode small,
+body.dark-mode .growth-text {
+    color: #a0a0b8 !important;
+}
+
+/* Form element input texts & textareas */
+body.dark-mode .form-control,
+body.dark-mode .form-select,
+body.dark-mode textarea,
+body.dark-mode select {
+    color: #ffffff !important;
+}
+
+/* Placeholder texts inside inputs */
+body.dark-mode .form-control::placeholder,
+body.dark-mode textarea::placeholder {
+    color: #6c757d !important;
+}
+.status-badge {
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 6px;
+            display: inline-block;
+            text-align: center;
+            min-width: 90px;
+        }
+
+        /* Light Mode Colors (Strict Overrides) */
+        .status-badge.status-pending { 
+            background-color: #f1f3f4 !important; 
+            color: #3c4043 !important; 
+        }
+        .status-badge.status-approved { 
+            background-color: #e6f4ea !important; 
+            color: #137333 !important; 
+        }
+        .status-badge.status-denied { 
+            background-color: #fce8e6 !important; 
+            color: #c5221f !important; 
+        }
+
+        /* Dark Mode Colors (Strict Overrides when body has .dark-mode) */
+        body.dark-mode .status-badge.status-pending { 
+            background-color: #3a3a4f !important; 
+            color: #f1f3f4 !important; 
+        }
+        body.dark-mode .status-badge.status-approved { 
+            background-color: #1e4620 !important; 
+            color: #a3e2a6 !important; 
+        }
+        body.dark-mode .status-badge.status-denied { 
+            background-color: #5c1d1d !important; 
+            color: #f5baba !important; 
+        }

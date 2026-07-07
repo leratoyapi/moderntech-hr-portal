@@ -344,4 +344,29 @@
     // Attach local search tracking events natively 
     document.getElementById('searchInput').addEventListener('input', renderList);
     document.addEventListener('DOMContentLoaded', loadEmployees);
-
+     document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('darkModeToggle');
+    const toggleText = document.getElementById('toggleText');
+    
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+        if (themeToggle) themeToggle.classList.add('dark-mode');
+        if (toggleText) toggleText.textContent = 'Light Mode';
+    }
+    
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            themeToggle.classList.toggle('dark-mode');
+            
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+            
+            if (toggleText) {
+                toggleText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+            }
+        });
+    }
+});

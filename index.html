@@ -32,7 +32,7 @@
             </div>
             <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body p-0">
+        <div class="offcanvas-body p-0 d-flex flex-column justify-content-between">
             <nav class="nav flex-column gap-2 w-100">
                 <a class="nav-link" href="index.html">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-3"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg> Dashboard
@@ -53,188 +53,193 @@
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-3"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg> Reports
                 </a>
             </nav>
+             <div class="mt-auto pt-3 border-top border-secondary-subtle">
+              <button class="toggle-btn w-100 text-start d-flex align-items-center py-2 px-3 border-0 rounded" id="darkModeToggle">
+              <span id="toggleText" style="margin-left: 35px;">Dark Mode</span>
+             </button>
+            </div>
         </div>
     </div>
 
-        <div class="main-body container-fluid p-4">
+    <div class="main-body container-fluid p-4">
 
-            <h1 class="fw-bold mb-1 header-title">Dashboard</h1>
-            <p class="text-secondary fs-7 mb-4">Monday, 8 July 2024 — ModernTech Solutions HQ</p>
+        <h1 class="fw-bold mb-1 header-title">Dashboard</h1>
+        <p class="text-secondary fs-7 mb-4">Monday, 8 July 2024 — ModernTech Solutions HQ</p>
 
-            <div class="row g-3 mb-4">
-                <div class="col-6 col-md-3">
-                    <div class="card-box bg-white border rounded p-3">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <h6 class="text-muted tracking-wider fw-bold m-0 small">TOTAL EMPLOYEES</h6>
-                            <span class="metric-icon blue-bg">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                    <circle cx="9" cy="7" r="4"></circle>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                </svg>
-                            </span>
-                        </div>
-                        <h2 class="fw-bold tracking-tight mb-1">250</h2>
-                        <p class="growth-text text-muted mb-0 small">+12 this quarter</p>
+        <div class="row g-3 mb-4">
+            <div class="col-6 col-md-3">
+                <div class="card-box bg-white border rounded p-3">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <h6 class="text-muted tracking-wider fw-bold m-0 small">TOTAL EMPLOYEES</h6>
+                        <span class="metric-icon blue-bg">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </span>
                     </div>
-                </div>
-
-                <div class="col-6 col-md-3">
-                    <div class="card-box bg-white border rounded p-3">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <h6 class="text-muted tracking-wider fw-bold m-0 small">MONTHLY PAYROLL</h6>
-                            <span class="metric-icon green-bg">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2">
-                                    <line x1="12" y1="1" x2="12" y2="23"></line>
-                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                                </svg>
-                            </span>
-                        </div>
-                        <h2 class="fw-bold tracking-tight mb-1">R 1.91M</h2>
-                        <p class="growth-text text-muted mb-0 small">+1.8% vs last month</p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-3">
-                    <div class="card-box bg-white border rounded p-3">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <h6 class="text-muted tracking-wider fw-bold m-0 small">OPEN LEAVE REQUESTS</h6>
-                            <span class="metric-icon orange-bg">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                                </svg>
-                            </span>
-                        </div>
-                        <h2 class="fw-bold tracking-tight mb-1">9</h2>
-                        <p class="growth-text text-muted mb-0 small">3 pending approval</p>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-3">
-                    <div class="card-box bg-white border rounded p-3">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <h6 class="text-muted tracking-wider fw-bold m-0 small">AVG ATTENDANCE</h6>
-                            <span class="metric-icon lightblue-bg">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 6 12 12 16 14"></polyline>
-                                </svg>
-                            </span>
-                        </div>
-                        <h2 class="fw-bold tracking-tight mb-1">96.2%</h2>
-                        <p class="growth-text text-muted mb-0 small">This week</p>
-                    </div>
+                    <h2 class="fw-bold tracking-tight mb-1">250</h2>
+                    <p class="growth-text text-muted mb-0 small">+12 this quarter</p>
                 </div>
             </div>
 
-            <div class="card-box mb-4 bg-white border rounded p-4">
-                <h5 class="fw-bold mb-3 section-heading">Weekly Attendance — July 2024</h5>
-                <div class="chart-container">
-                    <canvas id="attendanceChart"></canvas>
+            <div class="col-6 col-md-3">
+                <div class="card-box bg-white border rounded p-3">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <h6 class="text-muted tracking-wider fw-bold m-0 small">MONTHLY PAYROLL</h6>
+                        <span class="metric-icon green-bg">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2">
+                                <line x1="12" y1="1" x2="12" y2="23"></line>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
+                        </span>
+                    </div>
+                    <h2 class="fw-bold tracking-tight mb-1">R 1.91M</h2>
+                    <p class="growth-text text-muted mb-0 small">+1.8% vs last month</p>
                 </div>
             </div>
 
-            <div class="card-box mb-4 bg-white border rounded p-4">
-                <h5 class="fw-bold mb-3 section-heading">By Department</h5>
-                <div class="row align-items-center">
-                    <div class="col-12 d-flex justify-content-center mb-3">
-                        <div class="donut-container">
-                            <canvas id="departmentChart"></canvas>
-                        </div>
+            <div class="col-6 col-md-3">
+                <div class="card-box bg-white border rounded p-3">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <h6 class="text-muted tracking-wider fw-bold m-0 small">OPEN LEAVE REQUESTS</h6>
+                        <span class="metric-icon orange-bg">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                        </span>
                     </div>
-                    <div class="col-12">
-                        <div class="list-group list-group-flush border-top-0">
-                            <div class="d-flex justify-content-between align-items-center py-2 border-bottom border-light">
-                                <span class="d-flex align-items-center gap-2"><span class="dot bg-indigo"></span> Engineering</span>
-                                <span class="fw-semibold">82</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center py-2 border-bottom border-light">
-                                <span class="d-flex align-items-center gap-2"><span class="dot bg-cyan"></span> Sales</span>
-                                <span class="fw-semibold">44</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center py-2 border-bottom border-light">
-                                <span class="d-flex align-items-center gap-2"><span class="dot bg-purple"></span> QA</span>
-                                <span class="fw-semibold">31</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center py-2 border-bottom border-light">
-                                <span class="d-flex align-items-center gap-2"><span class="dot bg-orange"></span> Support</span>
-                                <span class="fw-semibold">47</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center py-2 border-bottom border-light">
-                                <span class="d-flex align-items-center gap-2"><span class="dot bg-emerald"></span> Marketing</span>
-                                <span class="fw-semibold">28</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center py-2">
-                                <span class="d-flex align-items-center gap-2"><span class="dot bg-rose"></span> HR</span>
-                                <span class="fw-semibold">18</span>
-                            </div>
-                        </div>
-                    </div>
+                    <h2 class="fw-bold tracking-tight mb-1">9</h2>
+                    <p class="growth-text text-muted mb-0 small">3 pending approval</p>
                 </div>
             </div>
 
-            <div class="card-box mb-4 bg-white border rounded p-4">
-                <h5 class="fw-bold mb-3 section-heading">Payroll Trend (R thousands)</h5>
-                <div class="chart-container">
-                    <canvas id="payrollChart"></canvas>
+            <div class="col-6 col-md-3">
+                <div class="card-box bg-white border rounded p-3">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <h6 class="text-muted tracking-wider fw-bold m-0 small">AVG ATTENDANCE</h6>
+                        <span class="metric-icon lightblue-bg">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </span>
+                    </div>
+                    <h2 class="fw-bold tracking-tight mb-1">96.2%</h2>
+                    <p class="growth-text text-muted mb-0 small">This week</p>
                 </div>
             </div>
-
-            <div class="card-box mb-4 bg-white border rounded p-4">
-                <h5 class="fw-bold mb-4 section-heading">Recent Leave Requests</h5>
-                <div class="d-flex flex-column gap-3">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="avatar-circle avatar-lm">LM</div>
-                            <div>
-                                <h6 class="fw-bold mb-0 text-dark">Lungile Moyo</h6>
-                                <small class="text-muted">Annual Leave · 5d</small>
-                            </div>
-                        </div>
-                        <span class="status-badge status-pending">Pending</span>
-                    </div>
-
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="avatar-circle avatar-kn">KN</div>
-                            <div>
-                                <h6 class="fw-bold mb-0 text-dark">Keshav Naidoo</h6>
-                                <small class="text-muted">Sick Leave · 2d</small>
-                            </div>
-                        </div>
-                        <span class="status-badge status-approved">Approved</span>
-                    </div>
-
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="avatar-circle avatar-fp">FP</div>
-                            <div>
-                                <h6 class="fw-bold mb-0 text-dark">Fatima Patel</h6>
-                                <small class="text-muted">Annual Leave · 7d</small>
-                            </div>
-                        </div>
-                        <span class="status-badge status-denied">Denied</span>
-                    </div>
-
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="avatar-circle avatar-kd">KD</div>
-                            <div>
-                                <h6 class="fw-bold mb-0 text-dark">Karabo Dlamini</h6>
-                                <small class="text-muted">Medical Leave · 23d</small>
-                            </div>
-                        </div>
-                        <span class="status-badge status-approved">Approved</span>
-                    </div>
-                </div>
-            </div>
-
         </div>
+
+        <div class="card-box mb-4 bg-white border rounded p-4">
+            <h5 class="fw-bold mb-3 section-heading">Weekly Attendance — July 2024</h5>
+            <div class="chart-container">
+                <canvas id="attendanceChart"></canvas>
+            </div>
+        </div>
+
+        <div class="card-box mb-4 bg-white border rounded p-4">
+            <h5 class="fw-bold mb-3 section-heading">By Department</h5>
+            <div class="row align-items-center">
+                <div class="col-12 d-flex justify-content-center mb-3">
+                    <div class="donut-container">
+                        <canvas id="departmentChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="list-group list-group-flush border-top-0">
+                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom border-light">
+                            <span class="d-flex align-items-center gap-2"><span class="dot bg-indigo"></span> Engineering</span>
+                            <span class="fw-semibold">82</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom border-light">
+                            <span class="d-flex align-items-center gap-2"><span class="dot bg-cyan"></span> Sales</span>
+                            <span class="fw-semibold">44</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom border-light">
+                            <span class="d-flex align-items-center gap-2"><span class="dot bg-purple"></span> QA</span>
+                            <span class="fw-semibold">31</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom border-light">
+                            <span class="d-flex align-items-center gap-2"><span class="dot bg-orange"></span> Support</span>
+                            <span class="fw-semibold">47</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom border-light">
+                            <span class="d-flex align-items-center gap-2"><span class="dot bg-emerald"></span> Marketing</span>
+                            <span class="fw-semibold">28</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center py-2">
+                            <span class="d-flex align-items-center gap-2"><span class="dot bg-rose"></span> HR</span>
+                            <span class="fw-semibold">18</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-box mb-4 bg-white border rounded p-4">
+            <h5 class="fw-bold mb-3 section-heading">Payroll Trend (R thousands)</h5>
+            <div class="chart-container">
+                <canvas id="payrollChart"></canvas>
+            </div>
+        </div>
+
+        <div class="card-box mb-4 bg-white border rounded p-4">
+            <h5 class="fw-bold mb-4 section-heading">Recent Leave Requests</h5>
+            <div class="d-flex flex-column gap-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="avatar-circle avatar-lm">LM</div>
+                        <div>
+                            <h6 class="fw-bold mb-0 text-dark">Lungile Moyo</h6>
+                            <small class="text-muted">Annual Leave · 5d</small>
+                        </div>
+                    </div>
+                    <span class="status-badge status-pending">Pending</span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="avatar-circle avatar-kn">KN</div>
+                        <div>
+                            <h6 class="fw-bold mb-0 text-dark">Keshav Naidoo</h6>
+                            <small class="text-muted">Sick Leave · 2d</small>
+                        </div>
+                    </div>
+                    <span class="status-badge status-approved">Approved</span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="avatar-circle avatar-fp">FP</div>
+                        <div>
+                            <h6 class="fw-bold mb-0 text-dark">Fatima Patel</h6>
+                            <small class="text-muted">Annual Leave · 7d</small>
+                        </div>
+                    </div>
+                    <span class="status-badge status-denied">Denied</span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="avatar-circle avatar-kd">KD</div>
+                        <div>
+                            <h6 class="fw-bold mb-0 text-dark">Karabo Dlamini</h6>
+                            <small class="text-muted">Medical Leave · 23d</small>
+                        </div>
+                    </div>
+                    <span class="status-badge status-approved">Approved</span>
+                </div>
+            </div>
+        </div>
+
     </div>
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
