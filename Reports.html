@@ -165,7 +165,7 @@
           color: #fff;
         }
 
-        body.dark-mode .toggle-btn {
+        [data-bs-theme="dark"] .toggle-btn {
           background: rgba(255, 255, 255, 0.05) !important;
           color: #e0e0e0;
         }
@@ -185,45 +185,45 @@
         }
 
         /* Specific component overrides for your HR Portal Layout */
-        body.dark-mode .card-box {
+        [data-bs-theme="dark"] .card-box {
           background: #2d2d44 !important;
           border-color: #3d3d54 !important;
         }
 
-        body.dark-mode .text-dark,
-        body.dark-mode .header-title,
-        body.dark-mode .section-heading {
+        [data-bs-theme="dark"] .text-dark,
+        [data-bs-theme="dark"] .header-title,
+        [data-bs-theme="dark"] .section-heading {
           color: #e0e0e0 !important;
         }
 
-        body.dark-mode .text-secondary,
-        body.dark-mode .text-muted {
+        [data-bs-theme="dark"] .text-secondary,
+        [data-bs-theme="dark"] .text-muted {
           color: #a0a0b8 !important;
         }
 
-        body.dark-mode .border,
-        body.dark-mode .border-light {
+        [data-bs-theme="dark"] .border,
+        [data-bs-theme="dark"] .border-light {
           border-color: #3d3d54 !important;
         }
 
         /* Force dark mode background across the entire layout wrapper and body container */
-        body.dark-mode, 
-        body.dark-mode .wrapper,
-        body.dark-mode .main-body {
+        [data-bs-theme="dark"], 
+        [data-bs-theme="dark"] .wrapper,
+        [data-bs-theme="dark"] .main-body {
             background-color: #1a1a2e !important;
         }
 
         /* Fix text contrast on the primary page title and date subtitle */
-        body.dark-mode h1.header-title {
+        [data-bs-theme="dark"] h1.header-title {
             color: #ffffff !important;
         }
 
-        body.dark-mode p.text-secondary {
+        [data-bs-theme="dark"] p.text-secondary {
             color: #a0a0b8 !important;
         }
 
         /* Ensure inline SVGs within metric icons retain their color or invert cleanly */
-        body.dark-mode .metric-icon svg {
+        [data-bs-theme="dark"] .metric-icon svg {
             filter: brightness(1.2);
         }
 
@@ -232,39 +232,39 @@
            ========================================================================== */
 
         /* Global backgrounds & layouts */
-        body.dark-mode, 
-        body.dark-mode .wrapper, 
-        body.dark-mode .main-body {
+        [data-bs-theme="dark"], 
+        [data-bs-theme="dark"] .wrapper, 
+        [data-bs-theme="dark"] .main-body {
             background-color: #1a1a2e !important;
             color: #e0e0e0 !important;
         }
 
         /* Sidebar Dark Styling - Updated to match Main Nav Header */
-        body.dark-mode .offcanvas-sidebar {
+        [data-bs-theme="dark"] .offcanvas-sidebar {
             background-color: #243864 !important;
             border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
         }
 
         /* Base Component Cards & Form Panels */
-        body.dark-mode .card-box,
-        body.dark-mode [class*="card"],
-        body.dark-mode .bg-white {
+        [data-bs-theme="dark"] .card-box,
+        [data-bs-theme="dark"] [class*="card"],
+        [data-bs-theme="dark"] .bg-white {
             background-color: #2d2d44 !important;
             border-color: #3d3d54 !important;
             color: #e0e0e0 !important;
         }
 
         /* Inputs, Textareas, and Select Menus */
-        body.dark-mode .form-control,
-        body.dark-mode .form-select,
-        body.dark-mode textarea {
+        [data-bs-theme="dark"] .form-control,
+        [data-bs-theme="dark"] .form-select,
+        [data-bs-theme="dark"] textarea {
             background-color: #1a1a2e !important;
             border-color: #3d3d54 !important;
             color: #ffffff !important;
         }
 
-        body.dark-mode .form-control:focus,
-        body.dark-mode .form-select:focus {
+        [data-bs-theme="dark"] .form-control:focus,
+        [data-bs-theme="dark"] .form-select:focus {
             background-color: #1a1a2e !important;
             border-color: #27ae60 !important;
             color: #ffffff !important;
@@ -272,72 +272,78 @@
         }
 
         /* Global Typography Fixes */
-        body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, 
-        body.dark-mode h4, body.dark-mode h5, body.dark-mode h6,
-        body.dark-mode .text-dark, body.dark-mode .fw-bold {
+        [data-bs-theme="dark"] h1, [data-bs-theme="dark"] h2, [data-bs-theme="dark"] h3, 
+        [data-bs-theme="dark"] h4, [data-bs-theme="dark"] h5, [data-bs-theme="dark"] h6,
+        [data-bs-theme="dark"] .text-dark, [data-bs-theme="dark"] .fw-bold {
             color: #ffffff !important;
         }
 
-        body.dark-mode .text-muted, body.dark-mode .text-secondary, body.dark-mode small {
+        [data-bs-theme="dark"] .text-muted, [data-bs-theme="dark"] .text-secondary, [data-bs-theme="dark"] small {
             color: #a0a0b8 !important;
         }
 
         /* Global Border overrides */
-        body.dark-mode .border, 
-        body.dark-mode .border-top, 
-        body.dark-mode .border-bottom,
-        body.dark-mode .border-secondary-subtle {
+        [data-bs-theme="dark"] .border, 
+        [data-bs-theme="dark"] .border-top, 
+        [data-bs-theme="dark"] .border-bottom,
+        [data-bs-theme="dark"] .border-secondary-subtle {
             border-color: #3d3d54 !important;
         }
 
         /* Button & Action Visibility fixes */
-        body.dark-mode .btn-outline-light {
+        [data-bs-theme="dark"] .btn-outline-light {
             color: #e0e0e0 !important;
             border-color: #3d3d54 !important;
         }
 
         /* Fix background for active or custom buttons (like 'Save Entry' or 'Private') */
-        body.dark-mode .btn-primary, 
-        body.dark-mode .btn-custom {
+        [data-bs-theme="dark"] .btn-primary, 
+        [data-bs-theme="dark"] .btn-custom {
             background-color: #27ae60 !important;
             border-color: #27ae60 !important;
         }
 
         /* ==========================================================================
-           Strict Text Color Overrides for Dark Mode
+           FIXED: Strict Text Color Overrides for Dark Mode
            ========================================================================== */
-        body.dark-mode,
-        body.dark-mode *,
-        body.dark-mode .text-dark,
-        body.dark-mode .fw-bold,
-        body.dark-mode h1, 
-        body.dark-mode h2, 
-        body.dark-mode h3, 
-        body.dark-mode h4, 
-        body.dark-mode h5, 
-        body.dark-mode h6 {
+        [data-bs-theme="dark"] {
+            color: #ffffff !important;
+        }
+
+        [data-bs-theme="dark"] h1, 
+        [data-bs-theme="dark"] h2, 
+        [data-bs-theme="dark"] h3, 
+        [data-bs-theme="dark"] h4, 
+        [data-bs-theme="dark"] h5, 
+        [data-bs-theme="dark"] h6,
+        [data-bs-theme="dark"] .text-dark,
+        [data-bs-theme="dark"] .fw-bold,
+        [data-bs-theme="dark"] #activeName {
             color: #ffffff !important;
         }
 
         /* Subtle or secondary text formatting (Labels, sub-dates, counters) */
-        body.dark-mode .text-muted, 
-        body.dark-mode .text-secondary, 
-        body.dark-mode small,
-        body.dark-mode .growth-text {
+        [data-bs-theme="dark"] .text-muted, 
+        [data-bs-theme="dark"] .text-secondary, 
+        [data-bs-theme="dark"] small,
+        [data-bs-theme="dark"] .form-label,
+        [data-bs-theme="dark"] .growth-text {
             color: #a0a0b8 !important;
         }
 
-        /* Form element input texts & textareas */
-        body.dark-mode .form-control,
-        body.dark-mode .form-select,
-        body.dark-mode textarea,
-        body.dark-mode select {
+        /* Form element input text configurations */
+        [data-bs-theme="dark"] .form-control,
+        [data-bs-theme="dark"] .form-select,
+        [data-bs-theme="dark"] textarea,
+        [data-bs-theme="dark"] select {
+            background-color: #1a1a2e !important;
+            border-color: #3d3d54 !important;
             color: #ffffff !important;
         }
 
-        /* Placeholder texts inside inputs */
-        body.dark-mode .form-control::placeholder,
-        body.dark-mode textarea::placeholder {
+        /* Input field placeholder overrides */
+        [data-bs-theme="dark"] .form-control::placeholder,
+        [data-bs-theme="dark"] textarea::placeholder {
             color: #6c757d !important;
         }
 
@@ -365,42 +371,42 @@
         }
 
         /* Ensure body * selector does not override layout heights */
-        body.dark-mode .sidebar-footer {
+        [data-bs-theme="dark"] .sidebar-footer {
             border-top-color: #3d3d54 !important;
         }
 
         /* ==========================================================================
            FIX: Visibility Button Group Fixes for Dark Mode
            ========================================================================== */
-        body.dark-mode .btn-toggle-group .btn {
+        [data-bs-theme="dark"] .btn-toggle-group .btn {
             background-color: #1a1a2e !important;
             border-color: #3d3d54 !important;
             color: #a0a0b8 !important; /* Muted text configuration for unselected visibility button */
         }
 
-        body.dark-mode .btn-toggle-group .btn.active {
+        [data-bs-theme="dark"] .btn-toggle-group .btn.active {
             background-color: #4e65f7 !important;
             border-color: #4e65f7 !important;
             color: #ffffff !important; /* Forces visible text for the active visibility button */
         }
 
         /* Quick Visibility Patch for Dark Mode */
-        body.dark-mode .employee-item.active {
+        [data-bs-theme="dark"] .employee-item.active {
             background-color: #3d3d54 !important; /* Distinct background for selected item */
         }
-        body.dark-mode .employee-item:not(.active) {
+        [data-bs-theme="dark"] .employee-item:not(.active) {
             background-color: transparent !important;
         }
-        body.dark-mode .employee-item:not(.active) small,
-        body.dark-mode .employee-item:not(.active) .text-muted-sm {
+        [data-bs-theme="dark"] .employee-item:not(.active) small,
+        [data-bs-theme="dark"] .employee-item:not(.active) .text-muted-sm {
             color: #a0a0b8 !important; /* Keep secondary text readable */
         }
-        body.dark-mode #historyContainer .card {
+        [data-bs-theme="dark"] #historyContainer .card {
             background-color: #2d2d44 !important;
         }
         /* Fixes the white-on-white text behavior inside history badges */
-        body.dark-mode #historyContainer span, 
-        body.dark-mode #historyContainer .badge {
+        [data-bs-theme="dark"] #historyContainer span, 
+        [data-bs-theme="dark"] #historyContainer .badge {
             background-color: rgba(255, 255, 255, 0.1) !important;
             color: #ffffff !important;
             border: 1px solid rgba(255, 255, 255, 0.2) !important;
@@ -474,7 +480,7 @@
                         </button>
                         
                         <div class="collapse mt-3" id="addEmployeeForm">
-                            <div class="p-2 border rounded bg-light">
+                            <div class="p-2 border rounded bg-body-tertiary">
                                 <div class="mb-2">
                                     <label class="form-label small fw-bold text-secondary mb-1">Full Name</label>
                                     <input type="text" id="newEmpName" class="form-control form-control-sm" placeholder="e.g., Sarah Mitchell">
@@ -531,7 +537,7 @@
                         <div class="row g-3 mb-3">
                             <div class="col-12 col-sm-6">
                                 <label class="form-label small text-muted mb-1">Review Type</label>
-                                <select id="reviewType" class="form-select bg-light">
+                                <select id="reviewType" class="form-select bg-body text-body">
                                     <option>Check-in</option>
                                     <option>Performance</option>
                                     <option>Commendation</option>
@@ -548,7 +554,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label small text-muted mb-1">Comment <span class="text-danger">*</span></label>
-                            <textarea id="reviewComment" class="form-control bg-light" rows="4" placeholder="Notes from today's check-in — topics discussed, action items, employee feedback..." oninput="updateCharCount(this)"></textarea>
+                            <textarea id="reviewComment" class="form-control bg-body text-body" rows="4" placeholder="Notes from today's check-in — topics discussed, action items, employee feedback..." oninput="updateCharCount(this)"></textarea>
                             <div id="charCount" class="text-end text-muted small mt-1">0 chars</div>
                         </div>
                         <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 mt-3">
@@ -572,7 +578,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="Reports.js"></script>
-
+<script src="dashboard.js"></script> 
+<script src="Reports.js"></script> 
 </body>
 </html>
