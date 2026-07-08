@@ -315,9 +315,6 @@ main.payroll-container.mt-4 {
     font-size: 14.4px;
   }
 
-  /* =================================== */
-  /*            Payroll Cards            */
-  /* =================================== */
   .pr-card-gross .pr-card-text,
   .pr-card-deductions .pr-card-text,
   .pr-card-net .pr-card-text {
@@ -327,10 +324,6 @@ main.payroll-container.mt-4 {
   .payroll-container h2 {
     font-size: 25.6px;
   }
-
-  /* =================================== */
-  /*            Payroll Table           */
-  /* =================================== */
 
   .pr-table {
     font-size: 12.8px;
@@ -345,6 +338,7 @@ main.payroll-container.mt-4 {
     font-size: 10px;
     padding: 3px 10px;
   }
+
   .row-cards {
     flex-direction: column;
     gap: 12px;
@@ -354,6 +348,7 @@ main.payroll-container.mt-4 {
     flex: 0 0 100%;
     min-width: auto;
   }
+
   .payroll-header {
     flex-direction: column;
     align-items: flex-start;
@@ -371,7 +366,6 @@ main.payroll-container.mt-4 {
 }
 
 @media (max-width: 576px) {
-  /* the cards */
   .pr-card-gross .pr-card-text,
   .pr-card-deductions .pr-card-text,
   .pr-card-net .pr-card-text {
@@ -448,7 +442,7 @@ main.payroll-container.mt-4 {
   transform: translateY(-1px);
 }
 
-/* Payslip Card */
+/* Payslip page */
 .pr-payslip-card {
   background: #ffffff;
   border: none;
@@ -730,7 +724,77 @@ main.payroll-container.mt-4 {
   }
 }
 
-/* The Dark mode styling */
+/* Force readable light theme when downloading/printing */
+.pr-body.dark-mode,
+.pr-body.dark-mode .wrapper,
+.pr-body.dark-mode .main-body,
+.pr-body.dark-mode .payroll-container,
+.pr-body.dark-mode .pr-payslip-card,
+.pr-body.dark-mode .pr-payslip-body,
+.pr-body.dark-mode #prPayslipTable {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+.pr-body.dark-mode #prPayslipTable th {
+  background-color: #f0f0f0 !important;
+  color: #000000 !important;
+  border-color: #000000 !important;
+}
+
+.pr-body.dark-mode #prPayslipTable td {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #000000 !important;
+}
+
+/* Keep deduction values visible in the downloaded payslip */
+.pr-body.dark-mode #prPayslipTable .text-danger {
+  color: #c0392b !important;
+}
+
+/* Keep final salary readable in the downloaded payslip */
+.pr-body.dark-mode #prPayslipTable tr.table-success td {
+  background-color: #d4edda !important;
+  color: #000000 !important;
+  border-color: #000000 !important;
+}
+
+/* The title bar remains dark with white text */
+.pr-body.dark-mode .pr-payslip-header {
+  background: #333333 !important;
+  color: #ffffff !important;
+}
+
+.pr-body.dark-mode .pr-payslip-header h4 {
+  color: #ffffff !important;
+}
+
+/* =================================== */
+/*            DARK MODE                */
+/* =================================== */
+
+.pr-toggle-btn {
+  width: 100%;
+  height: 45px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.pr-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #fff;  
+}
+
 
 .pr-body.dark-mode .pr-toggle-btn {
   background: rgba(255, 255, 255, 0.05) !important;
@@ -744,24 +808,28 @@ main.payroll-container.mt-4 {
   top: 50%;
   transform: translateY(-50%);
 }
+
 .pr-toggle-btn.dark-mode::before {
   transform: translateY(-50%) rotate(180deg);
 }
+
 .pr-toggle-btn.dark-mode::after {
   transform: translateY(-50%) rotate(0deg);
 }
 
 /* Specific component overrides for your HR Portal Layout */
-.pr-body.dark-mode .card-box,
+
 .pr-body.dark-mode .payroll-container,
 .pr-body.dark-mode .payroll-header,
-.pr-body.dark-mode .payroll-table,
+.pr-body.dark-mode .pr-table tbody ,
 .pr-body.dark-mode .pr-card-deductions,
 .pr-body.dark-mode .pr-card-gross,
-.pr-body.dark-mode .pr-card-net {
+.pr-body.dark-mode .pr-card
+ {
   background: #2d2d44 !important;
   border-color: #3d3d54 !important;
 }
+
 
 .pr-body.dark-mode .text-dark,
 .pr-body.dark-mode .header-title,
@@ -771,8 +839,9 @@ main.payroll-container.mt-4 {
 
 .pr-body.dark-mode .text-secondary,
 .pr-body.dark-mode .text-muted {
-  color: #a0a0b8 !important;
+  color: #b6ccda !important;
 }
+
 
 .pr-body.dark-mode .border,
 .pr-body.dark-mode .border-light {
@@ -799,11 +868,9 @@ main.payroll-container.mt-4 {
 .pr-body.dark-mode .metric-icon svg {
   filter: brightness(1.2);
 }
-/* ==========================================================================
-Strict Text Color Overrides for Dark Mode
-========================================================================== */
+
+/* Strict Text Color Overrides for Dark Mode
 .pr-body.dark-mode,
-.pr-body.dark-mode *,
 .pr-body.dark-mode .text-dark,
 .pr-body.dark-mode .fw-bold,
 .pr-body.dark-mode h1,
@@ -813,64 +880,127 @@ Strict Text Color Overrides for Dark Mode
 .pr-body.dark-mode h5,
 .pr-body.dark-mode h6 {
   color: #ffffff !important;
-}
+} */
 
-/* Subtle or secondary text formatting (Labels, sub-dates, counters) */
-.pr-body.dark-mode .text-muted,
+/* Subtle or secondary text formatting */
+/* .pr-body.dark-mode .text-muted,
 .pr-body.dark-mode .text-secondary,
 .pr-body.dark-mode small,
 .pr-body.dark-mode .growth-text {
   color: #a0a0b8 !important;
-}
+} */
 
-/* Form element input texts & textareas */
+/* Form element input texts & textareas
 .pr-body.dark-mode .form-control,
 .pr-body.dark-mode .form-select,
 .pr-body.dark-mode textarea,
 .pr-body.dark-mode select {
   color: #ffffff !important;
-}
+} */
 
 /* Placeholder texts inside inputs */
-.pr-body.dark-mode .form-control::placeholder,
+/* .pr-body.dark-mode .form-control::placeholder,
 .pr-body.dark-mode textarea::placeholder {
   color: #6c757d !important;
-}
+} */
 
-.sidebar-footer {
-  margin-top: auto !important;
+/* .pr-sidebar-footer { */
+  /* margin-top: auto !important;
   padding-top: 15px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-.offcanvas-body {
+} */
+
+/* .pr-offcanvas-body {
   display: flex;
   flex-direction: column;
   height: 100%;
-}
+} */
 
-.offcanvas-body nav {
+/* .pr-offcanvas-body nav {
   flex-grow: 1;
 }
 
-body.dark-mode .employee-item.active {
-            background-color: #3d3d54 !important; /* Distinct background for selected item */
-        }
-        body.dark-mode .employee-item:not(.active) {
-            background-color: transparent !important;
-        }
-        body.dark-mode .employee-item:not(.active) small,
-        body.dark-mode .employee-item:not(.active) .text-muted-sm {
-            color: #a0a0b8 !important; /* Keep secondary text readable */
-        }
-        body.dark-mode #historyContainer .card {
-            background-color: #2d2d44 !important;
-        }
-        /* Fixes the white-on-white text behavior inside history badges */
-        body.dark-mode #historyContainer span, 
-        body.dark-mode #historyContainer .badge {
-            background-color: rgba(255, 255, 255, 0.1) !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-            padding: 4px 8px !important;
-            border-radius: 4px !important;
-        }
+.pr-body.dark-mode .employee-item.active {
+  background-color: #3d3d54 !important;
+}
+
+.pr-body.dark-mode .employee-item:not(.active) {
+  background-color: transparent !important;
+}
+
+.pr-body.dark-mode .employee-item:not(.active) small,
+.pr-body.dark-mode .employee-item:not(.active) .text-muted-sm {
+  color: #a0a0b8 !important;
+}
+
+.pr-body.dark-mode #historyContainer .card {
+  background-color: #2d2d44 !important;
+}
+
+/* Fixes white-on-white text inside history badges */
+/* .pr-body.dark-mode #historyContainer span,
+.pr-body.dark-mode #historyContainer .badge {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  padding: 4px 8px !important;
+  border-radius: 4px !important;
+} */
+
+/* Correct selector: dark-mode class is on .pr-body */
+/* .pr-body.dark-mode .pr-card,
+.pr-body.dark-mode .pr-table {
+  color: #ffffff;
+  background-color: #1e1e1e;
+} */ 
+
+/* =================================== */
+/*       PAYSLIP DARK MODE FIX         */
+/* =================================== */
+
+.pr-body.dark-mode .pr-payslip-card {
+  background: #2d2d44 !important;
+  border-color: #3d3d54 !important;
+}
+
+.pr-body.dark-mode .pr-payslip-body {
+  background: #2d2d44 !important;
+}
+
+.pr-body.dark-mode #prPayslipTable {
+  background: #2d2d44 !important;
+  color: #f5f7ff !important;
+}
+
+.pr-body.dark-mode #prPayslipTable th {
+  background-color: #25253a !important;
+  color: #f5f7ff !important;
+  border-color: #3d3d54 !important;
+}
+
+.pr-body.dark-mode #prPayslipTable td {
+  background-color: #2d2d44 !important;
+  color: #f5f7ff !important;
+  border-color: #3d3d54 !important;
+}
+
+.pr-body.dark-mode #prPayslipTable tr.table-success td {
+  background-color: #1f5c3a !important;
+  color: #ffffff !important;
+  border-color: #2e7d4f !important;
+}
+
+.pr-body.dark-mode #prPayslipTable .text-danger {
+  color: #ff6b6b !important;
+}
+
+.pr-body.dark-mode .pr-select-card .form-select {
+  background-color: #25253a !important;
+  color: #ffffff !important;
+  border-color: #3d3d54 !important;
+}
+
+.pr-body.dark-mode .pr-select-card .form-select option {
+  background-color: #25253a;
+  color: #ffffff;
+}

@@ -337,3 +337,55 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+// const urlParams = new URLSearchParams(window.location.search);
+// const employeeId = urlParams.get("id");
+// // Use this ID to fetch data from an object or array of employees
+
+
+document.getElementById("prDownloadBtn").addEventListener("click", async () => {
+  const payslipCard = document.getElementById("prPayslipCard");
+  const downloadButton = document.getElementById("prDownloadBtn");
+  const body = document.body;
+
+  // Remember whether the user is currently in dark mode
+  const wasDarkMode = body.classList.contains("dark-mode");
+
+  // Temporarily use light mode so the PDF text is black and visible
+  body.classList.remove("dark-mode");
+
+  // Hide the download button from the PDF
+  downloadButton.style.display = "none";
+
+  const options = {
+    margin: 10,
+    filename: "payslip.pdf",
+    image: {
+      type: "jpeg",
+      quality: 0.98,
+    },
+    html2canvas: {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: "#ffffff",
+    },
+    jsPDF: {
+      unit: "mm",
+      format: "a4",
+      orientation: "portrait",
+    },
+  };
+
+  try {
+    await html2pdf().set(options).from(payslipCard).save();
+  } catch (error) {
+    console.error("Unable to generate payslip PDF:", error);
+    alert("The payslip could not be downloaded. Please try again.");
+  } finally {
+    // Restore the button and the user's original theme
+    downloadButton.style.display = "";
+
+    if (wasDarkMode) {
+      body.classList.add("dark-mode");
+    }
+  }
+});
