@@ -38,7 +38,7 @@
 
       <div class="offcanvas-body p-0">
         <nav class="nav flex-column gap-2 w-100">
-          <a class="nav-link text-white" href="index.html">
+          <a class="nav-link text-white-50" href="index.html">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-3"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg> Dashboard
           </a>
 
@@ -64,7 +64,7 @@
 
             <div class="mt-auto pt-3 border-top border-secondary-subtle">
               <button class="toggle-btn w-100 text-start d-flex align-items-center py-2 px-3 border-0 rounded" id="darkModeToggle">
-                <span id="toggleText" style="margin-left: 35px;">Dark Mode</span>
+                <span id="toggleText" style="margin-left: 120px;">Dark Mode</span>
               </button>
             </div>
 
@@ -74,7 +74,7 @@
   
 
   <!-- Main Content -->
-  <main class="payroll-container mt-4">
+  <main class="payroll-container">
     <div class="payroll-header">
 
 
@@ -82,13 +82,6 @@
         <h2><strong>Payroll</strong></h2>
         <h5>July 2024 - Processing  period: 1-31 Jul</h5>
       </div>
-    <!-- 
-      <div class="payroll-header-right">
-        <button type="button" class="btn btn-primary">
-          <span class="bi bi-download me-2"></span>Export All Payslips
-        </button>
-      </div> -->
-
     </div>
           
     <!-- THE PAYROLL CARDS -->
@@ -97,30 +90,30 @@
         <div class="pr-card pr-card-gross">
           <div class="pr-card-body">
             <h5 class="pr-card-title">GROSS PAYROLL</h5>
-            <h2 class="pr-card-text"><b>R36 667</b></h2>
+            <h2 class="pr-card-text"><b id="grossPayrollValue">R636 006</b></h2>
           </div>
         </div>
-      </div><br>
+      </div>
 
-    <!-- mb-2 text-body-secondary -->
+   
 
       <div class="col-md-4">
         <div class="pr-card pr-card-deductions">
           <div class="pr-card-body">
             <h5 class="pr-card-title">TOTAL DEDUCTIONS</h5>
-            <h2 class="pr-card-text"><b>R12 467</b></h2>
+            <h2 class="pr-card-text"><b id="deductionsPayrollValue">R28 052</b></h2>
           </div>
         </div>
-      </div><br>
+      </div>
 
       <div class="col-md-4">
         <div class="pr-card pr-card-net">
-          <div class="pre-card-body">
+          <div class="pr-card-body">
             <h5 class="pr-card-title">NET PAYROLL</h5>
-            <h2 class="pr-card-text"><b>R24 200</b></h2>
+            <h2 class="pr-card-text"><b id="netPayrollValue">R 632 700</b></h2>
           </div>
         </div>
-      </div><br>
+      </div>
     </div>
     
     <!-- the Employees data -->
@@ -142,150 +135,12 @@
           </tr>
         </thead>
 
-        <tbody>
-          <!-- employee 1 -->
-          <tr>
-            <td>Sibongile Nkosi</td>
-            <td>Software Engineer</td>
-            <td>R 70 000</td>
-            <td>179h</td>
-            <td>8h</td>
-            <td>-R 792</td>
-            <td>- R 1 900</td>
-            <td>R 5 225</td>
-            <!-- <td><a href="payslip.html?id=1" class="btn btn-sm btn-outline-primary">Generate</a></td> -->
-            <td><a href="" class="btn btn-sm btn-outline-primary">Generate</a></td>
-          </tr>
-
-          <!-- employee 2 -->
-          <tr>
-            <td>Lungile Moyo</td>
-            <td>HR Manager</td>
-            <td>R 80 000</td>
-            <td>172h</td>
-            <td>4h</td>
-            <td>-R 650</td>
-            <td>-R 1 560</td>
-            <td>R 4 290</td>
-            <td><a href="payslip.html?id=2" class="btn btn-sm btn-outline-primary">Generate</a></td>
-          </tr>
-
-          <!-- employee 3 -->
-          <tr>
-            <td>Thabo Molefe</td>
-            <td>Quality Analyst</td>
-            <td>R 55 000</td>
-            <td>176h</td>
-            <td>0h</td>
-            <td>-R 600</td>
-            <td>-R1 440</td>
-            <td>R 3 960 </td> 
-            <td><a href="payslip.html?id=3" class="btn btn-sm btn-outline-primary">Generate</a></td>
-          </tr>
-
-          <!-- employee 4 -->
-          <tr>
-            <td>Keshav Naidoo</td>
-            <td>Sales Representative</td>
-            <td>R 60 000</td>
-            <td>176h</td>
-            <td>12h</td>
-            <td>-R 708</td>
-            <td>-R 1 700</td>
-            <td>R 4 675</td>
-            <td><a href="payslip.html?id=4" class="btn btn-sm btn-outline-primary">Generate</a></td>
-          </tr>
-
-          <!-- employee 5 -->
-          <tr>
-            <td>Zanele Khumalo</td>
-            <td>Marketing Specialist</td>
-            <td>R 58 000</td>
-            <td>176h</td>
-            <td>0h</td>
-            <td>-R 917</td>
-            <td>-R 2 200</td>
-            <td>R 6 050</td>
-            <td><a href="payslip.html?id=5" class="btn btn-sm btn-outline-primary">Generate</a></td>
-          </tr>
-
-          <!-- employee 6 -->
-          <tr>
-            <td>Sipho Zulu</td>
-            <td>UI/UX Designer</td>
-            <td>R 65 000</td>
-            <td>176h</td>
-            <td>0h</td>
-            <td>-R 917</td>
-            <td>-R 2 200</td>
-            <td>R 6 050</td>
-            <td><a href="payslip.html?id=6" class="btn btn-sm btn-outline-primary">Generate</a></td>
-          </tr>
-          <!-- employee 7 -->
-          <tr>
-            <td>Naledi Moeketsi</td>
-            <td>DevOps Engineer</td>
-            <td>R 72 000</td>
-            <td>176h</td>
-            <td>0h</td>
-            <td>-R 917</td>
-            <td>-R 2 200</td>
-            <td>R 6 050</td>
-            <td><a href="payslip.html?id=7" class="btn btn-sm btn-outline-primary">Generate</a></td>
-          </tr>
-          <!-- employee 8 -->
-          <tr>
-            <td>Farai Gumbo</td>
-            <td>Content Strategist</td>
-            <td>R 56 000</td>
-            <td>176h</td>
-            <td>0h</td>
-            <td>-R 917</td>
-            <td>-R 2 200</td>
-            <td>R 6 050</td>
-            <td><a href="payslip.html?id=8" class="btn btn-sm btn-outline-primary">Generate</a></td>
-          </tr>
-          <!-- employee 9 -->
-          <tr>
-            <td>Karabo Dlamini</td>
-            <td>Accountant</td>
-            <td>R 62 000</td>
-            <td>176h</td>
-            <td>0h</td>
-            <td>-R 917</td>
-            <td>-R 2 200</td>
-            <td>R 6 050</td>
-            <td><a href="payslip.html?id=9" class="btn btn-sm btn-outline-primary">Generate</a></td>
-          </tr>
-          <!-- employee 10 -->
-          <tr>
-            <td>Fatima Patel</td>
-            <td>Customer Support Lead</td>
-            <td>R 58 000</td>
-            <td>176h</td>
-            <td>0h</td>
-            <td>-R 917</td>
-            <td>-R 2 200</td>
-            <td>R 6 050</td>
-            <td><a href="payslip.html?id=10" class="btn btn-sm btn-outline-primary">Generate</a></td>
-          </tr>
-
+        <tbody id="payrollTableBody">
+          <!-- payroll rows are generated from JavaScript -->
         </tbody>
       </table>
     </div>
-
-
-
-
-
-
-
-    
-
-
   </main>
-
-
 </body>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

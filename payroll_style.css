@@ -1,28 +1,50 @@
 .pr-body {
   font-family: "Plus Jakarta Sans", sans-serif;
+  /* Light mode page background (original) */
   background: #f4f6fb;
   margin: 0;
   padding: 0;
 }
 
 /* =================================== */
-/*            Nav Bar                 */
+/*             Bar                 */
 /* =================================== */
 
 .payroll-wrapper {
   margin: 0 auto;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.03);
   min-height: 100vh;
+  background: transparent;
 }
 
 .main-header {
   background: #0b1a33 !important;
   padding: 14px 28px !important;
   border-bottom: 1px solid #1f334f;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-sizing: border-box;
 }
 
 .offcanvas-sidebar {
   background: #0b1a33 !important;
+  min-height: 100vh;
+}
+
+.offcanvas-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.offcanvas-body nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .offcanvas-sidebar .nav-link.active {
@@ -76,8 +98,18 @@
 /*            Main Content             */
 /* =================================== */
 
-main.payroll-container.mt-4 {
-  padding: 16px 20px 40px;
+/* Main content container: uses body background in light mode and a
+   deep navy in dark mode. Padding and radius for inner content. */
+main.payroll-container {
+  margin: 24px auto 0;
+  padding: 28px 22px 44px;
+  border-radius: 12px;
+  background: transparent;
+  width: min(100%, 1200px);
+}
+
+.payroll-wrapper {
+  padding: 0 16px;
 }
 
 /* =================================== */
@@ -89,12 +121,13 @@ main.payroll-container.mt-4 {
   align-items: flex-start;
   flex-wrap: wrap;
   margin-bottom: 16px;
+  margin-top: 12px;
 }
 
 .payroll-header-left h2 {
   font-weight: 700;
   font-size: 30.4px;
-  color: #0b1a33;
+  color: black;
   margin-bottom: 2px;
   letter-spacing: -0.3px;
 }
@@ -138,7 +171,7 @@ main.payroll-container.mt-4 {
   background: #ffffff;
   border: none;
   border-radius: 20px;
-  padding: 16px 20px;
+  padding: 18px 24px;
   box-shadow:
     0 6px 18px rgba(0, 0, 0, 0.03),
     0 2px 6px rgba(0, 0, 0, 0.02);
@@ -176,13 +209,13 @@ main.payroll-container.mt-4 {
 
 /* the colors on the side of the cards */
 .pr-card-gross {
-  border-left: 5px solid #2a7de1;
+  border-left: 8px solid #2a7de1;
 }
 .pr-card-deductions {
-  border-left: 5px solid #e67e22;
+  border-left: 8px solid #e67e22;
 }
 .pr-card-net {
-  border-left: 5px solid #27ae60;
+  border-left: 8px solid #27ae60;
 }
 
 .row-cards {
@@ -313,6 +346,18 @@ main.payroll-container.mt-4 {
 @media (max-width: 768px) {
   .main-header h5 {
     font-size: 14.4px;
+  }
+
+  .payroll-wrapper {
+    padding: 0 12px;
+  }
+
+  main.payroll-container {
+    padding: 24px 18px 32px;
+  }
+
+  .pr-payslip-card {
+    margin-top: 12px;
   }
 
   .pr-card-gross .pr-card-text,
@@ -724,28 +769,116 @@ main.payroll-container.mt-4 {
   }
 }
 
-/* Force readable light theme when downloading/printing */
-.pr-body.dark-mode,
-.pr-body.dark-mode .wrapper,
-.pr-body.dark-mode .main-body,
-.pr-body.dark-mode .payroll-container,
-.pr-body.dark-mode .pr-payslip-card,
-.pr-body.dark-mode .pr-payslip-body,
-.pr-body.dark-mode #prPayslipTable {
-  background: #ffffff !important;
-  color: #000000 !important;
+/* Dark mode page theme */
+
+.pr-body.dark-mode {
+  background-color: #0b1a33 !important;
+  color: #eef1ff !important;
 }
 
-.pr-body.dark-mode #prPayslipTable th {
-  background-color: #f0f0f0 !important;
-  color: #000000 !important;
-  border-color: #000000 !important;
+.pr-body.dark-mode .payroll-wrapper {
+  background: #0d2342 !important;
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.22) !important;
 }
 
-.pr-body.dark-mode #prPayslipTable td {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  border-color: #000000 !important;
+.pr-body.dark-mode .main-header {
+  background: #0b1b34 !important;
+  border-color: #25304d !important;
+}
+
+/* Dark-mode payroll container uses deep navy (see below) */
+
+.pr-body.dark-mode .payroll-header-left h2 {
+  color: #f8fbff !important;
+}
+
+.pr-body.dark-mode .payroll-header-left h5 {
+  color: #bfcbe3 !important;
+}
+
+.pr-body.dark-mode .pr-card {
+  background: #111f3c !important;
+  border-color: #23315b !important;
+  color: #eef1ff !important;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18) !important;
+}
+
+.pr-body.dark-mode .pr-card-title {
+  color: #c8d6f2 !important;
+}
+
+.pr-body.dark-mode .pr-card-text {
+  color: #f4f7ff !important;
+}
+
+.pr-body.dark-mode .pr-card-gross {
+  border-left-color: #2a7de1 !important;
+}
+
+.pr-body.dark-mode .pr-card-deductions {
+  border-left-color: #e67e22 !important;
+}
+
+.pr-body.dark-mode .pr-card-net {
+  border-left-color: #27ae60 !important;
+}
+
+.pr-body.dark-mode .pr-table thead th {
+  background: #17254a !important;
+  color: #e9f1ff !important;
+  border-color: #27406f !important;
+}
+
+.pr-body.dark-mode .pr-table tbody td {
+  background: #16264a !important;
+  color: #e9f1ff !important;
+  border-color: #23315b !important;
+}
+
+.pr-body.dark-mode .pr-table tbody tr:hover {
+  background: #262f67 !important;
+}
+
+.pr-body.dark-mode .pr-table tbody td:first-child {
+  color: #f8fbff !important;
+}
+
+.pr-body.dark-mode .pr-table tbody td:nth-child(2) {
+  color: #b8c7e6 !important;
+}
+
+.pr-body.dark-mode .pr-table tbody td:nth-child(6),
+.pr-body.dark-mode .pr-table tbody td:nth-child(7) {
+  color: #ff8787 !important;
+}
+
+.pr-body.dark-mode .pr-table tbody td:nth-child(8) {
+  color: #9bd8af !important;
+}
+
+.pr-body.dark-mode .btn-outline-primary {
+  border-color: #556b97 !important;
+  color: #d3dcea !important;
+}
+
+.pr-body.dark-mode .btn-outline-primary:hover {
+  background: #3f5db0 !important;
+  color: #ffffff !important;
+  border-color: #3f5db0 !important;
+}
+
+.pr-body.dark-mode .offcanvas-sidebar {
+  background: #0b1227 !important;
+}
+
+.pr-body.dark-mode .offcanvas-sidebar .nav-link {
+  color: #d7e0ff !important;
+}
+
+.pr-body.dark-mode .offcanvas-sidebar .nav-link:hover,
+.pr-body.dark-mode .offcanvas-sidebar .nav-link.active {
+  background: #1d2b58 !important;
+  color: #ffffff !important;
 }
 
 /* Keep deduction values visible in the downloaded payslip */
@@ -756,13 +889,13 @@ main.payroll-container.mt-4 {
 /* Keep final salary readable in the downloaded payslip */
 .pr-body.dark-mode #prPayslipTable tr.table-success td {
   background-color: #d4edda !important;
-  color: #000000 !important;
-  border-color: #000000 !important;
+  color: #0b1a33 !important;
+  border-color: #1d4f23 !important;
 }
 
 /* The title bar remains dark with white text */
 .pr-body.dark-mode .pr-payslip-header {
-  background: #333333 !important;
+  background: #1e2f55 !important;
   color: #ffffff !important;
 }
 
@@ -774,12 +907,12 @@ main.payroll-container.mt-4 {
 /*            DARK MODE                */
 /* =================================== */
 
-.pr-toggle-btn {
+.toggle-btn {
   width: 100%;
   height: 45px;
-  border-radius: 6px;
-  border: none;
-  background: transparent;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -787,49 +920,47 @@ main.payroll-container.mt-4 {
   font-size: 16px;
   transition: all 0.3s ease;
   position: relative;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.95);
 }
 
-.pr-toggle-btn:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
-  color: #fff;  
+.toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff;
 }
 
+.pr-body.dark-mode .toggle-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #f7f9ff;
+}
 
-.pr-body.dark-mode .pr-toggle-btn {
-  background: rgba(255, 255, 255, 0.05) !important;
-  color: #e0e0e0;
+.pr-body.dark-mode .toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
 }
 
 /* Adjust pseudo-element positioning to match alignment */
-.pe-toggle-btn::before,
-.pr-toggle-btn::after {
+.toggle-btn::before,
+.toggle-btn::after {
   left: 15px;
   top: 50%;
   transform: translateY(-50%);
 }
 
-.pr-toggle-btn.dark-mode::before {
+.toggle-btn.dark-mode::before {
   transform: translateY(-50%) rotate(180deg);
 }
 
-.pr-toggle-btn.dark-mode::after {
+.toggle-btn.dark-mode::after {
   transform: translateY(-50%) rotate(0deg);
 }
 
 /* Specific component overrides for your HR Portal Layout */
 
-.pr-body.dark-mode .payroll-container,
+/* .pr-body.dark-mode .payroll-container,
 .pr-body.dark-mode .payroll-header,
-.pr-body.dark-mode .pr-table tbody ,
-.pr-body.dark-mode .pr-card-deductions,
-.pr-body.dark-mode .pr-card-gross,
-.pr-body.dark-mode .pr-card
- {
+.pr-body.dark-mode .pr-table tbody {
   background: #2d2d44 !important;
   border-color: #3d3d54 !important;
-}
-
+} */
 
 .pr-body.dark-mode .text-dark,
 .pr-body.dark-mode .header-title,
@@ -842,18 +973,28 @@ main.payroll-container.mt-4 {
   color: #b6ccda !important;
 }
 
+/* Ensure card side accents keep their requested colors in dark mode */
+.pr-body.dark-mode .pr-card-gross {
+  border-left: 8px solid #2a7de1 !important;
+}
+.pr-body.dark-mode .pr-card-deductions {
+  border-left: 8px solid #e67e22 !important;
+}
+.pr-body.dark-mode .pr-card-net {
+  border-left: 8px solid #27ae60 !important;
+}
 
-.pr-body.dark-mode .border,
+/* .pr-body.dark-mode .border,
 .pr-body.dark-mode .border-light {
   border-color: #3d3d54 !important;
-}
+} */
 
 /* Force dark mode background across the entire layout wrapper and body container */
-.pr-body.dark-mode,
+/* .pr-body.dark-mode,
 .pr-body.dark-mode .wrapper,
 .pr-body.dark-mode .main-body {
-  background-color: #1a1a2e !important;
-}
+  
+} */
 
 /* Fix text contrast on the primary page title and date subtitle */
 .pr-body.dark-mode h1.header-title {
@@ -869,119 +1010,34 @@ main.payroll-container.mt-4 {
   filter: brightness(1.2);
 }
 
-/* Strict Text Color Overrides for Dark Mode
-.pr-body.dark-mode,
-.pr-body.dark-mode .text-dark,
-.pr-body.dark-mode .fw-bold,
-.pr-body.dark-mode h1,
-.pr-body.dark-mode h2,
-.pr-body.dark-mode h3,
-.pr-body.dark-mode h4,
-.pr-body.dark-mode h5,
-.pr-body.dark-mode h6 {
-  color: #ffffff !important;
-} */
-
-/* Subtle or secondary text formatting */
-/* .pr-body.dark-mode .text-muted,
-.pr-body.dark-mode .text-secondary,
-.pr-body.dark-mode small,
-.pr-body.dark-mode .growth-text {
-  color: #a0a0b8 !important;
-} */
-
-/* Form element input texts & textareas
-.pr-body.dark-mode .form-control,
-.pr-body.dark-mode .form-select,
-.pr-body.dark-mode textarea,
-.pr-body.dark-mode select {
-  color: #ffffff !important;
-} */
-
-/* Placeholder texts inside inputs */
-/* .pr-body.dark-mode .form-control::placeholder,
-.pr-body.dark-mode textarea::placeholder {
-  color: #6c757d !important;
-} */
-
-/* .pr-sidebar-footer { */
-  /* margin-top: auto !important;
-  padding-top: 15px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-} */
-
-/* .pr-offcanvas-body {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-} */
-
-/* .pr-offcanvas-body nav {
-  flex-grow: 1;
-}
-
-.pr-body.dark-mode .employee-item.active {
-  background-color: #3d3d54 !important;
-}
-
-.pr-body.dark-mode .employee-item:not(.active) {
-  background-color: transparent !important;
-}
-
-.pr-body.dark-mode .employee-item:not(.active) small,
-.pr-body.dark-mode .employee-item:not(.active) .text-muted-sm {
-  color: #a0a0b8 !important;
-}
-
-.pr-body.dark-mode #historyContainer .card {
-  background-color: #2d2d44 !important;
-}
-
-/* Fixes white-on-white text inside history badges */
-/* .pr-body.dark-mode #historyContainer span,
-.pr-body.dark-mode #historyContainer .badge {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  padding: 4px 8px !important;
-  border-radius: 4px !important;
-} */
-
-/* Correct selector: dark-mode class is on .pr-body */
-/* .pr-body.dark-mode .pr-card,
-.pr-body.dark-mode .pr-table {
-  color: #ffffff;
-  background-color: #1e1e1e;
-} */ 
-
 /* =================================== */
-/*       PAYSLIP DARK MODE FIX         */
+/*       PAYSLIP DARK MODE            */
 /* =================================== */
 
 .pr-body.dark-mode .pr-payslip-card {
-  background: #2d2d44 !important;
-  border-color: #3d3d54 !important;
+  background: #17264e !important;
+  border-color: #253767 !important;
 }
 
 .pr-body.dark-mode .pr-payslip-body {
-  background: #2d2d44 !important;
+  background: #17264e !important;
 }
 
 .pr-body.dark-mode #prPayslipTable {
-  background: #2d2d44 !important;
-  color: #f5f7ff !important;
+  background: #192b56 !important;
+  color: #eef3ff !important;
 }
 
 .pr-body.dark-mode #prPayslipTable th {
-  background-color: #25253a !important;
-  color: #f5f7ff !important;
-  border-color: #3d3d54 !important;
+  background-color: #21386e !important;
+  color: #eef3ff !important;
+  border-color: #2c487f !important;
 }
 
 .pr-body.dark-mode #prPayslipTable td {
-  background-color: #2d2d44 !important;
-  color: #f5f7ff !important;
-  border-color: #3d3d54 !important;
+  background-color: #17264e !important;
+  color: #eef3ff !important;
+  border-color: #2c497e !important;
 }
 
 .pr-body.dark-mode #prPayslipTable tr.table-success td {
@@ -995,12 +1051,6 @@ main.payroll-container.mt-4 {
 }
 
 .pr-body.dark-mode .pr-select-card .form-select {
-  background-color: #25253a !important;
   color: #ffffff !important;
   border-color: #3d3d54 !important;
-}
-
-.pr-body.dark-mode .pr-select-card .form-select option {
-  background-color: #25253a;
-  color: #ffffff;
 }
