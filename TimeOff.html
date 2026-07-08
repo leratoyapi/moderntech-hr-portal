@@ -31,8 +31,16 @@
     <aside class="timeoff-sidebar" id="timeoffSidebar" aria-label="Main navigation">
         <div class="timeoff-sidebar-header">
             <div class="timeoff-header-brand">
-                <div class="timeoff-brand-icon">HR</div>
-                <h5 class="timeoff-header-title">ModernTech HR Portal</h5>
+                <div class="timeoff-brand-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                        <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg>
+                </div>
+                <div>
+                    <span class="timeoff-brand-name">ModernTech</span>
+                    <span class="timeoff-brand-sub">HR Portal</span>
+                </div>
             </div>
             <button class="timeoff-sidebar-close" id="timeoffSidebarClose" aria-label="Close navigation menu">
                 <i class="bi bi-x-lg"></i>
@@ -90,10 +98,7 @@
         </nav>
 
         <div class="timeoff-sidebar-footer">
-            <button class="toggle-btn" id="darkModeToggle" type="button" aria-pressed="false">
-                <span class="toggle-icon" aria-hidden="true">
-                    <i class="bi bi-moon-stars"></i>
-                </span>
+            <button class="timeoff-toggle-btn" id="darkModeToggle" type="button" aria-pressed="false">
                 <span id="toggleText">Dark Mode</span>
             </button>
         </div>

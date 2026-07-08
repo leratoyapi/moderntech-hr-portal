@@ -28,7 +28,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 24px;
+    padding: 20px 32px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
     position: sticky;
     top: 0;
@@ -46,6 +46,22 @@
     font-size: 16px;
     font-weight: 700;
     color: #ffffff;
+}
+
+.timeoff-brand-name {
+    display: block;
+    font-size: 17px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.timeoff-brand-sub {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.55);
+    margin-top: 2px;
 }
 
 /* ── Brand Icon ───────────────────────────── */
@@ -98,11 +114,11 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 280px;
+    width: 320px;
     height: 100%;
     background-color: #243864;
     z-index: 300;
-    padding: 16px;
+    padding: 20px;
     box-sizing: border-box;
     transform: translateX(-100%);
     transition: transform 0.28s ease;
@@ -152,7 +168,7 @@
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.toggle-btn {
+.timeoff-toggle-btn {
     width: 100%;
     height: 45px;
     border-radius: 6px;
@@ -170,12 +186,12 @@
     padding: 0 15px;
 }
 
-.toggle-btn:hover {
+.timeoff-toggle-btn:hover {
     background: rgba(255, 255, 255, 0.1) !important;
     color: #fff;
 }
 
-.toggle-icon {
+.timeoff-toggle-icon {
     width: 18px;
     display: inline-flex;
     align-items: center;
@@ -191,16 +207,14 @@
     font-size: 15px;
     text-decoration: none;
     border-radius: 8px;
-    transition: background 0.2s, color 0.2s;
+    transition: color 0.2s;
 }
 
 .timeoff-nav-link:hover {
-    background: rgba(255, 255, 255, 0.07);
     color: #ffffff;
 }
 
 .timeoff-nav-link--active {
-    background: #4e65f7;
     color: #ffffff;
 }
 
@@ -563,12 +577,10 @@ body.dark-mode .timeoff-nav-link {
 }
 
 body.dark-mode .timeoff-nav-link:hover {
-    background: rgba(255, 255, 255, 0.08);
     color: #ffffff;
 }
 
 body.dark-mode .timeoff-nav-link--active {
-    background: #4e65f7;
     color: #ffffff;
 }
 
@@ -583,12 +595,12 @@ body.dark-mode .timeoff-btn-revert:hover {
     border-color: #6b7280;
 }
 
-body.dark-mode .toggle-btn {
+body.dark-mode .timeoff-toggle-btn {
     background: rgba(255, 255, 255, 0.05) !important;
     color: #e0e0e0;
 }
 
-body.dark-mode .toggle-btn:hover {
+body.dark-mode .timeoff-toggle-btn:hover {
     background: rgba(255, 255, 255, 0.1) !important;
     color: #ffffff;
 }
