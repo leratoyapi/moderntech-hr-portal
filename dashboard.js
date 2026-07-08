@@ -1,14 +1,5 @@
 // =========================================================================
-// 1. IMMEDIATE THEME INITIALIZATION (Prevents white flashing on page load)
-// =========================================================================
-function initTheme() {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-bs-theme', savedTheme);
-}
-initTheme();
-
-// =========================================================================
-// 2. MAIN APPLICATION LOGIC
+// MAIN APPLICATION LOGIC
 // =========================================================================
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -113,32 +104,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // --- UNIFIED DARK MODE TOGGLE LOGIC ---
 
     const darkModeToggle = document.getElementById('darkModeToggle');
-    const toggleText = document.getElementById('toggleText');
-    const htmlElement = document.documentElement;
 
-    // Synchronize toggle text with the currently saved/active theme state
-    const currentTheme = htmlElement.getAttribute('data-bs-theme');
-    updateToggleText(currentTheme);
+    if (window.HRTheme) {
+        window.HRTheme.syncThemeControls(window.HRTheme.getSavedTheme());
+    }
 
     if (darkModeToggle) {
         darkModeToggle.addEventListener('click', () => {
-            const activeTheme = htmlElement.getAttribute('data-bs-theme');
-            const newTheme = activeTheme === 'dark' ? 'light' : 'dark';
-            
-            // Apply theme globally to Bootstrap framework
-            htmlElement.setAttribute('data-bs-theme', newTheme);
-            
-            // Persistence across multi-page jumps
-            localStorage.setItem('theme', newTheme);
-            
-            // Sync current button text description
-            updateToggleText(newTheme);
+            if (window.HRTheme) {
+                window.HRTheme.toggleTheme();
+            }
         });
-    }
-
-    function updateToggleText(theme) {
-        if (toggleText) {
-            toggleText.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
-        }
     }
 });

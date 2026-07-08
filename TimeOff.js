@@ -36,23 +36,13 @@ function setupSidebarControls() {
 
 function setupThemeToggle() {
     const themeToggle = document.getElementById('darkModeToggle');
-    const toggleText = document.getElementById('toggleText');
 
-    if (!themeToggle || !toggleText) return;
+    if (!themeToggle || !window.HRTheme) return;
 
-    const applyTheme = (isDarkMode) => {
-        document.body.classList.toggle('dark-mode', isDarkMode);
-        themeToggle.classList.toggle('dark-mode', isDarkMode);
-        toggleText.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
-        themeToggle.setAttribute('aria-pressed', String(isDarkMode));
-        localStorage.setItem('darkMode', String(isDarkMode));
-    };
-
-    const storedPreference = localStorage.getItem('darkMode') === 'true';
-    applyTheme(storedPreference);
+    window.HRTheme.syncThemeControls(window.HRTheme.getSavedTheme());
 
     themeToggle.addEventListener('click', () => {
-        applyTheme(!document.body.classList.contains('dark-mode'));
+        window.HRTheme.toggleTheme();
     });
 }
 
