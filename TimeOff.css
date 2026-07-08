@@ -168,7 +168,7 @@
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.toggle-btn {
+.timeoff-toggle-btn {
     width: 100%;
     height: 45px;
     border-radius: 6px;
@@ -186,12 +186,12 @@
     padding: 0 15px;
 }
 
-.toggle-btn:hover {
+.timeoff-toggle-btn:hover {
     background: rgba(255, 255, 255, 0.1) !important;
     color: #fff;
 }
 
-.toggle-icon {
+.timeoff-toggle-icon {
     width: 18px;
     display: inline-flex;
     align-items: center;
@@ -595,12 +595,12 @@ body.dark-mode .timeoff-btn-revert:hover {
     border-color: #6b7280;
 }
 
-body.dark-mode .toggle-btn {
+body.dark-mode .timeoff-toggle-btn {
     background: rgba(255, 255, 255, 0.05) !important;
     color: #e0e0e0;
 }
 
-body.dark-mode .toggle-btn:hover {
+body.dark-mode .timeoff-toggle-btn:hover {
     background: rgba(255, 255, 255, 0.1) !important;
     color: #ffffff;
 }
