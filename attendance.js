@@ -1,78 +1,502 @@
-fetch("attendance.json")
+// fetch("attendance.json")
 
 
-.then(response => response.json())
-.then(data => {
-
-    const tableBody = document.getElementById("attendanceTableBody");
-
-    data.attendanceAndLeave.forEach((employee,index)=>{
 
 
-        const latestAttendance =
-        employee.attendance[employee.attendance.length-1];
+// .then(response => response.json())
+// .then(data => {
 
 
-        let historyTable = "";
+//     const tableBody = document.getElementById("attendanceTableBody");
 
 
-        employee.attendance.forEach(record=>{
+//     data.attendanceAndLeave.forEach((employee,index)=>{
 
 
-            historyTable += `
 
 
-            <tr>
+//         const latestAttendance =
+//         employee.attendance[employee.attendance.length-1];
 
 
-                <td>${record.date}</td>
 
 
-                <td>
+//         let historyTable = "";
 
 
-                    <span class="attendance-status ${record.status==="Present" ? "attendance-present" : "attendance-absent"}">
 
 
-                        ${record.status}
+//         employee.attendance.forEach(record=>{
 
 
-                    </span>
 
 
-                </td>
+//             historyTable += `
 
 
-            </tr>
 
 
-            `;
+//             <tr>
 
 
+
+
+//                 <td>${record.date}</td>
+
+
+
+
+//                 <td>
+
+
+
+
+//                     <span class="attendance-status ${record.status==="Present" ? "attendance-present" : "attendance-absent"}">
+
+
+
+
+//                         ${record.status}
+
+
+
+
+//                     </span>
+
+
+
+
+//                 </td>
+
+
+
+
+//             </tr>
+
+
+
+
+//             `;
+
+
+
+
+//         });
+
+
+
+
+//         tableBody.innerHTML += `
+
+
+
+
+//         <tr>
+
+
+
+
+//             <td>${employee.employeeId}</td>
+
+
+
+
+//             <td>${employee.name}</td>
+
+
+
+
+//             <td>
+
+
+
+
+//                 <span class="attendance-status ${latestAttendance.status==="Present" ? "attendance-present" : "attendance-absent"}">
+
+
+
+
+//                     ${latestAttendance.status}
+
+
+
+
+//                 </span>
+
+
+
+
+//             </td>
+
+
+
+
+//             <td>
+
+
+
+
+//                 <button
+//                 class="attendance-btn"
+//                 onclick="toggleAttendanceHistory(${index})">
+
+
+
+
+//                 View History
+
+
+
+
+//                 </button>
+
+
+
+
+//             </td>
+
+
+
+
+//         </tr>
+
+
+
+
+//         <tr
+//         class="attendance-history-row"
+//         id="attendanceHistory${index}">
+
+
+
+
+//             <td
+//             colspan="4"
+//             class="attendance-history-cell">
+
+
+
+
+//                 <table class="attendance-history-table">
+
+
+
+
+//                     <thead>
+
+
+
+
+//                         <tr>
+
+
+
+
+//                             <th>Date</th>
+
+
+
+
+//                             <th>Status</th>
+
+
+
+
+//                         </tr>
+
+
+
+
+//                     </thead>
+
+
+
+
+//                     <tbody>
+
+
+
+
+//                         ${historyTable}
+
+
+
+
+//                     </tbody>
+
+
+
+
+//                 </table>
+
+
+
+
+//             </td>
+
+
+
+
+//         </tr>
+
+
+
+
+//         `;
+
+
+
+
+//     });
+
+
+
+
+// });
+
+
+
+
+// function toggleAttendanceHistory(index){
+
+
+
+
+//     const historyRow =
+//     document.getElementById("attendanceHistory"+index);
+
+
+
+
+//     if(historyRow.style.display==="table-row"){
+
+
+
+
+//         historyRow.style.display="none";
+
+
+
+
+//     }else{
+
+
+
+
+//         historyRow.style.display="table-row";
+
+
+
+
+//     }
+
+
+
+
+// }
+
+
+
+
+
+
+
+
+// Dark Mode
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('darkModeToggle');
+    const toggleText = document.getElementById('toggleText');
+
+
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+
+    if (isDarkMode) {
+       document.body.classList.add('dark-mode');
+        if (themeToggle) themeToggle.classList.add('dark-mode');
+        if (toggleText) toggleText.textContent = 'Light Mode';
+    }
+
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            themeToggle.classList.toggle('dark-mode');
+
+
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+
+
+            if (toggleText) {
+                toggleText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+            }
         });
+    }
+});
 
 
-        tableBody.innerHTML += `
+
+
+/*=====================================
+    ATTENDANCE TABLE
+=====================================*/
+
+
+const attendanceTableBody = document.getElementById("attendanceTableBody");
+const attendanceSearchInput = document.getElementById("attendanceSearchInput");
+const attendanceStatusFilter = document.getElementById("attendanceStatusFilter");
+const attendanceDateFilter = document.getElementById("attendanceDateFilter");
+
+
+let attendanceEmployees = [];
+
+
+/*=====================================
+    LOAD JSON
+=====================================*/
+
+
+fetch("attendance.json")
+    .then(response => response.json())
+    .then(data => {
+
+
+        attendanceEmployees = data.attendanceAndLeave;
+
+
+        displayAttendanceTable(attendanceEmployees);
+
+
+    })
+    .catch(error => console.error(error));
+
+
+/*=====================================
+    DISPLAY TABLE
+=====================================*/
+
+
+function displayAttendanceTable(employeeList) {
+
+
+    attendanceTableBody.innerHTML = "";
+
+
+    employeeList.forEach(employee => {
+
+
+        // Latest attendance record
+        const latestAttendance = employee.attendance[employee.attendance.length - 1];
+
+
+        // Latest leave request
+        const latestLeave = employee.leaveRequests.length
+            ? employee.leaveRequests[employee.leaveRequests.length - 1]
+            : {
+                reason: "-",
+                status: "-"
+            };
+
+
+        // Employee initials
+        const initials = employee.name
+            .split(" ")
+            .map(word => word[0])
+            .join("")
+            .substring(0, 2)
+            .toUpperCase();
+
+
+        let attendanceClass =
+            latestAttendance.status === "Present"
+                ? "attendance-present"
+                : "attendance-absent";
+
+
+        let leaveClass = "";
+
+
+        switch (latestLeave.status) {
+
+
+            case "Approved":
+                leaveClass = "attendance-approved";
+                break;
+
+
+            case "Pending":
+                leaveClass = "attendance-pending";
+                break;
+
+
+            case "Denied":
+                leaveClass = "attendance-denied";
+                break;
+
+
+            default:
+                leaveClass = "";
+        }
+
+
+        attendanceTableBody.innerHTML += `
 
 
         <tr>
 
 
-            <td>${employee.employeeId}</td>
+            <td>
 
 
-            <td>${employee.name}</td>
+                <div class="attendance-employee"
+                    onclick="showAttendanceHistory(${employee.employeeId})">
+
+
+                    <div class="attendance-avatar">
+                        ${initials}
+                    </div>
+
+
+                    <div>
+
+
+                        <div class="attendance-name">
+                            ${employee.name}
+                        </div>
+
+
+                        <div class="attendance-subtitle">
+                            Employee
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </td>
+
+
+            <td>
+                EMP-${String(employee.employeeId).padStart(3, "0")}
+            </td>
+
+
+            <td>
+                ${latestAttendance.date}
+            </td>
 
 
             <td>
 
 
-                <span class="attendance-status ${latestAttendance.status==="Present" ? "attendance-present" : "attendance-absent"}">
-
-
+                <span class="attendance-status ${attendanceClass}">
                     ${latestAttendance.status}
-
-
                 </span>
 
 
@@ -80,66 +504,16 @@ fetch("attendance.json")
 
 
             <td>
-
-
-                <button
-                class="attendance-btn"
-                onclick="toggleAttendanceHistory(${index})">
-
-
-                View History
-
-
-                </button>
-
-
+                ${latestLeave.reason}
             </td>
 
 
-        </tr>
+            <td>
 
 
-        <tr
-        class="attendance-history-row"
-        id="attendanceHistory${index}">
-
-
-            <td
-            colspan="4"
-            class="attendance-history-cell">
-
-
-                <table class="attendance-history-table">
-
-
-                    <thead>
-
-
-                        <tr>
-
-
-                            <th>Date</th>
-
-
-                            <th>Status</th>
-
-
-                        </tr>
-
-
-                    </thead>
-
-
-                    <tbody>
-
-
-                        ${historyTable}
-
-
-                    </tbody>
-
-
-                </table>
+                <span class="attendance-status ${leaveClass}">
+                    ${latestLeave.status}
+                </span>
 
 
             </td>
@@ -154,61 +528,154 @@ fetch("attendance.json")
     });
 
 
-});
+}
 
 
-function toggleAttendanceHistory(index){
+/*=====================================
+    SEARCH
+=====================================*/
 
 
-    const historyRow =
-    document.getElementById("attendanceHistory"+index);
+attendanceSearchInput.addEventListener("keyup", filterAttendanceTable);
 
 
-    if(historyRow.style.display==="table-row"){
+/*=====================================
+    STATUS FILTER
+=====================================*/
 
 
-        historyRow.style.display="none";
+attendanceStatusFilter.addEventListener("change", filterAttendanceTable);
 
 
-    }else{
+/*=====================================
+    DATE FILTER
+=====================================*/
 
 
-        historyRow.style.display="table-row";
+attendanceDateFilter.addEventListener("change", filterAttendanceTable);
 
 
-    }
+/*=====================================
+    FILTER TABLE
+=====================================*/
+
+
+function filterAttendanceTable() {
+
+
+    const searchValue = attendanceSearchInput.value.trim().toLowerCase();
+    const selectedStatus = attendanceStatusFilter.value;
+    const selectedDate = attendanceDateFilter.value;
+
+
+    const filteredEmployees = attendanceEmployees.filter(employee => {
+
+
+        const latestAttendance = employee.attendance[employee.attendance.length - 1];
+
+
+        const employeeId = String(employee.employeeId);
+
+
+        // Search by name OR employee ID
+        const matchesSearch =
+            employee.name.toLowerCase().includes(searchValue) ||
+            employeeId.includes(searchValue);
+
+
+        // Status filter
+        const matchesStatus =
+            selectedStatus === "All" ||
+            latestAttendance.status === selectedStatus;
+
+
+        // Date filter
+        const matchesDate =
+            selectedDate === "" ||
+            latestAttendance.date === selectedDate;
+
+
+        return matchesSearch && matchesStatus && matchesDate;
+
+
+    });
+
+
+    displayAttendanceTable(filteredEmployees);
 
 
 }
 
 
 
+function showAttendanceHistory(employeeId){
 
-// Dark Mode
 
-document.addEventListener('DOMContentLoaded', function() {
-    const themeToggle = document.getElementById('darkModeToggle');
-    const toggleText = document.getElementById('toggleText');
+    const employee = attendanceEmployees.find(
+        emp => emp.employeeId === employeeId
+    );
 
-    const isDarkMode = localStorage.getItem('darkMode') === 'true';
 
-    if (isDarkMode) {
-       document.body.classList.add('dark-mode');
-        if (themeToggle) themeToggle.classList.add('dark-mode');
-        if (toggleText) toggleText.textContent = 'Light Mode';
-    }
+    document.getElementById("attendanceEmployeeName").innerHTML =
+        employee.name + " - Recent";
 
-    if (themeToggle) {
-        themeToggle.addEventListener('click', function() {
-            document.body.classList.toggle('dark-mode');
-            themeToggle.classList.toggle('dark-mode');
 
-            const isDark = document.body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDark);
+    const body = document.getElementById("attendanceHistoryBody");
 
-            if (toggleText) {
-                toggleText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
-            }
-        });
-    }
-});
+
+    body.innerHTML = "";
+
+
+    employee.attendance.forEach(record=>{
+
+
+        body.innerHTML += `
+
+
+        <tr>
+
+
+            <td>${record.date}</td>
+
+
+            <td>
+
+
+                <span class="attendance-status ${
+                    record.status==="Present"
+                    ? "attendance-present"
+                    : "attendance-absent"
+                }">
+
+
+                    ${record.status}
+
+
+                </span>
+
+
+            </td>
+
+
+        </tr>
+
+
+        `;
+
+
+    });
+
+
+    document.getElementById("attendanceHistoryModal").style.display="flex";
+
+
+}
+
+
+function closeAttendanceHistory(){
+
+
+    document.getElementById("attendanceHistoryModal").style.display="none";
+
+
+}

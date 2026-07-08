@@ -26,6 +26,10 @@
 
 
 
+
+
+
+
         <!-- Hidden Sidebar Drawer (Only appears when Burger Menu is clicked) -->
     <div class="offcanvas offcanvas-start offcanvas-sidebar p-3" tabindex="-1" id="reviewAppSidebar" aria-labelledby="reviewAppSidebarLabel">
         <div class="offcanvas-header text-white justify-content-between align-items-center mb-2">
@@ -64,7 +68,11 @@
         </div>
     </div>
 
+
     </div><br>
+
+
+
 
 
 
@@ -73,10 +81,12 @@
 <!-- ====================================================== -->
 
 
+
+
     <br><br>
     <div class="attendance-container">
         <div class="attendance-heading">
-            <h1>Attendance Tracking</h1>
+            <h2>Attendance Tracking</h2>
             <p>Week of 1-8 July 2026</p>
         </div>
         <div class="attendance-average">
@@ -104,11 +114,17 @@
 
 
 
+
+
+
+
+
 <!-- ====================================================== -->
  <!--                      Chart                            -->
 <!-- ====================================================== -->
 
 
+        <div class="chart-table">
             <div class="attendance-chart-card">
                 <div class="attendance-chart-header">
                     <div class="attendance-graph">
@@ -207,7 +223,121 @@
                     </div>
                 </div>
             </div>
+<!-- ============================================== -->
+<!-- ============================================= -->
+            <div class="attendance-table-container">
+                <h3>DAILY LOG</h3>
+           
+                <table class="att-table1">
+                    <thead class="att-head1">
+                        <tr class="att-tablerow1">
+                            <th class="att-tableth1">DATE</th>
+                            <th class="att-tableth1">PRESENT</th>
+                            <th class="att-tableth1">ABSENT</th>
+                            <th class="att-tableth1">LATE</th>
+                            <th class="att-tableth1">ATTENDANCE RATE</th>
+                        </tr>
+                    </thead>
+           
+                    <tbody class="att-body">
+                        <tr class="att-tablerow1">
+                            <td>Mon Jul 1</td>
+                            <td class="att-present">238</td>
+                            <td class="att-absent">6</td>
+                            <td class="att-late">6</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="fill" style="width:95.2%;"></div>
+                                </div>
+                                <span>95.2%</span>
+                            </td>
+                        </tr>
+           
+                        <tr class="att-tablerow1">
+                            <td>Tue Jul 2</td>
+                            <td class="att-present">241</td>
+                            <td class="att-absent">5</td>
+                            <td class="att-late">4</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="fill" style="width:96.4%;"></div>
+                                </div>
+                                <span>96.4%</span>
+                            </td>
+                        </tr>
+           
+                        <tr class="att-tablerow1">
+                            <td>Wed Jul 3</td>
+                            <td class="att-present">235</td>
+                            <td class="att-absent">8</td>
+                            <td class="att-late">7</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="fill" style="width:94%;"></div>
+                                </div>
+                                <span>94.0%</span>
+                            </td>
+                        </tr>
+           
+                        <tr class="att-tablerow1">
+                            <td>Thu Jul 4</td>
+                            <td class="att-present">240</td>
+                            <td class="att-absent">4</td>
+                            <td class="att-late">6</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="fill" style="width:96%;"></div>
+                                </div>
+                                <span>96.0%</span>
+                            </td>
+                        </tr>
+           
+                        <tr class="att-tablerow1">
+                            <td>Fri Jul 5</td>
+                            <td class="att-present">229</td>
+                            <td class="att-absent">12</td>
+                            <td class="att-late">9</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="fill" style="width:91.6%;"></div>
+                                </div>
+                                <span>91.6%</span>
+                            </td>
+                        </tr>
+           
+                        <tr class="att-tablerow1">
+                            <td>Mon Jul 8</td>
+                            <td class="att-present">243</td>
+                            <td class="att-absent">3</td>
+                            <td class="att-late">4</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="fill" style="width:97.2%;"></div>
+                                </div>
+                                <span>97.2%</span>
+                            </td>
+                        </tr>
+           
+                        <tr class="att-tablerow1">
+                            <td>Tue Jul 9</td>
+                            <td class="att-present">239</td>
+                            <td class="att-absent">7</td>
+                            <td class="att-late">4</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="fill" style="width:95.6%;"></div>
+                                </div>
+                                <span>95.6%</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+
+
+
 
 
 
@@ -217,148 +347,138 @@
 
 
 
-    <div class="attendance-table-container">
-        <h3>DAILY LOG</h3>
+
+
+
+    <div class="attendance-page-container">
+
+
+        <!-- Header -->
    
-        <table class="att-table1">
-            <thead class="att-head1">
-                <tr class="att-tablerow1">
-                    <th class="att-tableth1">DATE</th>
-                    <th class="att-tableth1">PRESENT</th>
-                    <th class="att-tableth1">ABSENT</th>
-                    <th class="att-tableth1">LATE</th>
-                    <th class="att-tableth1">ATTENDANCE RATE</th>
-                </tr>
-            </thead>
+        <div class="attendance-page-header">
    
-            <tbody class="att-body">
-                <tr class="att-tablerow1">
-                    <td>Mon Jul 1</td>
-                    <td class="att-present">238</td>
-                    <td class="att-absent">6</td>
-                    <td class="att-late">6</td>
-                    <td>
-                        <div class="progress">
-                            <div class="fill" style="width:95.2%;"></div>
-                        </div>
-                        <span>95.2%</span>
-                    </td>
-                </tr>
+            <div class="attendance-header-left">
    
-                <tr class="att-tablerow1">
-                    <td>Tue Jul 2</td>
-                    <td class="att-present">241</td>
-                    <td class="att-absent">5</td>
-                    <td class="att-late">4</td>
-                    <td>
-                        <div class="progress">
-                            <div class="fill" style="width:96.4%;"></div>
-                        </div>
-                        <span>96.4%</span>
-                    </td>
-                </tr>
+                <h2>Employee Attendance</h2>
+                <p>Search and manage employee attendance records</p>
    
-                <tr class="att-tablerow1">
-                    <td>Wed Jul 3</td>
-                    <td class="att-present">235</td>
-                    <td class="att-absent">8</td>
-                    <td class="att-late">7</td>
-                    <td>
-                        <div class="progress">
-                            <div class="fill" style="width:94%;"></div>
-                        </div>
-                        <span>94.0%</span>
-                    </td>
-                </tr>
+            </div>
    
-                <tr class="att-tablerow1">
-                    <td>Thu Jul 4</td>
-                    <td class="att-present">240</td>
-                    <td class="att-absent">4</td>
-                    <td class="att-late">6</td>
-                    <td>
-                        <div class="progress">
-                            <div class="fill" style="width:96%;"></div>
-                        </div>
-                        <span>96.0%</span>
-                    </td>
-                </tr>
+        </div>
    
-                <tr class="att-tablerow1">
-                    <td>Fri Jul 5</td>
-                    <td class="att-present">229</td>
-                    <td class="att-absent">12</td>
-                    <td class="att-late">9</td>
-                    <td>
-                        <div class="progress">
-                            <div class="fill" style="width:91.6%;"></div>
-                        </div>
-                        <span>91.6%</span>
-                    </td>
-                </tr>
+        <div class="attendance-toolbar">
    
-                <tr class="att-tablerow1">
-                    <td>Mon Jul 8</td>
-                    <td class="att-present">243</td>
-                    <td class="att-absent">3</td>
-                    <td class="att-late">4</td>
-                    <td>
-                        <div class="progress">
-                            <div class="fill" style="width:97.2%;"></div>
-                        </div>
-                        <span>97.2%</span>
-                    </td>
-                </tr>
+            <div class="attendance-search-wrapper">
    
-                <tr class="att-tablerow1">
-                    <td>Tue Jul 9</td>
-                    <td class="att-present">239</td>
-                    <td class="att-absent">7</td>
-                    <td class="att-late">4</td>
-                    <td>
-                        <div class="progress">
-                            <div class="fill" style="width:95.6%;"></div>
-                        </div>
-                        <span>95.6%</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                <i class="fa-solid fa-search attendance-search-icon"></i>
+   
+                <input type="text" id="attendanceSearchInput" class="attendance-search-input" placeholder="Search employee...">
+   
+            </div>
+   
+   
+            <input type="date" id="attendanceDateFilter" class="attendance-date-filter">
+   
+   
+            <select
+                id="attendanceStatusFilter"
+                class="attendance-status-filter">
+   
+                <option value="All">All Status</option>
+                <option value="Present">Present</option>
+                <option value="Absent">Absent</option>
+   
+            </select>
+   
+        </div>
+   
+   
+   
+        <!-- Attendance Table -->
+   
+    <div class="attendance-table-card">
+        <div class="attendance-table-scroll">
+            <table class="attendance-data-table">
+    
+                <thead>
+    
+                    <tr>
+    
+                            <th>Employee</th>
+    
+                            <th>ID</th>
+    
+                            <th>Date</th>
+    
+                            <th>Status</th>
+    
+                            <th>Leave Reason</th>
+    
+                            <th>Leave Status</th>
+    
+                        </tr>
+    
+                    </thead>
+    
+                    <tbody id="attendanceTableBody">
+    
+                    </tbody>
+    
+                </table>
+            </div>
+        </div>
     </div>
+   
+   
+
 
 <!-- ====================================================== -->
  <!--                         table2                        -->
 <!-- ====================================================== -->                          
+    <div class="attendance-history-modal" id="attendanceHistoryModal">
 
 
-    <div class="attendance-section">
+        <div class="attendance-history-card">
+   
+            <div class="attendance-history-header">
+   
+                <h2 id="attendanceEmployeeName">
+                    Attendance History
+                </h2>
 
-
-        <h2 class="attendance-title">
-            ModernTech Employee Attendance
-        </h2>
    
-        <table class="attendance-table">
+                <button onclick="closeAttendanceHistory()">
+                    ✕
+                </button>
    
-            <thead class="attendance-table-head">
+            </div>
    
-                <tr>
-                    <th>Employee ID</th>
-                    <th>Employee Name</th>
-                    <th>Current Status</th>
-                    <th>Attendance History</th>
-                </tr>
+            <table class="attendance-history-table">
    
-            </thead>
+                <thead>
    
-            <tbody id="attendanceTableBody">
+                    <tr>
    
-            </tbody>
+                        <th>Date</th>
    
-        </table>
+                        <th>Status</th>
+   
+                    </tr>
+   
+                </thead>
+   
+                <tbody id="attendanceHistoryBody">
+   
+                </tbody>
+   
+            </table>
+   
+        </div>
    
     </div>
 </body>
+
+
 
 
     <script src="attendance.js"></script>
