@@ -1,4 +1,5 @@
 let employees = [];
+let deleteTimeouts = {};
 
 const tbody = document.getElementById('employeeTableBody');
 const searchInput = document.getElementById('searchInput');
@@ -32,25 +33,36 @@ function stringToColor(str) {
 }
 function render(list = employees) {
   tbody.innerHTML = '';
-  document.getElementById('totalCount').textContent = list.length;
-  document.getElementById('totalEmployees').textContent = list.length;
-  const payrollTotal = list.reduce((a,b) => a + b.salary, 0);
+  const activeList = list.filter(emp => !emp.isDeleted);
+  document.getElementById('totalCount').textContent = activeList.length;
+  document.getElementById('totalEmployees').textContent = activeList.length;
+  const payrollTotal = activeList.reduce((a,b) => a + b.salary, 0);
   document.getElementById('monthlyPayroll').textContent = 'R' + (payrollTotal / 1000000).toFixed(2) + 'M';
 
   list.forEach(emp => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>E${String(emp.employeeId).padStart(3, '0')}</td>
-      <td><span class="avatar" style="background:${stringToColor(emp.name)}">${getInitials(emp.name)}</span>${emp.name}</td>
+      <td><span class="em-avatar" style="background:${stringToColor(emp.name)}">${getInitials(emp.name)}</span>${emp.name}</td>
       <td>${emp.department}</td>
       <td>${emp.position}</td>
       <td>${emp.salary.toLocaleString()}</td>
-      <td><span class="status active">Active</span></td>
-      <td><button class="btn-delete" onclick="deleteEmp(${emp.employeeId})">🗑️</button></td>
+      <td><span class="em-status active">Active</span></td>
+      <td class="em-actions">
+      ${emp.isDeleted
+        ? `<button class="em-btn-retrieve" id="retrieve-${emp.employeeId}" onclick="retrieveEmp(${emp.employeeId})">↪️</button>`
+         :`<button class="em-btn-delete" onclick="deleteEmp(${emp.employeeId})">🗑️</button>`
+      }
+      </td>
       `;
-    tbody.appendChild(tr);
+    if(emp.isDeleted) {
+      tr.style.opacity = '0.4';
+    }
+
+     tbody.appendChild(tr);
   });
 }
+// Adding new employees
 form.addEventListener('submit', e => {
   e.preventDefault();
   const newId = employees.length > 0? Math.max(...employees.map(emp => emp.employeeId)) + 1 : 1;
@@ -67,8 +79,26 @@ form.addEventListener('submit', e => {
   addModal.close();
   form.reset();
 });
+// function for deleted employees
 function deleteEmp(id) {
-  employees = employees.filter(emp => emp.employeeId !== id);
+  const empData = employees.find(emp => emp.employeeId === id);
+  if(!empData) return;
+
+  empData.isDeleted = true;
+  render();
+
+  deleteTimeouts[id] = setTimeout (() => {
+    employees = employees.filter(emp => emp.employeeId !== id);
+    render();
+    }, 5000)
+}
+// Function to retrieve deleted employee
+function retrieveEmp(id) {
+  clearTimeout (deleteTimeouts[id]);
+
+  const empData = employees.find(emp => emp.employeeId === id);
+  if(empData) empData.isDeleted = false;
+
   render();
 }
 document.addEventListener('DOMContentLoaded', loadEmployees);
