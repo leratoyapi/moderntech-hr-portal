@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ModernTech HR Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="payroll_style.css">
+</head>
+
+<body class="pr-body">
+
+  <div class="payroll-wrapper">
+    <header class="main-header text-white py-3 px-4 d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center">
+        <div class="brand-icon me-2 d-flex align-items-center justify-content-center fw-bold text-white bg-primary rounded">HR</div>
+        <h5 class="m-0 fw-bold">ModernTech HR Portal</h5>
+      </div>
+
+      <button class="btn btn-outline-light border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#reviewAppSidebar" aria-controls="reviewAppSidebar">
+        <i class="bi bi-list fs-2"></i>
+      </button>
+    </header>
+
+    <div class="offcanvas offcanvas-start offcanvas-sidebar p-3 text-white bg-dark" tabindex="-1" id="reviewAppSidebar"      aria-labelledby="reviewAppSidebarLabel">
+
+      <div class="offcanvas-header text-white justify-content-between align-items-center mb-2 px-0">
+        <div class="d-flex align-items-center">
+          <div class="brand-icon me-2 d-flex align-items-center justify-content-center fw-bold text-white bg-primary rounded">HR</div>
+          <h5 class="m-0 fw-bold" id="reviewAppSidebarLabel">ModernTech HR Portal</h5>
+        </div>
+
+        <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+
+      <div class="offcanvas-body p-0">
+        <nav class="nav flex-column gap-2 w-100">
+          <a class="nav-link text-white-50" href="index.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-3"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg> Dashboard
+          </a>
+
+          <a class="nav-link text-white-50" href="Employees.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-3"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> Employees
+          </a>
+
+          <a class="nav-link text-white-50" href="Payroll.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-3"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg> Payroll
+          </a>
+
+          <a class="nav-link text-white-50" href="TimeOff.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-3"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Time Off
+          </a>
+
+          <a class="nav-link text-white-50" href="Attendance.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-3"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Attendance
+          </a>
+
+          <a class="nav-link text-white-50" href="Reports.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-3"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg> Reports
+          </a>
+
+            <div class="mt-auto pt-3 border-top border-secondary-subtle">
+              <button class="toggle-btn w-100 text-start d-flex align-items-center py-2 px-3 border-0 rounded" id="darkModeToggle">
+                <span id="toggleText" style="margin-left: 120px;">Dark Mode</span>
+              </button>
+            </div>
+
+        </nav>
+      </div>
+    </div>
+  
+
+  <!-- Main Content -->
+  <main class="payroll-container">
+    <div class="payroll-header">
+
+
+      <div class="payroll-header-left">
+        <h2><strong>Payroll</strong></h2>
+        <h5>July 2024 - Processing  period: 1-31 Jul</h5>
+      </div>
+    </div>
+          
+    <!-- THE PAYROLL CARDS -->
+    <div class="row-cards">
+      <div class="col-md-4">
+        <div class="pr-card pr-card-gross">
+          <div class="pr-card-body">
+            <h5 class="pr-card-title">GROSS PAYROLL</h5>
+            <h2 class="pr-card-text"><b id="grossPayrollValue">R636 006</b></h2>
+          </div>
+        </div>
+      </div>
+
+   
+
+      <div class="col-md-4">
+        <div class="pr-card pr-card-deductions">
+          <div class="pr-card-body">
+            <h5 class="pr-card-title">TOTAL DEDUCTIONS</h5>
+            <h2 class="pr-card-text"><b id="deductionsPayrollValue">R28 052</b></h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="pr-card pr-card-net">
+          <div class="pr-card-body">
+            <h5 class="pr-card-title">NET PAYROLL</h5>
+            <h2 class="pr-card-text"><b id="netPayrollValue">R 632 700</b></h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- the Employees data -->
+
+    <div class="payroll-table">      
+      <table class="pr-table">
+
+        <thead>
+          <tr>
+            <th>EMPLOYEE</th>
+            <th>POSITION</th>
+            <th>BASIC SALARY</th>
+            <th>HOURS</th>
+            <th>OT HOURS</th>
+            <th>DEDUCTIONS</th>
+            <th>TAX</th>
+            <th>NET PAY</th>
+            <th>PAYSLIP</th>
+          </tr>
+        </thead>
+
+        <tbody id="payrollTableBody">
+          <!-- payroll rows are generated from JavaScript -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="payroll.js"></script>
+  
+</html>
