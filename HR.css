@@ -2980,3 +2980,1059 @@ body.dark-mode .timeoff-sidebar-footer {
     }
 }
 
+.pr-body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  /* Light mode page background  */
+  background: #f4f6fb;
+  margin: 0;
+  padding: 0;
+}
+
+/* =================================== */
+/*             Bar                     */
+/* =================================== */
+
+.payroll-wrapper {
+  margin: 0 auto;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.03);
+  min-height: 100vh;
+  background: transparent;
+}
+
+.main-header {
+  background: #0b1a33 !important;
+  padding: 14px 28px !important;
+  border-bottom: 1px solid #1f334f;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-sizing: border-box;
+}
+
+.offcanvas-sidebar {
+  background: #0b1a33 !important;
+  min-height: 100vh;
+}
+
+.offcanvas-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.offcanvas-body nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.offcanvas-sidebar .nav-link.active {
+  background: #1d3557;
+  border-radius: 10px;
+  color: white !important;
+  font-weight: 500;
+}
+
+.offcanvas-sidebar .nav-link {
+  padding: 12px 16px;
+  border-radius: 10px;
+  transition: 0.2s;
+  font-weight: 500;
+  font-size: 15.2px;
+}
+
+.offcanvas-sidebar .nav-link:hover {
+  background: #1d3557;
+  color: white !important;
+}
+
+.offcanvas-sidebar .nav-link svg {
+  opacity: 0.7;
+}
+
+.offcanvas-sidebar .nav-link.active svg {
+  opacity: 1;
+}
+
+.brand-icon {
+  background: #2a7de1 !important;
+  width: 38px;
+  height: 38px;
+  font-size: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+}
+
+.main-header h5 {
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  font-size: 17.6px;
+}
+
+/* =================================== */
+/*            Main Content             */
+/* =================================== */
+
+/* Main content container: uses body background in light mode and a
+   deep navy in dark mode. Padding and radius for inner content. */
+main.payroll-container {
+  margin: 24px auto 0;
+  padding: 28px 22px 44px;
+  border-radius: 12px;
+  background: transparent;
+  width: min(100%, 1200px);
+}
+
+.payroll-wrapper {
+  padding: 0 16px;
+}
+
+/* =================================== */
+/*            The Headers              */
+/* =================================== */
+.payroll-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  margin-top: 12px;
+}
+
+.payroll-header-left h2 {
+  font-weight: 700;
+  font-size: 30.4px;
+  color: black;
+  margin-bottom: 2px;
+  letter-spacing: -0.3px;
+}
+
+.payroll-header-left h5 {
+  font-weight: 400;
+  color: #5a6e87;
+  font-size: 15.2px;
+  margin: 0;
+  letter-spacing: 0.2px;
+}
+
+.payroll-header-right {
+  display: flex;
+  align-items: center;
+  padding-top: 4px;
+}
+
+.payroll-header-right .btn-primary {
+  background: #2a7de1;
+  border: none;
+  border-radius: 30px;
+  padding: 8px 22px;
+  font-weight: 500;
+  font-size: 14.4px;
+  box-shadow: 0 4px 8px rgba(42, 125, 225, 0.2);
+  transition: 0.2s;
+  white-space: nowrap;
+}
+
+.payroll-header-right .btn-primary:hover {
+  background: #1b5fb0;
+  transform: translateY(-1px);
+}
+
+/* =================================== */
+/*            Payroll Cards            */
+/* =================================== */
+
+.pr-card {
+  background: #ffffff;
+  border: none;
+  border-radius: 20px;
+  padding: 18px 24px;
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.03),
+    0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: 0.2s;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border: 1px solid #eef2f7;
+  min-height: 90px;
+  width: 100%;
+}
+
+.pr-card-body {
+  padding: 0;
+  width: 100%;
+}
+
+.pr-card-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  color: #68768a !important;
+  text-transform: uppercase;
+  margin-bottom: 4px !important;
+}
+
+.pr-card-text {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0b1a33;
+  margin: 0;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+/* the colors on the side of the cards */
+.pr-card-gross {
+  border-left: 8px solid #2a7de1;
+}
+.pr-card-deductions {
+  border-left: 8px solid #e67e22;
+}
+.pr-card-net {
+  border-left: 8px solid #27ae60;
+}
+
+.row-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.row-cards .col-md-4 {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* =================================== */
+/*            Payroll Tables          */
+/* =================================== */
+
+.payroll-table {
+  margin-top: 28px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 0;
+  border: 1px solid #dce1e8;
+  overflow-x: auto;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.02);
+}
+
+.pr-table {
+  margin-bottom: 0;
+  font-size: 14px;
+  border-collapse: collapse;
+  width: 100%;
+  white-space: nowrap;
+}
+
+/* The Tables headers */
+.pr-table thead th {
+  border-bottom: 2px solid #c8d0d9;
+  color: #4a5b72;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 16px 14px 14px 14px;
+  background: #fafbfc;
+  border-top: none;
+}
+
+/* The table body */
+.pr-table tbody td {
+  padding: 14px 14px;
+  border-bottom: 1.5px solid #dce1e8;
+  vertical-align: middle;
+  color: #1f2a3f;
+  font-weight: 500;
+}
+
+/* This removes the border from the last row */
+.pr-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* This highlights the row when you hover over it */
+.pr-table tbody tr:hover {
+  background: #f8faff;
+}
+
+/* This makes the employees names bold */
+.pr-table tbody td:first-child {
+  font-weight: 600;
+  color: #0b1a33;
+}
+
+/* The dept names lighter */
+.pr-table tbody td:nth-child(2) {
+  color: #3d506b;
+}
+
+/* Make salary, deductions, tax, net pay bold */
+.pr-table tbody td:nth-child(3),
+.pr-table tbody td:nth-child(6),
+.pr-table tbody td:nth-child(7),
+.pr-table tbody td:nth-child(8) {
+  font-weight: 600;
+}
+
+/* Makes the deductions  and the tax red */
+.pr-table tbody td:nth-child(6) {
+  color: #c0392b;
+}
+.pr-table tbody td:nth-child(7) {
+  color: #c0392b;
+}
+
+/* Makes the net pay green */
+.pr-table tbody td:nth-child(8) {
+  color: #1f7b4d;
+}
+
+/* =================================== */
+/*            Buttons                  */
+/* =================================== */
+
+.btn-outline-primary {
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 14px;
+  border-color: #cbd5e1;
+  color: #2a4b7a;
+  background: transparent;
+  letter-spacing: 0.3px;
+  transition: 0.15s;
+  border-width: 1.5px;
+}
+
+.btn-outline-primary:hover {
+  background: #2a7de1;
+  color: white;
+  border-color: #2a7de1;
+}
+
+/* =================================== */
+/*            RESPONSIVE               */
+/* =================================== */
+
+@media (max-width: 768px) {
+  .main-header h5 {
+    font-size: 14.4px;
+  }
+
+  .payroll-wrapper {
+    padding: 0 12px;
+  }
+
+  main.payroll-container {
+    padding: 24px 18px 32px;
+  }
+
+  .pr-payslip-card {
+    margin-top: 12px;
+  }
+
+  .pr-card-gross .pr-card-text,
+  .pr-card-deductions .pr-card-text,
+  .pr-card-net .pr-card-text {
+    font-size: 22px;
+  }
+
+  .payroll-container h2 {
+    font-size: 25.6px;
+  }
+
+  .pr-table {
+    font-size: 12.8px;
+  }
+
+  .pr-table thead th,
+  .pr-table tbody td {
+    padding: 10px 8px;
+  }
+
+  .btn-outline-primary {
+    font-size: 10px;
+    padding: 3px 10px;
+  }
+
+  .row-cards {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .row-cards .col-md-4 {
+    flex: 0 0 100%;
+    min-width: auto;
+  }
+
+  .payroll-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .payroll-header-right {
+    width: 100%;
+  }
+
+  .payroll-header-right .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .pr-card-gross .pr-card-text,
+  .pr-card-deductions .pr-card-text,
+  .pr-card-net .pr-card-text {
+    font-size: 20px;
+  }
+
+  .pr-card-gross .pr-card-title,
+  .pr-card-deductions .pr-card-title,
+  .pr-card-net .pr-card-title {
+    font-size: 10px;
+  }
+}
+
+/* REMOVES THE EXTRA THE SPACE BETWEEN THE ROWS */
+.row-cards {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.row-cards .col-md-4 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* offcanvas close button alignment */
+.offcanvas-header .btn-close {
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+}
+
+/* =================================== */
+/*         PAYSLIP STYLES              */
+/* =================================== */
+
+.pr-select-card {
+  border-left: 4px solid #2a7de1 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  min-height: auto !important;
+  padding: 12px 20px !important;
+}
+
+.pr-select-card .pr-card-title {
+  font-size: 13px;
+  color: #4a5b72 !important;
+  margin-bottom: 6px !important;
+}
+
+.pr-select-card .form-select {
+  border-radius: 8px;
+  border: 1.5px solid #dce1e8;
+  padding: 8px 14px;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.pr-select-card .form-select:focus {
+  border-color: #2a7de1;
+  box-shadow: 0 0 0 0.2rem rgba(42, 125, 225, 0.15);
+}
+
+.pr-select-card .btn-primary {
+  background: #2a7de1;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: 0.2s;
+  box-shadow: 0 4px 10px rgba(42, 125, 225, 0.2);
+}
+
+.pr-select-card .btn-primary:hover {
+  background: #1b5fb0;
+  transform: translateY(-1px);
+}
+
+/* Payslip page */
+.pr-payslip-card {
+  background: #ffffff;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  animation: prFadeIn 0.4s ease;
+  margin-top: 16px;
+  border: 1px solid #eef2f7;
+}
+
+.pr-payslip-header {
+  background: #0b1a33;
+  padding: 14px 24px;
+  border-bottom: 1px solid #1f334f;
+}
+
+.pr-payslip-header h4 {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.3px;
+}
+
+.pr-payslip-body {
+  padding: 20px 24px;
+}
+
+/* Payslip Table */
+#prPayslipTable {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+#prPayslipTable th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #0b1a33;
+  padding: 10px 16px;
+  width: 35%;
+  border-color: #dce1e8;
+}
+
+#prPayslipTable td {
+  padding: 10px 16px;
+  font-weight: 500;
+  color: #1f2a3f;
+  width: 65%;
+  border-color: #dce1e8;
+}
+
+#prPayslipTable tr.table-success td {
+  background-color: #d4edda !important;
+  font-weight: 700;
+  font-size: 1.05em;
+}
+
+#prPayslipTable .text-danger {
+  font-weight: 600;
+}
+
+/* Download Button */
+#prDownloadBtn {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  border: none;
+  padding: 8px 30px;
+  font-weight: 600;
+  border-radius: 30px;
+  transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.25);
+  font-size: 14px;
+}
+
+#prDownloadBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.35);
+}
+
+#prDownloadBtn i {
+  font-size: 1em;
+}
+
+/* Back button in navbar */
+.main-header .btn-outline-light {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  padding: 6px 18px;
+  font-weight: 500;
+  transition: 0.3s;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.main-header .btn-outline-light:hover {
+  background-color: #ffffff;
+  color: #0b1a33;
+  border-color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+}
+
+.main-header .btn-outline-light i {
+  font-size: 0.9em;
+}
+
+/* Animation */
+@keyframes prFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Error message */
+#prErrorContainer .alert {
+  padding: 10px 18px;
+  font-size: 14px;
+  border-radius: 12px;
+  margin-top: 12px;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Responsive for Payslip */
+@media (max-width: 768px) {
+  .pr-select-card {
+    padding: 10px 16px !important;
+  }
+
+  .pr-select-card .pr-card-title {
+    font-size: 12px;
+  }
+
+  .pr-select-card .form-select {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  .pr-select-card .btn-primary {
+    font-size: 13px;
+    padding: 6px 16px;
+  }
+
+  .pr-payslip-body {
+    padding: 16px;
+  }
+
+  #prPayslipTable {
+    font-size: 13px;
+  }
+
+  #prPayslipTable th,
+  #prPayslipTable td {
+    padding: 8px 12px;
+  }
+
+  #prPayslipTable tr.table-success td {
+    font-size: 14px;
+  }
+
+  .pr-payslip-header h4 {
+    font-size: 16px;
+  }
+
+  .pr-payslip-header {
+    padding: 10px 18px;
+  }
+
+  #prDownloadBtn {
+    font-size: 13px;
+    padding: 6px 24px;
+  }
+
+  .main-header .btn-outline-light {
+    font-size: 12px;
+    padding: 4px 14px;
+  }
+
+  .main-header h5 {
+    font-size: 14px !important;
+  }
+
+  .brand-icon {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 13px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .pr-select-card .row {
+    gap: 6px;
+  }
+
+  .pr-select-card .col-md-4 {
+    margin-top: 6px;
+  }
+
+  .pr-payslip-body {
+    padding: 12px;
+  }
+
+  #prPayslipTable {
+    font-size: 12px;
+  }
+
+  #prPayslipTable th,
+  #prPayslipTable td {
+    padding: 6px 10px;
+  }
+
+  #prPayslipTable tr.table-success td {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  #prDownloadBtn {
+    font-size: 12px;
+    padding: 6px 20px;
+    width: 100%;
+  }
+
+  .main-header .btn-outline-light {
+    font-size: 11px;
+    padding: 3px 10px;
+  }
+
+  .main-header {
+    padding: 10px 16px !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .main-header {
+    display: none !important;
+  }
+
+  .pr-select-card {
+    display: none !important;
+  }
+
+  #prDownloadBtn {
+    display: none !important;
+  }
+
+  .pr-payslip-card {
+    border: 2px solid #000 !important;
+    box-shadow: none !important;
+    animation: none !important;
+    margin-top: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .pr-payslip-header {
+    background: #333 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  #prPayslipTable th {
+    background-color: #f0f0f0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  #prPayslipTable tr.table-success td {
+    background-color: #d4edda !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .payroll-wrapper {
+    min-height: auto !important;
+  }
+}
+
+/* Dark mode page theme */
+
+.pr-body.dark-mode {
+  background-color: #0b1a33 !important;
+  color: #eef1ff !important;
+}
+
+.pr-body.dark-mode .payroll-wrapper {
+  background: #0d2342 !important;
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.22) !important;
+}
+
+.pr-body.dark-mode .main-header {
+  background: #0b1b34 !important;
+  border-color: #25304d !important;
+}
+
+/* Dark-mode payroll container uses deep navy (see below) */
+
+.pr-body.dark-mode .payroll-header-left h2 {
+  color: #f8fbff !important;
+}
+
+.pr-body.dark-mode .payroll-header-left h5 {
+  color: #bfcbe3 !important;
+}
+
+.pr-body.dark-mode .pr-card {
+  background: #111f3c !important;
+  border-color: #23315b !important;
+  color: #eef1ff !important;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18) !important;
+}
+
+.pr-body.dark-mode .pr-card-title {
+  color: #c8d6f2 !important;
+}
+
+.pr-body.dark-mode .pr-card-text {
+  color: #f4f7ff !important;
+}
+
+.pr-body.dark-mode .pr-card-gross {
+  border-left-color: #2a7de1 !important;
+}
+
+.pr-body.dark-mode .pr-card-deductions {
+  border-left-color: #e67e22 !important;
+}
+
+.pr-body.dark-mode .pr-card-net {
+  border-left-color: #27ae60 !important;
+}
+
+.pr-body.dark-mode .pr-table thead th {
+  background: #17254a !important;
+  color: #e9f1ff !important;
+  border-color: #27406f !important;
+}
+
+.pr-body.dark-mode .pr-table tbody td {
+  background: #16264a !important;
+  color: #e9f1ff !important;
+  border-color: #23315b !important;
+}
+
+.pr-body.dark-mode .pr-table tbody tr:hover {
+  background: #262f67 !important;
+}
+
+.pr-body.dark-mode .pr-table tbody td:first-child {
+  color: #f8fbff !important;
+}
+
+.pr-body.dark-mode .pr-table tbody td:nth-child(2) {
+  color: #b8c7e6 !important;
+}
+
+.pr-body.dark-mode .pr-table tbody td:nth-child(6),
+.pr-body.dark-mode .pr-table tbody td:nth-child(7) {
+  color: #ff8787 !important;
+}
+
+.pr-body.dark-mode .pr-table tbody td:nth-child(8) {
+  color: #9bd8af !important;
+}
+
+.pr-body.dark-mode .btn-outline-primary {
+  border-color: #556b97 !important;
+  color: #d3dcea !important;
+}
+
+.pr-body.dark-mode .btn-outline-primary:hover {
+  background: #3f5db0 !important;
+  color: #ffffff !important;
+  border-color: #3f5db0 !important;
+}
+
+.pr-body.dark-mode .offcanvas-sidebar {
+  background: #0b1227 !important;
+}
+
+.pr-body.dark-mode .offcanvas-sidebar .nav-link {
+  color: #d7e0ff !important;
+}
+
+.pr-body.dark-mode .offcanvas-sidebar .nav-link:hover,
+.pr-body.dark-mode .offcanvas-sidebar .nav-link.active {
+  background: #1d2b58 !important;
+  color: #ffffff !important;
+}
+
+/* Keep deduction values visible in the downloaded payslip */
+.pr-body.dark-mode #prPayslipTable .text-danger {
+  color: #c0392b !important;
+}
+
+/* Keep final salary readable in the downloaded payslip */
+.pr-body.dark-mode #prPayslipTable tr.table-success td {
+  background-color: #d4edda !important;
+  color: #0b1a33 !important;
+  border-color: #1d4f23 !important;
+}
+
+/* The title bar remains dark with white text */
+.pr-body.dark-mode .pr-payslip-header {
+  background: #1e2f55 !important;
+  color: #ffffff !important;
+}
+
+.pr-body.dark-mode .pr-payslip-header h4 {
+  color: #ffffff !important;
+}
+
+/* =================================== */
+/*            DARK MODE                */
+/* =================================== */
+
+.toggle-btn {
+  width: 100%;
+  height: 45px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff;
+}
+
+.pr-body.dark-mode .toggle-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #f7f9ff;
+}
+
+.pr-body.dark-mode .toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
+}
+
+/* Adjust pseudo-element positioning to match alignment */
+.toggle-btn::before,
+.toggle-btn::after {
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.toggle-btn.dark-mode::before {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.toggle-btn.dark-mode::after {
+  transform: translateY(-50%) rotate(0deg);
+}
+
+/* Specific component overrides for your HR Portal Layout */
+
+/* .pr-body.dark-mode .payroll-container,
+.pr-body.dark-mode .payroll-header,
+.pr-body.dark-mode .pr-table tbody {
+  background: #2d2d44 !important;
+  border-color: #3d3d54 !important;
+} */
+
+.pr-body.dark-mode .text-dark,
+.pr-body.dark-mode .header-title,
+.pr-body.dark-mode .section-heading {
+  color: #e0e0e0 !important;
+}
+
+.pr-body.dark-mode .text-secondary,
+.pr-body.dark-mode .text-muted {
+  color: #b6ccda !important;
+}
+
+/* Ensure card side accents keep their requested colors in dark mode */
+.pr-body.dark-mode .pr-card-gross {
+  border-left: 8px solid #2a7de1 !important;
+}
+.pr-body.dark-mode .pr-card-deductions {
+  border-left: 8px solid #e67e22 !important;
+}
+.pr-body.dark-mode .pr-card-net {
+  border-left: 8px solid #27ae60 !important;
+}
+
+/* .pr-body.dark-mode .border,
+.pr-body.dark-mode .border-light {
+  border-color: #3d3d54 !important;
+} */
+
+/* Force dark mode background across the entire layout wrapper and body container */
+/* .pr-body.dark-mode,
+.pr-body.dark-mode .wrapper,
+.pr-body.dark-mode .main-body {
+  
+} */
+
+/* Fix text contrast on the primary page title and date subtitle */
+.pr-body.dark-mode h1.header-title {
+  color: #ffffff !important;
+}
+
+.pr-body.dark-mode p.text-secondary {
+  color: #a0a0b8 !important;
+}
+
+/* Ensure inline SVGs within metric icons retain their color or invert cleanly */
+.pr-body.dark-mode .metric-icon svg {
+  filter: brightness(1.2);
+}
+
+/* =================================== */
+/*       PAYSLIP DARK MODE            */
+/* =================================== */
+
+.pr-body.dark-mode .pr-payslip-card {
+  background: #17264e !important;
+  border-color: #253767 !important;
+}
+
+.pr-body.dark-mode .pr-payslip-body {
+  background: #17264e !important;
+}
+
+.pr-body.dark-mode #prPayslipTable {
+  background: #192b56 !important;
+  color: #eef3ff !important;
+}
+
+.pr-body.dark-mode #prPayslipTable th {
+  background-color: #21386e !important;
+  color: #eef3ff !important;
+  border-color: #2c487f !important;
+}
+
+.pr-body.dark-mode #prPayslipTable td {
+  background-color: #17264e !important;
+  color: #eef3ff !important;
+  border-color: #2c497e !important;
+}
+
+.pr-body.dark-mode #prPayslipTable tr.table-success td {
+  background-color: #1f5c3a !important;
+  color: #ffffff !important;
+  border-color: #2e7d4f !important;
+}
+
+.pr-body.dark-mode #prPayslipTable .text-danger {
+  color: #ff6b6b !important;
+}
+
+.pr-body.dark-mode .pr-select-card .form-select {
+  color: #ffffff !important;
+  border-color: #3d3d54 !important;
+}
