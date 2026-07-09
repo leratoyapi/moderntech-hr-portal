@@ -189,15 +189,17 @@ async function loadlocaldata() {
 // Show the payroll table and handle payslip page loading
 function displayPayslip(payrollData) {
   const payrollTableBody = document.getElementById("payrollTableBody");
+  const payslipCard = document.getElementById("prPayslipCard");
+  
   if (payrollTableBody) {
     renderPayrollTable(payrollData);
     updatePayrollCards(payrollData);
+    return;
   }
-
-  // show the payslip page if this is payslip.html
-  const payslipCard = document.getElementById("prPayslipCard");
+  
   if (payslipCard) {
     prCheckUrlForEmployee(payrollData);
+    return;
   }
 }
 
@@ -234,7 +236,7 @@ function renderPayrollTable(payrollData) {
   const tbody = document.getElementById("payrollTableBody");
   if (!tbody) return;
 
-  tbody.innerHTML = ""; // clear old rows
+  tbody.innerHTML = "";
 
   payrollData.forEach((payrollItem) => {
     const salary = formatCurrency(payrollItem.basicSalary);
@@ -266,14 +268,6 @@ function renderPayrollTable(payrollData) {
 // FUNCTIONS FOR PAYSLIP.HTML
 // ============================================
 
-function calculateHourlyRate(finalSalary, hoursWorked, leaveDeductions) {
-  const totalHours = hoursWorked - leaveDeductions;
-  if (totalHours <= 0) {
-    return 0;
-  }
-  return finalSalary / totalHours;
-}
-
 function prCheckUrlForEmployee(payrollData) {
   const loadingState = document.getElementById("prLoadingState");
   if (loadingState) {
@@ -283,7 +277,6 @@ function prCheckUrlForEmployee(payrollData) {
   const urlParams = new URLSearchParams(window.location.search);
   const employeeId = urlParams.get("id");
 
-  // If an id param exists, try to load that employee.
   if (employeeId) {
     const employee = payrollData.find(
       (item) => item.employeeId === parseInt(employeeId),
@@ -292,7 +285,6 @@ function prCheckUrlForEmployee(payrollData) {
       prShowPayslip(employee);
       return;
     }
-    // If the id param was provided but not found, fallback to the first employee.
     const fallback =
       Array.isArray(payrollData) && payrollData.length > 0
         ? payrollData[0]
@@ -308,11 +300,8 @@ function prCheckUrlForEmployee(payrollData) {
     return;
   }
 
-  // No id param provided: fall back to the first available employee so the
-  // payslip page displays useful content when opened directly.
   if (Array.isArray(payrollData) && payrollData.length > 0) {
     prShowPayslip(payrollData[0]);
-    // show an informational message so the user knows which employee is shown
     const info = document.createElement("div");
     info.className = "alert alert-info";
     info.style.marginTop = "12px";
@@ -324,7 +313,6 @@ function prCheckUrlForEmployee(payrollData) {
     return;
   }
 
-  // No data at all
   prShowError("No payroll data available to display a payslip.");
 }
 
@@ -336,118 +324,278 @@ function prShowPayslip(employee) {
   const baseSalary = employee.basicSalary || employee.finalSalary || 0;
   const deductions = employee.deductions || 0;
 
-  const baseSalaryElement = document.getElementById("prDisplayBaseSalary");
-  const deductionsElement = document.getElementById("prDisplayDeductions");
-  const finalSalaryElement = document.getElementById("prDisplayFinalSalary");
-
   document.getElementById("prDisplayEmployeeId").textContent =
     employee.employeeId;
   document.getElementById("prDisplayHoursWorked").textContent =
     employee.hoursWorked + " hours";
   document.getElementById("prDisplayLeaveDeductions").textContent =
     employee.leaveDeductions + " hours";
-  if (baseSalaryElement)
-    baseSalaryElement.textContent = formatCurrency(baseSalary);
-  if (deductionsElement)
-    deductionsElement.textContent = `-${formatCurrency(deductions)}`;
-  if (finalSalaryElement)
-    finalSalaryElement.textContent = formatCurrency(employee.finalSalary || 0);
+  document.getElementById("prDisplayBaseSalary").textContent = formatCurrency(baseSalary);
+  document.getElementById("prDisplayDeductions").textContent = `-${formatCurrency(deductions)}`;
+  document.getElementById("prDisplayFinalSalary").textContent = formatCurrency(employee.finalSalary || 0);
 
-  const generatedDateElement = document.getElementById(
-    "prDisplayGeneratedDate",
-  );
-  if (generatedDateElement)
-    generatedDateElement.textContent = new Date().toLocaleString("en-ZA", {
-      dateStyle: "medium",
-      timeStyle: "short",
-    });
+  document.getElementById("prDisplayGeneratedDate").textContent = new Date().toLocaleString("en-ZA", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
 
   card.dataset.employeeId = employee.employeeId;
   card.style.display = "block";
 }
 
+// ============================================
+// PDF GENERATION - Using window.print() method
+// ============================================
+
 async function prDownloadPayslip() {
-  const card = document.getElementById("prPayslipCard");
-  if (!card || card.style.display === "none" || !currentemployee) {
+  // Check if we have an employee
+  if (!currentemployee) {
     alert("No payslip to download! Please generate a payslip first.");
     return;
   }
 
-  const employeeId = card.dataset.employeeId || "unknown";
-  const baseSalary =
-    currentemployee.basicSalary || currentemployee.finalSalary || 0;
-  const deductions = currentemployee.deductions || 0;
-  const finalSalary = currentemployee.finalSalary || 0;
+  const downloadBtn = document.getElementById("prDownloadBtn");
+  const originalText = downloadBtn.innerHTML;
+  downloadBtn.innerHTML = 'Generating...';
+  downloadBtn.disabled = true;
 
-  const payslipGeneratetext = `
-<div style="font-family: 'Plus Jakarta Sans', Arial, sans-serif; padding:24px; color:#1f2a3f; background:#ffffff; width:100%; max-width:800px;">
-  <div style="margin-bottom:20px; padding:18px 22px; background:#0b1a33; color:#ffffff; border-radius:16px;">
-    <h2 style="margin:0; font-size:24px; letter-spacing:0.02em;">MODERNTECH PAYSLIP</h2>
-  </div>
-  <table style="width:100%; border-collapse:collapse; font-size:14px;">
-    <tbody>
-      <tr>
-        <th style="text-align:left; padding:12px 14px; background:#f4f6fb; color:#0b1a33; border:1px solid #d6dee7; width:35%;">Employee ID</th>
-        <td style="padding:12px 14px; border:1px solid #d6dee7;">${currentemployee.employeeId}</td>
-      </tr>
-      <tr>
-        <th style="text-align:left; padding:12px 14px; background:#f4f6fb; color:#0b1a33; border:1px solid #d6dee7;">Hours Worked</th>
-        <td style="padding:12px 14px; border:1px solid #d6dee7;">${currentemployee.hoursWorked} hours</td>
-      </tr>
-      <tr>
-        <th style="text-align:left; padding:12px 14px; background:#f4f6fb; color:#0b1a33; border:1px solid #d6dee7;">Leave Deductions</th>
-        <td style="padding:12px 14px; border:1px solid #d6dee7;">${currentemployee.leaveDeductions} hours</td>
-      </tr>
-      <tr>
-        <th style="text-align:left; padding:12px 14px; background:#f4f6fb; color:#0b1a33; border:1px solid #d6dee7;">Base Salary</th>
-        <td style="padding:12px 14px; border:1px solid #d6dee7;">${formatCurrency(baseSalary)}</td>
-      </tr>
-      <tr>
-        <th style="text-align:left; padding:12px 14px; background:#f4f6fb; color:#0b1a33; border:1px solid #d6dee7;">Deductions</th>
-        <td style="padding:12px 14px; border:1px solid #d6dee7; color:#c0392b;">-${formatCurrency(deductions)}</td>
-      </tr>
-      <tr style="background:#d4edda;">
-        <th style="text-align:left; padding:12px 14px; border:1px solid #c3dcc6; color:#0b1a33;">Final Salary</th>
-        <td style="padding:12px 14px; border:1px solid #c3dcc6; font-weight:700;">${formatCurrency(finalSalary)}</td>
-      </tr>
-    </tbody>
-  </table>
-  <p style="font-size:13px; color:#5a6e87; margin-top:20px;">Generated: ${new Date().toLocaleDateString()}</p>
-</div>
-`;
+  try {
+    const emp = currentemployee;
+    const date = new Date().toLocaleString("en-ZA", {
+      dateStyle: "medium",
+      timeStyle: "short",
+    });
 
-  const exportElement = document.createElement("div");
-  // place off-screen but visible to html2canvas so it can render fonts/styles
-  exportElement.style.position = "fixed";
-  exportElement.style.left = "0";
-  exportElement.style.top = "0";
-  exportElement.style.transform = "translateX(-200vw)";
-  exportElement.style.width = "800px";
-  exportElement.style.visibility = "visible";
-  exportElement.style.opacity = "1";
-  exportElement.style.pointerEvents = "none";
-  exportElement.innerHTML = payslipGeneratetext;
-  document.body.appendChild(exportElement);
+    // Format values
+    const baseSalary = "R " + (emp.basicSalary || emp.finalSalary || 0).toLocaleString("en-ZA", { minimumFractionDigits: 2 });
+    const deductions = "R " + (emp.deductions || 0).toLocaleString("en-ZA", { minimumFractionDigits: 2 });
+    const finalSalary = "R " + (emp.finalSalary || 0).toLocaleString("en-ZA", { minimumFractionDigits: 2 });
 
-  // small pause to ensure fonts and inline styles are applied off-screen
-  await new Promise((resolve) => setTimeout(resolve, 500));
+    // Create a new window for printing
+    const printWindow = window.open('', '_blank', 'width=800,height=600');
+    
+    if (!printWindow) {
+      alert('Please allow popups for this site to download the payslip.');
+      downloadBtn.innerHTML = originalText;
+      downloadBtn.disabled = false;
+      return;
+    }
 
-  await html2pdf()
-    .set({
-      margin: 8,
-      filename: `payslip_employee_${employeeId}_${new Date().toISOString().split("T")[0]}.pdf`,
-      image: { type: "png", quality: 1 },
-      html2canvas: {
-        scale: 2.5,
-        useCORS: true,
-        backgroundColor: "#ffffff",
-      },
-      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-    })
-    .from(exportElement)
-    .save();
+    // Build the HTML for the payslip
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Payslip - ${emp.name}</title>
+        <style>
+          body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+          }
+          .payslip {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            background: #ffffff;
+            border: 2px solid #0b1a33;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+          }
+          .header {
+            text-align: center;
+            border-bottom: 3px solid #0b1a33;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+          }
+          .header h1 {
+            color: #0b1a33;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin: 0;
+          }
+          .header p {
+            color: #4a5b72;
+            font-size: 14px;
+            margin: 5px 0 0 0;
+            letter-spacing: 4px;
+          }
+          .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+          }
+          .info-row .label {
+            font-size: 12px;
+            color: #68768a;
+            margin: 0 0 3px 0;
+            font-weight: 600;
+          }
+          .info-row .value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0b1a33;
+            margin: 0;
+          }
+          .position-section {
+            margin-bottom: 20px;
+          }
+          .position-section .label {
+            font-size: 12px;
+            color: #68768a;
+            margin: 0 0 3px 0;
+            font-weight: 600;
+          }
+          .position-section .value {
+            font-size: 16px;
+            font-weight: 500;
+            color: #1f2a3f;
+            margin: 0;
+          }
+          table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            margin-top: 5px;
+          }
+          table tr {
+            border-bottom: 1px solid #eef2f7;
+          }
+          table td {
+            padding: 10px 6px;
+          }
+          table td:first-child {
+            color: #4a5b72;
+            font-weight: 500;
+          }
+          table td:last-child {
+            text-align: right;
+            font-weight: 600;
+            color: #0b1a33;
+          }
+          .total-row {
+            border-top: 3px solid #0b1a33 !important;
+            background: #f8faff;
+          }
+          .total-row td {
+            padding: 14px 6px;
+          }
+          .total-row td:first-child {
+            font-weight: 700;
+            color: #0b1a33;
+            font-size: 16px;
+          }
+          .total-row td:last-child {
+            font-weight: 700;
+            color: #1f7b4d;
+            font-size: 18px;
+          }
+          .footer {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 2px solid #eef2f7;
+            text-align: center;
+          }
+          .footer p {
+            font-size: 12px;
+            color: #a0b0c4;
+            margin: 0;
+          }
+          .footer .sub {
+            font-size: 11px;
+            color: #b8c4d4;
+            margin: 4px 0 0 0;
+          }
+          @media print {
+            body {
+              background: white;
+              padding: 20px;
+            }
+            .payslip {
+              border: 2px solid #0b1a33;
+              box-shadow: none;
+            }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="payslip">
+          <div class="header">
+            <h1>MODERNTECH</h1>
+            <p>PAYSLIP</p>
+          </div>
 
-  document.body.removeChild(exportElement);
+          <div class="info-row">
+            <div>
+              <div class="label">EMPLOYEE ID</div>
+              <div class="value">${emp.employeeId}</div>
+            </div>
+            <div style="text-align: right;">
+              <div class="label">EMPLOYEE NAME</div>
+              <div class="value">${emp.name}</div>
+            </div>
+          </div>
+
+          <div class="position-section">
+            <div class="label">POSITION</div>
+            <div class="value">${emp.position}</div>
+          </div>
+
+          <table>
+            <tr>
+              <td>Hours Worked</td>
+              <td>${emp.hoursWorked} hours</td>
+            </tr>
+            <tr>
+              <td>Leave Deductions</td>
+              <td>${emp.leaveDeductions} hours</td>
+            </tr>
+            <tr>
+              <td>Base Salary</td>
+              <td>${baseSalary}</td>
+            </tr>
+            <tr>
+              <td>Deductions</td>
+              <td style="color: #c0392b;">-${deductions}</td>
+            </tr>
+            <tr class="total-row">
+              <td>FINAL SALARY</td>
+              <td>${finalSalary}</td>
+            </tr>
+          </table>
+
+          <div class="footer">
+            <p>Generated: ${date}</p>
+            <p class="sub">ModernTech HR Portal</p>
+          </div>
+        </div>
+        <script>
+          // Auto-print and close after printing
+          window.onload = function() {
+            window.print();
+            setTimeout(function() {
+              window.close();
+            }, 1000);
+          };
+        <\/script>
+      </body>
+      </html>
+    `);
+
+    printWindow.document.close();
+
+  } catch (error) {
+    alert('Error generating payslip: ' + error.message);
+  }
+
+  downloadBtn.innerHTML = originalText;
+  downloadBtn.disabled = false;
 }
 
 // Show error
