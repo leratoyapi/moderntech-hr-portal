@@ -293,6 +293,10 @@
   border-color: #3d3d54 !important;
 }
 
+
+.dashboard body.dark-mode .card-box h6{
+  color: white !important;
+}
 /* Force dark mode background across the entire layout wrapper and body container */
 .dashboard body.dark-mode, 
 .dashboard body.dark-mode .wrapper,
@@ -392,7 +396,7 @@ background: #2d2d44 !important;
 
 /* Custom adjustments when Bootstrap switches to dark mode */
 [data-bs-theme="dark"] .card-box {
-    background-color: #1e1e24 !important; /* Darker background for your cards */
+    background: #2d2d44 !important; /* Darker background for your cards */
     color: #ffffff;
     border-color: #2d2d35 !important;
 }
@@ -405,6 +409,26 @@ background: #2d2d44 !important;
 [data-bs-theme="dark"] h5.section-heading {
     color: #f8f9fa !important; /* Forces it to a clean, bright off-white */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1321,10 +1345,6 @@ td:last-child{
  
 
 
-
-
-
-
 /* Subtle or secondary text formatting (Labels, sub-dates, counters) */
 .att-body.dark-mode .text-muted,
 .att-body.dark-mode .text-secondary,
@@ -1992,6 +2012,21 @@ td:last-child{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* employees css  */
 /* Employees page - default styling */
 :root {
@@ -2118,6 +2153,7 @@ td:nth-child(2) {
   min-width: 180px;
   white-space: nowrap;
 }
+
 .em-avatar {
   width: 32px;
   height: 32px;
@@ -2212,121 +2248,116 @@ dialog form {
   align-items: center;
   gap: 12px;
 }
-.em-brand-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  background: #2563eb;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 14px;
+
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
 }
-/* NavBar Styling */
-.em-burger-btn {
-  background: transparent;
-  border: none;
-  color: #fff;
-  font-size: 24px;
-  cursor: pointer;
-  line-height: 1;
-  border-radius: 8px;
-  padding: 8px 10px;
-  transition: background .2s ease, transform .1s ease;
+
+
+/* Top Header Bar - Always Visible Everywhere */
+.main-header {
+    background-color: #243864;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
-.em-burger-btn:hover {
-  color:white;
-  background: rgba(255,255,255,0.12);
+
+
+/* Offcanvas Sidebar Drawer Panel Customization */
+.offcanvas-sidebar {
+    width: 380px !important;
+    background-color: #243864 !important;
 }
-.em-burger-btn:active {
-  color:white;
-  background: rgba(255,255,255,0.2);
-  transform: scale(0.95)
+
+
+
+.offcanvas-sidebar .nav-link {
+    color: #A3B1CC;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    transition: all 0.2s;
+    text-decoration: none;
 }
-.em-sidebar {
-  position: fixed;
-  top: 0;
-  left: -450px;
-  width: 380px;
-  height: 100vh;
-  background: #243864;
-  color: #fff;
-  padding: 20px;
-  transition: left 0.3s ease;
-  z-index: 1001;
-  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.25);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+
+
+.offcanvas-sidebar .nav-link:hover {
+    color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 0.05);
 }
-.em-sidebar.open {
-  left: 0;
+
+
+
+.offcanvas-sidebar .nav-link.active {
+    background: #4E65F7;
+    color: #FFFFFF;
 }
-.em-sidebar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 32px;
+
+
+.brand-icon {
+    width: 32px;
+    height: 32px;
+    background: #3B82F6;
+    border-radius: 8px;
 }
-.em-sidebar-header h2 {
-  margin: 0;
-  font-size: 18px;
-  line-height: 1.2;
-}
-.em-close-btn {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 32px;
-  cursor: pointer;
-  line-height: 1;
-  opacity: 0.8;
-}
-.em-close-btn:hover {
-  opacity: 1;
-}
-.em-sidebar-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.em-nav-link {
-  color: #a3b1cc;
-  text-decoration: none;
-  padding: 12px 14px;
-  border-radius: 10px;
-  transition: background 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  font-weight: 500;
-  font-size: 16px;
-}
-.em-nav-link svg {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-}
-.em-nav-link:hover{
-  background: rgba(255, 255, 255, 0.05);
-  color: #ffffff;
-}
-.em-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-}
-.em-overlay.show{
-  display: block;
-}
-.em-nav-footer {
-  padding: 16px;
-  border-top: 1px solid;
-  margin-top: auto;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* timeoff css */
 
@@ -2348,209 +2379,59 @@ dialog form {
 /* ── Page Wrapper ─────────────────────────── */
 .timeoff-wrapper {
     display: flex;
-    flex-direction: column;
-    min-height: 100vh;
     width: 100%;
+    flex-direction: column;
 }
 
-/* ── Top Header Bar ───────────────────────── */
+
+/* Top Header Bar - Always Visible Everywhere */
 .timeoff-main-header {
     background-color: #243864;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 32px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    padding: 15px 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.timeoff-header-brand {
+
+/* Offcanvas Sidebar Drawer Panel Customization */
+.offcanvas-sidebar {
+    width: 380px !important;
+    background-color: #243864 !important;
+}
+
+
+
+.offcanvas-sidebar .nav-link {
+    color: #A3B1CC;
+    padding: 12px 20px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    border-radius: 8px;
+    transition: all 0.2s;
+    text-decoration: none;
 }
 
-.timeoff-header-title {
-    margin: 0;
-    font-size: 16px;
-    font-weight: 700;
-    color: #ffffff;
+
+.offcanvas-sidebar .nav-link:hover {
+    color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
-.timeoff-brand-name {
-    display: block;
-    font-size: 17px;
-    font-weight: 700;
-    color: #ffffff;
-    line-height: 1;
+
+
+.offcanvas-sidebar .nav-link.active {
+    background: #4E65F7;
+    color: #FFFFFF;
 }
 
-.timeoff-brand-sub {
-    display: block;
-    font-size: 12px;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.55);
-    margin-top: 2px;
-}
 
-/* ── Brand Icon ───────────────────────────── */
 .timeoff-brand-icon {
     width: 32px;
     height: 32px;
-    min-width: 32px;
-    background: #3b82f6;
+    background: #3B82F6;
     border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 12px;
-    color: #ffffff;
-}
-
-/* ── Menu Toggle Button ───────────────────── */
-.timeoff-menu-btn {
-    background: transparent;
-    border: none;
-    color: #ffffff;
-    font-size: 28px;
-    cursor: pointer;
-    padding: 4px 8px;
-    border-radius: 6px;
-    line-height: 1;
-    transition: background 0.2s;
-}
-
-.timeoff-menu-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-/* ── Sidebar Overlay ──────────────────────── */
-.timeoff-sidebar-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.45);
-    z-index: 200;
-}
-
-.timeoff-sidebar-overlay--visible {
-    display: block;
-}
-
-/* ── Sidebar ──────────────────────────────── */
-.timeoff-sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 320px;
-    height: 100%;
-    background-color: #243864;
-    z-index: 300;
-    padding: 20px;
-    box-sizing: border-box;
-    transform: translateX(-100%);
-    transition: transform 0.28s ease;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-}
-
-.timeoff-sidebar--open {
-    transform: translateX(0);
-}
-
-.timeoff-sidebar-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.timeoff-sidebar-close {
-    background: transparent;
-    border: none;
-    color: #ffffff;
-    font-size: 18px;
-    cursor: pointer;
-    padding: 4px 6px;
-    border-radius: 6px;
-    transition: background 0.2s;
-}
-
-.timeoff-sidebar-close:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-/* ── Sidebar Nav ──────────────────────────── */
-.timeoff-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.timeoff-sidebar-footer {
-    margin-top: auto;
-    padding-top: 16px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.timeoff-toggle-btn {
-    width: 100%;
-    height: 45px;
-    border-radius: 6px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 12px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    position: relative;
-    color: rgba(255, 255, 255, 0.7);
-    padding: 0 15px;
-}
-
-.timeoff-toggle-btn:hover {
-    background: rgba(255, 255, 255, 0.1) !important;
-    color: #fff;
-}
-
-.timeoff-toggle-icon {
-    width: 18px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.timeoff-nav-link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    color: #a3b1cc;
-    font-size: 15px;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: color 0.2s;
-}
-
-.timeoff-nav-link:hover {
-    color: #ffffff;
-}
-
-.timeoff-nav-link--active {
-    color: #ffffff;
-}
-
-.timeoff-nav-icon {
-    flex-shrink: 0;
 }
 
 /* ── Main Content ─────────────────────────── */
