@@ -49,9 +49,9 @@ function setupThemeToggle() {
 async function loadTimeOffData() {
     try {
         const [attendanceResponse, employeeResponse, payrollResponse] = await Promise.all([
-            fetch('attendance.json'),
-            fetch('employee_info.json'),
-            fetch('payroll_data.json')
+            fetch('data/attendance.json'),
+            fetch('data/employee_info.json'),
+            fetch('data/payroll_data.json')
         ]);
 
         if (!attendanceResponse.ok || !employeeResponse.ok || !payrollResponse.ok) {

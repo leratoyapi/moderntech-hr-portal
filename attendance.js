@@ -359,7 +359,7 @@ let attendanceEmployees = [];
 =====================================*/
 
 
-fetch("attendance.json")
+fetch("data/attendance.json")
     .then(response => response.json())
     .then(data => {
 
