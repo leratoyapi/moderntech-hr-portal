@@ -509,7 +509,7 @@
                     <div class="card card-custom mb-3 overflow-hidden d-flex flex-column">
                         <div class="p-3 pb-2 d-flex justify-content-between align-items-center">
                             <h6 class="text-uppercase text-muted fw-bold m-0" style="font-size: 0.8rem; letter-spacing: 0.5px;">Select Employee</h6>
-                            <input type="text" id="searchInput" class="form-control form-control-sm w-50" placeholder="Filter...">
+                            <input type="text" id="searchInput" class="form-control form-control-sm w-50" placeholder="Filter..." oninput="filterEmployeeList()">
                         </div>
                         <div id="employeeListContainer" class="list-group list-group-flush border-top overflow-auto" style="max-height: 400px;">
                         </div>
@@ -548,8 +548,8 @@
                             <div class="col-12 col-sm-6">
                                 <label class="form-label small text-muted mb-1">Visibility</label>
                                 <div class="btn-group btn-toggle-group w-100" role="group" id="visibilityGroup">
-                                    <button type="button" class="btn active py-2 fw-semibold" onclick="toggleVisibility(this)">Private</button>
-                                    <button type="button" class="btn py-2 fw-semibold" onclick="toggleVisibility(this)">Shared</button>
+                                    <button type="button" class="btn active py-2 fw-semibold" id="btnPrivate" onclick="setFormVisibility('Private')">Private</button>
+                                    <button type="button" class="btn py-2 fw-semibold" id="btnShared" onclick="setFormVisibility('Shared')">Shared</button>
                                 </div>
                             </div>
                         </div>
@@ -558,6 +558,21 @@
                             <textarea id="reviewComment" class="form-control bg-body text-body" rows="4" placeholder="Notes from today's check-in — topics discussed, action items, employee feedback..." oninput="updateCharCount(this)"></textarea>
                             <div id="charCount" class="text-end text-muted small mt-1">0 chars</div>
                         </div>
+
+                        <!-- PAIN POINT IMPLEMENTATION: Link Word Documents from Shared Drive -->
+                        <div class="mb-3 p-3 border rounded bg-body-tertiary border-dashed" style="border-style: dashed !important;">
+                            <label class="form-label small text-muted mb-1 d-flex justify-content-between">
+                                <span><i class="bi bi-cloud-arrow-up-fill me-1 text-primary"></i> Link Review from Shared Drive</span>
+                                <span class="text-muted-sm text-end">Accepts .docx, .doc</span>
+                            </label>
+                            <div class="input-group">
+                                <input type="file" id="wordFileInput" class="form-control form-control-sm bg-body text-body" accept=".doc,.docx" onchange="evaluateFileStatus(this)">
+                            </div>
+                            <div id="fileUploadStatus" class="text-muted-sm mt-1 d-none animate-entry">
+                                <i class="bi bi-check-circle-fill text-success me-1"></i> Ready to import document contents into systemic record.
+                            </div>
+                        </div>
+
                         <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 mt-3">
                             <span class="text-muted small">Logged as <strong>Admin User</strong><br><span class="text-muted-sm">2026/07/02</span></span>
                             <button class="btn btn-primary-custom px-5 py-2 font-weight-bold" onclick="saveReviewEntry()">Save Entry</button>
@@ -581,5 +596,316 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="dashboard.js"></script> 
 <script src="Reports.js"></script> 
+
+<!-- Per-Employee Permanent Data Management Engine -->
+<script>
+// System reads your actual employee roster and keeps them locked in safely
+    const fallbackEmployeesList = [
+        { id: "emp_1", name: "Sibongile Nkosi", role: "Development", dept: "Engineering" },
+        { id: "emp_2", name: "Lungile Moyo", role: "HR", dept: "HR" },
+        { id: "emp_3", name: "Thabo Molefe", role: "QA", dept: "Quality Assurance" },
+        { id: "emp_4", name: "Keshav Naidoo", role: "Sales", dept: "Sales" },
+        { id: "emp_5", name: "Zanele Khumalo", role: "Marketing", dept: "Marketing" },
+        { id: "emp_6", name: "Sipho Zulu", role: "Design", dept: "Design" },
+        { id: "emp_7", name: "Naledi Moeketsi", role: "Product", dept: "Management" },
+        { id: "emp_8", name: "Farai Gumbo", role: "Marketing", dept: "Marketing" },
+        { id: "emp_9", name: "Karabo Dlamini", role: "Finance", dept: "Finance" },
+        { id: "emp_10", name: "Fatima Patel", role: "Support", dept: "Support" }
+    ];
+
+    // Set the initial default selected person to your first real employee if nothing is cached yet
+    let currentSelectedEmployeeId = localStorage.getItem('hr_active_employee_id') || "emp_1";
+    let dynamicVisibilityState = 'Private';
+    
+
+    function getStoredEmployees() {
+        let emps = localStorage.getItem('hr_system_employees');
+        if(!emps) {
+            localStorage.setItem('hr_system_employees', JSON.stringify(fallbackEmployeesList));
+            return fallbackEmployeesList;
+        }
+        return JSON.parse(emps);
+    }
+
+    function getStoredReviews() {
+        return JSON.parse(localStorage.getItem('hr_employee_separated_reviews')) || {};
+    }
+
+    // Interactive Employee List Render Engine with Counter Badge Syncing
+    function paintEmployeeList() {
+        const container = document.getElementById('employeeListContainer');
+        if(!container) return;
+
+        const employees = getStoredEmployees();
+        const allReviews = getStoredReviews();
+        container.innerHTML = '';
+
+        employees.forEach(emp => {
+            const empReviews = allReviews[emp.id] || [];
+            const messageCount = empReviews.length;
+            const initials = emp.name.split(' ').map(n => n[0]).join('').toUpperCase();
+            const colorHash = ['#4e65f7', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'][emp.id.charCodeAt(emp.id.length-1) % 5];
+            const isActive = emp.id === currentSelectedEmployeeId ? 'active' : '';
+
+            const itemNode = document.createElement('div');
+            itemNode.className = `list-group-item employee-item p-3 d-flex align-items-center justify-content-between border-bottom ${isActive}`;
+            itemNode.setAttribute('onclick', `selectEmployeeProfile('${emp.id}')`);
+            itemNode.innerHTML = `
+                <div class="d-flex align-items-center overflow-hidden">
+                    <div class="avatar-circle me-3" style="background-color: ${colorHash}; width: 36px; height: 36px; font-size: 0.85rem;">${initials}</div>
+                    <div class="text-truncate">
+                        <h6 class="m-0 fw-bold ${isActive ? 'text-white' : 'text-dark'}" style="font-size: 0.95rem;">${emp.name}</h6>
+                        <small class="${isActive ? 'text-white-50' : 'text-muted'} text-muted-sm">${emp.role}</small>
+                    </div>
+                </div>
+                <span class="badge rounded-pill ${isActive ? 'bg-white text-primary' : 'bg-primary text-white'}" style="font-size: 0.75rem;">${messageCount}</span>
+            `;
+            container.appendChild(itemNode);
+        });
+    }
+
+    // Active Tab and Selection Pipeline State Switcher
+    window.selectEmployeeProfile = function(empId) {
+        currentSelectedEmployeeId = empId;
+        localStorage.setItem('hr_active_employee_id', empId);
+        
+        const employees = getStoredEmployees();
+        const activeEmp = employees.find(e => e.id === empId);
+
+        if(activeEmp) {
+            document.getElementById('activeName').innerText = activeEmp.name;
+            document.getElementById('activeRole').innerText = `${activeEmp.role} · ${activeEmp.dept}`;
+            
+            const initials = activeEmp.name.split(' ').map(n => n[0]).join('').toUpperCase();
+            const colorHash = ['#4e65f7', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'][activeEmp.id.charCodeAt(activeEmp.id.length-1) % 5];
+            
+            const mainAvatar = document.getElementById('activeAvatar');
+            mainAvatar.innerText = initials;
+            mainAvatar.style.backgroundColor = colorHash;
+
+            paintEmployeeList();
+            paintHistoryUI();
+        }
+    };
+
+    // Isolated Dynamic Review Rendering Pipeline
+    function paintHistoryUI() {
+        const container = document.getElementById('historyContainer');
+        const countHeader = document.getElementById('historyHeader');
+        if (!container) return;
+
+        if(!currentSelectedEmployeeId) {
+            countHeader.innerText = `History · 0 Entries`;
+            container.innerHTML = `<div class="text-muted small text-center py-4 bg-white rounded border">Select an employee to examine history context logs.</div>`;
+            return;
+        }
+
+        const allReviews = getStoredReviews();
+        const currentEmpReviews = allReviews[currentSelectedEmployeeId] || [];
+        
+        countHeader.innerText = `History · ${currentEmpReviews.length} Entries`;
+        container.innerHTML = '';
+
+        if(currentEmpReviews.length === 0) {
+            container.innerHTML = `<div class="text-muted small text-center py-4 bg-white rounded border">No historical entries recorded for this employee profile yet.</div>`;
+            return;
+        }
+
+        currentEmpReviews.forEach((item) => {
+            const entryNode = document.createElement('div');
+            entryNode.className = 'card card-custom p-3 animate-entry';
+            
+            let attachmentMarkup = '';
+            if (item.fileName) {
+                attachmentMarkup = `
+                    <div class="mt-2 p-2 bg-body-tertiary border rounded d-flex align-items-center" style="font-size: 0.85rem;">
+                        <i class="bi bi-file-earmark-word-fill text-primary me-2 fs-5"></i>
+                        <span class="text-truncate fw-medium small">${item.fileName}</span>
+                        <span class="text-muted-sm ms-2">(${item.fileSize})</span>
+                    </div>
+                `;
+            }
+
+            entryNode.innerHTML = `
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="d-flex align-items-center gap-2 mb-1 flex-wrap">
+                            <span class="badge bg-secondary text-uppercase" style="font-size:0.7rem;">${item.type}</span>
+                            <span class="badge ${item.visibility === 'Private' ? 'bg-warning text-dark' : 'bg-info text-white'}" style="font-size:0.7rem;">${item.visibility}</span>
+                            <small class="text-muted-sm"><i class="bi bi-clock me-1"></i>${item.timestamp}</small>
+                        </div>
+                        <p class="m-0 text-body mt-2" style="white-space: pre-wrap; font-size: 0.95rem;">${item.comment}</p>
+                        ${attachmentMarkup}
+                    </div>
+                    <button class="btn btn-sm btn-outline-danger border-0 p-1 ms-2" onclick="removeHistoryItem('${item.id}')" title="Delete Comment">
+                        <i class="bi bi-trash3-fill fs-6"></i>
+                    </button>
+                </div>
+            `;
+            container.appendChild(entryNode);
+        });
+    }
+
+    // Comment Registration Handler
+    window.saveReviewEntry = function() {
+        if(!currentSelectedEmployeeId) {
+            alert("Please select an employee profile from the list before attempting to commit a log trace.");
+            return;
+        }
+
+        const typeSelect = document.getElementById('reviewType');
+        const commentArea = document.getElementById('reviewComment');
+        const fileSelector = document.getElementById('wordFileInput');
+
+        if (!commentArea || !commentArea.value.trim()) {
+            alert("Comment field is required.");
+            return;
+        }
+
+        let documentName = "";
+        let documentSize = "";
+
+        if (fileSelector && fileSelector.files && fileSelector.files[0]) {
+            const targetFile = fileSelector.files[0];
+            documentName = targetFile.name;
+            documentSize = (targetFile.size / 1024).toFixed(1) + " KB";
+        }
+
+        const compiledPayload = {
+            id: 'entry_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
+            type: typeSelect ? typeSelect.value : 'Check-in',
+            visibility: dynamicVisibilityState,
+            comment: commentArea.value.trim(),
+            fileName: documentName,
+            fileSize: documentSize,
+            timestamp: new Date().toLocaleString()
+        };
+
+        const allReviews = getStoredReviews();
+        if(!allReviews[currentSelectedEmployeeId]) {
+            allReviews[currentSelectedEmployeeId] = [];
+        }
+        
+        allReviews[currentSelectedEmployeeId].unshift(compiledPayload);
+        localStorage.setItem('hr_employee_separated_reviews', JSON.stringify(allReviews));
+
+        commentArea.value = '';
+        if(fileSelector) fileSelector.value = '';
+        const statusMsg = document.getElementById('fileUploadStatus');
+        if(statusMsg) statusMsg.classList.add('d-none');
+        updateCharCount(commentArea);
+
+        paintEmployeeList();
+        paintHistoryUI();
+    };
+
+    // Row Deletion Pipeline
+    window.removeHistoryItem = function(id) {
+        if(confirm("Are you sure you want to delete this comment? This action cannot be undone.")) {
+            const allReviews = getStoredReviews();
+            if(allReviews[currentSelectedEmployeeId]) {
+                allReviews[currentSelectedEmployeeId] = allReviews[currentSelectedEmployeeId].filter(entry => entry.id !== id);
+                localStorage.setItem('hr_employee_separated_reviews', JSON.stringify(allReviews));
+                
+                paintEmployeeList();
+                paintHistoryUI();
+            }
+        }
+    };
+
+    // Quick Creation of New Node Elements
+    window.addNewEmployee = function() {
+        const nameInp = document.getElementById('newEmpName');
+        const posInp = document.getElementById('newEmpPos');
+        const deptInp = document.getElementById('newEmpDept');
+
+        if(!nameInp || !nameInp.value.trim() || !posInp || !posInp.value.trim()) {
+            alert("Please complete all fields to introduce a new employee node record.");
+            return;
+        }
+
+        const uniqueId = 'emp_' + Date.now();
+        const newObj = {
+            id: uniqueId,
+            name: nameInp.value.trim(),
+            role: posInp.value.trim(),
+            dept: deptInp.value
+        };
+
+        const existing = getStoredEmployees();
+        existing.push(newObj);
+        localStorage.setItem('hr_system_employees', JSON.stringify(existing));
+
+        nameInp.value = '';
+        posInp.value = '';
+        
+        const colEl = document.getElementById('addEmployeeForm');
+        if(colEl) {
+            const bsCollapse = bootstrap.Collapse.getInstance(colEl) || new bootstrap.Collapse(colEl);
+            bsCollapse.hide();
+        }
+
+        paintEmployeeList();
+        selectEmployeeProfile(uniqueId);
+    };
+
+    // Live Sidebar Text Sorting Rules Engine
+    window.filterEmployeeList = function() {
+        const filterVal = document.getElementById('searchInput').value.toLowerCase();
+        const items = document.querySelectorAll('#employeeListContainer .employee-item');
+        
+        items.forEach(item => {
+            const textContent = item.innerText.toLowerCase();
+            if(textContent.includes(filterVal)) {
+                item.style.setProperty('display', 'flex', 'important');
+            } else {
+                item.style.setProperty('display', 'none', 'important');
+            }
+        });
+    };
+
+    window.updateCharCount = function(textarea) {
+        const countDisplay = document.getElementById('charCount');
+        if (countDisplay) countDisplay.innerText = `${textarea.value.length} chars`;
+    };
+
+    window.setFormVisibility = function(state) {
+        dynamicVisibilityState = state;
+        const pBtn = document.getElementById('btnPrivate');
+        const sBtn = document.getElementById('btnShared');
+        if(state === 'Private') {
+            pBtn.classList.add('active');
+            sBtn.classList.remove('active');
+        } else {
+            sBtn.classList.add('active');
+            pBtn.classList.remove('active');
+        }
+    };
+
+    window.evaluateFileStatus = function(element) {
+        const statusMsg = document.getElementById('fileUploadStatus');
+        if (element.files && element.files[0]) {
+            statusMsg.classList.remove('d-none');
+        } else {
+            statusMsg.classList.add('d-none');
+        }
+    };
+
+    // Lifecycle OnLoad Event Hooks
+    document.addEventListener("DOMContentLoaded", function() {
+        paintEmployeeList();
+        
+        const defaultList = getStoredEmployees();
+        if(defaultList.length > 0) {
+            // Checks if a previously active profile ID exists to prevent resetting back to index 0 on refresh
+            const targetId = currentSelectedEmployeeId && defaultList.some(e => e.id === currentSelectedEmployeeId) 
+                ? currentSelectedEmployeeId 
+                : defaultList[0].id;
+            selectEmployeeProfile(targetId);
+        } else {
+            paintHistoryUI();
+        }
+    });
+</script>
 </body>
 </html>

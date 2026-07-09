@@ -356,3 +356,59 @@ function updateCharCount(textarea) {
 // Attach local search tracking events natively 
 document.getElementById('searchInput')?.addEventListener('input', renderList);
 document.addEventListener('DOMContentLoaded', loadEmployees);
+
+
+    // State management variable for the file instance
+    let attachedWordFile = null;
+
+    function handleFileSelection(input) {
+        const statusDiv = document.getElementById('fileUploadStatus');
+        const commentBox = document.getElementById('reviewComment');
+        
+        if (input.files && input.files[0]) {
+            attachedWordFile = input.files[0];
+            
+            // UI visual feedback update
+            statusDiv.classList.remove('d-none');
+            
+            // Optional/Helper workflow: Automatically pre-populate context details
+            if(commentBox && commentBox.value.trim() === "") {
+                commentBox.value = `[Imported from Shared Drive File: ${attachedWordFile.name}]\n`;
+                updateCharCount(commentBox);
+            }
+        } else {
+            attachedWordFile = null;
+            statusDiv.classList.add('d-none');
+        }
+    }
+
+    // Intercept or modify your existing dashboard save routine
+    const originalSaveReviewEntry = window.saveReviewEntry;
+    
+    window.saveReviewEntry = function() {
+        const commentBox = document.getElementById('reviewComment');
+        
+        if (!commentBox || !commentBox.value.trim()) {
+            alert("Please provide comments or ensure word document metadata context is appended.");
+            return;
+        }
+
+        // Logic placeholder for your system application
+        console.log("Saving systemic review data...");
+        if (attachedWordFile) {
+            console.log(`Payload package includes shared drive pointer attachment: ${attachedWordFile.name}`);
+            // If utilizing standard fetch endpoints, append this file directly to a FormData object:
+            // let formData = new FormData();
+            // formData.append("wordDocument", attachedWordFile);
+        }
+
+        // Call your original routine layout logic if present
+        if (typeof originalSaveReviewEntry === "function") {
+            originalSaveReviewEntry();
+        } else {
+            // Fallback clear if dashboard.js hasn't initialized fully yet
+            document.getElementById('wordFileInput').value = "";
+            document.getElementById('fileUploadStatus').classList.add('d-none');
+            attachedWordFile = null;
+        }
+    };

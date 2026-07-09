@@ -359,7 +359,7 @@ let attendanceEmployees = [];
 =====================================*/
 
 
-fetch("data/attendance.json")
+fetch("/attendance.json")
     .then(response => response.json())
     .then(data => {
 
@@ -679,3 +679,21 @@ function closeAttendanceHistory(){
 
 
 }
+
+
+    // --- UNIFIED DARK MODE TOGGLE LOGIC ---
+
+    const darkModeToggle = document.getElementById('darkModeToggle');
+
+    if (window.HRTheme) {
+        window.HRTheme.syncThemeControls(window.HRTheme.getSavedTheme());
+    }
+
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', () => {
+            if (window.HRTheme) {
+                window.HRTheme.toggleTheme();
+            }
+        });
+    }
+
