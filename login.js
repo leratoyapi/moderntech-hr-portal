@@ -25,7 +25,7 @@ loginForm.addEventListener("submit", function(e){
 
 
             // Takes you to dashboard page if correct credentials are implemented
-            window.location.href = "index.html";
+            window.location.href = "indexdash.html";
 
 
         },1000);
