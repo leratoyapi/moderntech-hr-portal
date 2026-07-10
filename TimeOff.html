@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <script src="theme.js"></script>
     <meta charset="UTF-8">
@@ -12,7 +13,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 </head>
 
+
 <body class="timeoff-body">
+
 
 <div class="timeoff-wrapper">
     <!-- Header containing the Burger Icon (Visible on all screens now) -->
@@ -25,6 +28,14 @@
                 <i class="bi bi-list fs-2"></i>
             </button>
         </header>
+
+
+
+
+
+
+
+
 
 
 
@@ -72,7 +83,12 @@
     </div>
 
 
+
+
     </div><br>
+
+
+
 
 
 
@@ -80,11 +96,13 @@
     <main class="timeoff-main">
         <div class="timeoff-content">
 
+
             <!-- Page Header -->
             <div class="timeoff-page-header">
                 <h3 class="timeoff-page-title">Time Off Requests</h3>
                 <p id="timeoffHeaderSummary" class="timeoff-page-subtitle">Loading requests…</p>
             </div>
+
 
             <!-- Summary Cards -->
             <div class="timeoff-cards-grid">
@@ -117,6 +135,7 @@
                 </div>
             </div>
 
+
             <!-- Leave Requests Table -->
             <div class="timeoff-table-card">
                 <div class="timeoff-table-card-header">
@@ -147,13 +166,74 @@
                 </div>
             </div>
 
+
         </div>
     </main>
 
+
 </div>
+
+
+<!-- =========================
+     Leave Calendar
+========================= -->
+
+<section class="timeoff-calendar-card">
+
+    <div class="timeoff-calendar-header">
+
+        <div>
+            <h3>Shared Leave Calendar</h3>
+            <p>Approved, Pending and Denied Leave Requests</p>
+        </div>
+
+        <div class="timeoff-calendar-legend">
+            <div class="legend-item">
+                <span class="legend approved"></span>
+                Approved
+            </div>
+
+            <div class="legend-item">
+                <span class="legend pending"></span>
+                Pending
+            </div>
+
+            <div class="legend-item">
+                <span class="legend denied"></span>
+                Denied
+            </div>
+        </div>
+
+    </div>
+
+    <div class="calendar-wrapper">
+
+        <div class="calendar-month">
+            <h4 id="calendarTitle" class="calendar-title"></h4>
+        </div>
+
+        <div class="calendar-weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+        </div>
+
+        <div id="calendarGrid" class="calendar-grid"></div>
+
+    </div>
+
+</section>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="TimeOff.js"></script>
 
+
 </body>
 </html>
+
+

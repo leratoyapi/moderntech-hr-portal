@@ -1,152 +1,288 @@
 let employees = [];
-let deleteTimeouts = {};
 
-const tbody = document.getElementById('employeeTableBody');
-const searchInput = document.getElementById('searchInput');
-const addModal = document.getElementById('addModal');
-const form = document.getElementById('employeeForm');
-const addBtn = document.getElementById('addBtn');
+const tbody = document.getElementById("employeeTableBody");
+const archivedBody = document.getElementById("archivedEmployeeTableBody");
 
-// function to create the employee table
+const searchInput = document.getElementById("searchInput");
+
+const addModal = document.getElementById("addModal");
+const form = document.getElementById("employeeForm");
+const addBtn = document.getElementById("addBtn");
+
+
 async function loadEmployees() {
-  try {
-    const res= await fetch('./data/employee_info.json');
-    if (!res.ok) throw new Error('Failed to fetch employee data');
-    const data = await res.json();
 
-    employees = data.employeeInformation;
-    render();
-  } catch (err) {
-    console.error(err);
-    tbody.innerHTML = '<tr><td colspan="7">Failed to load employee data</td></tr>';
-  }
-}
-function getInitials(name) {
-  return name.split(' ').map(n => n[0]).join('').slice(0,2).toUpperCase();
-}
-function stringToColor(str) {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    hash = str.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  return `hsl(${hash % 360}, 70%, 50%)`;
-}
-function render(list = employees) {
-  tbody.innerHTML = '';
-  const activeList = list.filter(emp => !emp.isDeleted);
-  document.getElementById('totalCount').textContent = activeList.length;
-  document.getElementById('totalEmployees').textContent = activeList.length;
-  const payrollTotal = activeList.reduce((a,b) => a + b.salary, 0);
-  document.getElementById('monthlyPayroll').textContent = 'R' + (payrollTotal / 1000000).toFixed(2) + 'M';
+    try {
 
-  list.forEach(emp => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>E${String(emp.employeeId).padStart(3, '0')}</td>
-      <td><span class="em-avatar" style="background:${stringToColor(emp.name)}">${getInitials(emp.name)}</span>${emp.name}</td>
-      <td>${emp.department}</td>
-      <td>${emp.position}</td>
-      <td>${emp.salary.toLocaleString()}</td>
-      <td><span class="em-status active">Active</span></td>
-      <td class="em-actions">
-      ${emp.isDeleted
-        ? `<button class="em-btn-retrieve" id="retrieve-${emp.employeeId}" onclick="retrieveEmp(${emp.employeeId})">↪️</button>`
-         :`<button class="em-btn-delete" onclick="deleteEmp(${emp.employeeId})">🗑️</button>`
-      }
-      </td>
-      `;
-    if(emp.isDeleted) {
-      tr.style.opacity = '0.4';
+        const response = await fetch("./data/employee_info.json");
+
+        if (!response.ok)
+            throw new Error("Unable to load employees.");
+
+        const data = await response.json();
+
+        employees = data.employeeInformation.map(emp => ({
+            ...emp,
+            isDeleted: false
+        }));
+
+        render();
+
+    } catch (err) {
+
+        console.error(err);
+
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="7">
+                    Failed to load employee data.
+                </td>
+            </tr>
+        `;
     }
 
-     tbody.appendChild(tr);
-  });
 }
-// Adding new employees
-form.addEventListener('submit', e => {
-  e.preventDefault();
-  const newId = employees.length > 0? Math.max(...employees.map(emp => emp.employeeId)) + 1 : 1;
-  employees.push({
-    employeeId: newId,
-    name: document.getElementById('name').value,
-    department: document.getElementById('department').value,
-    position: document.getElementById('position').value,
-    salary: Number(document.getElementById('salary').value),
-    contact: "",
-    employmentHistory: []
-  });
-  render();
-  addModal.close();
-  form.reset();
+
+
+function getInitials(name) {
+
+    return name
+        .split(" ")
+        .map(word => word[0])
+        .join("")
+        .substring(0, 2)
+        .toUpperCase();
+
+}
+
+function stringToColor(str) {
+
+    let hash = 0;
+
+    for (let i = 0; i < str.length; i++) {
+
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+
+    }
+
+    return `hsl(${Math.abs(hash) % 360},70%,50%)`;
+
+}
+
+function render(list = employees) {
+
+    tbody.innerHTML = "";
+
+    if (archivedBody)
+        archivedBody.innerHTML = "";
+
+    const activeEmployees = list.filter(emp => !emp.isDeleted);
+
+    const archivedEmployees = employees.filter(emp => emp.isDeleted);
+
+    document.getElementById("totalCount").textContent = activeEmployees.length;
+
+    document.getElementById("totalEmployees").textContent = activeEmployees.length;
+
+    const payrollTotal = activeEmployees.reduce(
+        (sum, emp) => sum + emp.salary,
+        0
+    );
+
+    document.getElementById("monthlyPayroll").textContent =
+        "R" + (payrollTotal / 1000000).toFixed(2) + "M";
+
+    activeEmployees.forEach(emp => {
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>E${String(emp.employeeId).padStart(3,"0")}</td>
+
+            <td>
+                <span class="em-avatar"
+                style="background:${stringToColor(emp.name)}">
+                ${getInitials(emp.name)}
+                </span>
+                ${emp.name}
+            </td>
+
+            <td>${emp.department}</td>
+
+            <td>${emp.position}</td>
+
+            <td>R${emp.salary.toLocaleString()}</td>
+
+            <td>
+                <span class="em-status active">
+                    Active
+                </span>
+            </td>
+
+            <td>
+                <button class="em-btn-delete"
+                onclick="deleteEmp(${emp.employeeId})">
+                🗑 Delete
+                </button>
+            </td>
+        `;
+
+        tbody.appendChild(row);
+
+    });
+
+    if (archivedBody) {
+
+        archivedEmployees.forEach(emp => {
+
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td>E${String(emp.employeeId).padStart(3,"0")}</td>
+
+                <td>${emp.name}</td>
+
+                <td>${emp.department}</td>
+
+                <td>${emp.position}</td>
+
+                <td>R${emp.salary.toLocaleString()}</td>
+
+                <td>
+                    <span class="em-status archived">
+                        Archived
+                    </span>
+                </td>
+
+                <td>
+                    <button class="em-btn-retrieve"
+                    onclick="restoreEmp(${emp.employeeId})">
+                    ↩ Restore
+                    </button>
+                </td>
+            `;
+
+            archivedBody.appendChild(row);
+
+        });
+
+    }
+
+}searchInput.addEventListener("input", function () {
+
+    const value = this.value.toLowerCase().trim();
+
+    const filtered = employees.filter(emp => {
+
+        if (emp.isDeleted) return false;
+
+        const id = "e" + String(emp.employeeId).padStart(3, "0");
+
+        return (
+            emp.name.toLowerCase().includes(value) ||
+            emp.department.toLowerCase().includes(value) ||
+            emp.position.toLowerCase().includes(value) ||
+            id.includes(value) ||
+            String(emp.employeeId).includes(value)
+        );
+
+    });
+
+    render(filtered);
+
 });
-// function for deleted employees
+
+
 function deleteEmp(id) {
-  const empData = employees.find(emp => emp.employeeId === id);
-  if(!empData) return;
 
-  empData.isDeleted = true;
-  render();
+    const employee = employees.find(emp => emp.employeeId === id);
 
-  deleteTimeouts[id] = setTimeout (() => {
-    employees = employees.filter(emp => emp.employeeId !== id);
-    render();
-    }, 5000)
+    if (employee) {
+
+        employee.isDeleted = true;
+
+        render();
+
+    }
+
 }
-// Function to retrieve deleted employee
-function retrieveEmp(id) {
-  clearTimeout (deleteTimeouts[id]);
 
-  const empData = employees.find(emp => emp.employeeId === id);
-  if(empData) empData.isDeleted = false;
+function restoreEmp(id) {
 
-  render();
+    const employee = employees.find(emp => emp.employeeId === id);
+
+    if (employee) {
+
+        employee.isDeleted = false;
+
+        render();
+
+    }
+
 }
-document.addEventListener('DOMContentLoaded', loadEmployees);
 
-// Sidebar toggle functionality
-const menuBtn = document.getElementById('menuBtn');
-const closeBtn = document.getElementById('closeBtn');
-const sidebar = document.getElementById('sidebar');
-const overlay = document.getElementById('overlay');
+addBtn.addEventListener("click", () => {
 
-sidebar.classList.remove('open');
-overlay.classList.remove('show');
+    addModal.showModal();
 
-const openSidebar = () => {
-  sidebar.classList.add('open');
-  overlay.classList.add('show');
-};
-const closeSidebar = () => {
-  sidebar.classList.remove('open');
-  overlay.classList.remove('show');
-};
-
-menuBtn.addEventListener('click', openSidebar);
-closeBtn.addEventListener('click', closeSidebar);
-overlay.addEventListener('click', closeSidebar);
-// Add Employee Button
-addBtn.addEventListener('click', () => {
-  addModal.showModal();
 });
 
-// Darkmode
-const darkToggle = document.getElementById('darkToggle');
-// Load saved theme on start
-if(localStorage.getItem('theme') === 'dark') {
-  document.body.classList.add('dark');
-  darkToggle.innerHTML = 'Light Mode';
-} else {
-  darkToggle.innerHTML = 'Dark Mode';
-}
-// Toggle click
-darkToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
+form.addEventListener("submit", function (e) {
 
-  if (document.body.classList.contains('dark')){
-    localStorage.setItem('theme', 'dark');
-    darkToggle.innerHTML = 'Light Mode';
-  }else {
-    localStorage.setItem('theme', 'light');
-    darkToggle.innerHTML = 'Dark Mode';
-  }
+    e.preventDefault();
+
+    const newEmployee = {
+
+        employeeId: employees.length + 1,
+
+        name: document.getElementById("name").value,
+
+        department: document.getElementById("department").value,
+
+        position: document.getElementById("position").value,
+
+        salary: Number(document.getElementById("salary").value),
+
+        isDeleted: false
+
+    };
+
+    employees.push(newEmployee);
+
+    render();
+
+    form.reset();
+
+    addModal.close();
+
+});
+
+
+loadEmployees();
+
+// ===== Dark Mode =====
+
+const darkModeToggle = document.getElementById("darkModeToggle");
+const toggleText = document.getElementById("toggleText");
+
+// Load saved preference
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
+    toggleText.textContent = "Light Mode";
+}
+
+darkModeToggle.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark-mode");
+
+    const isDark = document.body.classList.contains("dark-mode");
+
+    if (isDark) {
+        localStorage.setItem("theme", "dark");
+        toggleText.textContent = "Light Mode";
+    } else {
+        localStorage.setItem("theme", "light");
+        toggleText.textContent = "Dark Mode";
+    }
+
 });

@@ -2043,12 +2043,12 @@ td:last-child{
   margin: 0;
   font-family: 'Plus Jakarta Sans', sans-serif;
   background-color: var(--bg);
-  color: var(--text);
+  color: var((--text));
 }
 .em-body.dark {
   --bg: #1a1a2e;
   --card: #2d2d44;
-  --text: #e0e0e0;
+  --text: #0f0e0e;
   --muted: #9ca3af;
   --primary: #818cf8;
   --green: #4ade80;
@@ -2153,7 +2153,20 @@ td:nth-child(2) {
   min-width: 180px;
   white-space: nowrap;
 }
-
+/* Archived table */
+.em-table-wrap-archived-section{
+   background: var(--card);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  overflow-x: auto;
+  margin-top: 40px;
+}
+.em-section-title {
+  font-size: 20px;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-top: 20px;
+}
 .em-avatar {
   width: 32px;
   height: 32px;
@@ -2180,6 +2193,10 @@ td:nth-child(2) {
 .em-status.leave {
   background: #fef3c7;
   color: #92400e;
+}
+.em-status.archived {
+  background: yellow;
+  color: orangered;
 }
 /* Modal */
 dialog {
@@ -2362,6 +2379,8 @@ dialog form {
 /* timeoff css */
 
 
+
+
 /* ── Reset & Base ─────────────────────────── */
 .timeoff-body {
     margin: 0;
@@ -2372,9 +2391,11 @@ dialog form {
     transition: background-color 0.25s ease, color 0.25s ease;
 }
 
+
 .timeoff-no-scroll {
     overflow: hidden;
 }
+
 
 /* ── Page Wrapper ─────────────────────────── */
 .timeoff-wrapper {
@@ -2382,6 +2403,8 @@ dialog form {
     width: 100%;
     flex-direction: column;
 }
+
+
 
 
 /* Top Header Bar - Always Visible Everywhere */
@@ -2395,11 +2418,16 @@ dialog form {
 }
 
 
+
+
 /* Offcanvas Sidebar Drawer Panel Customization */
 .offcanvas-sidebar {
     width: 380px !important;
     background-color: #243864 !important;
 }
+
+
+
 
 
 
@@ -2414,10 +2442,15 @@ dialog form {
 }
 
 
+
+
 .offcanvas-sidebar .nav-link:hover {
     color: #FFFFFF;
     background-color: rgba(255, 255, 255, 0.05);
 }
+
+
+
 
 
 
@@ -2427,12 +2460,15 @@ dialog form {
 }
 
 
+
+
 .timeoff-brand-icon {
     width: 32px;
     height: 32px;
     background: #3B82F6;
     border-radius: 8px;
 }
+
 
 /* ── Main Content ─────────────────────────── */
 .timeoff-main {
@@ -2442,15 +2478,18 @@ dialog form {
     transition: background-color 0.25s ease;
 }
 
+
 .timeoff-content {
     max-width: 1400px;
     margin: 0 auto;
 }
 
+
 /* ── Page Header ──────────────────────────── */
 .timeoff-page-header {
     margin-bottom: 24px;
 }
+
 
 .timeoff-page-title {
     font-size: 22px;
@@ -2459,11 +2498,13 @@ dialog form {
     margin: 0 0 4px 0;
 }
 
+
 .timeoff-page-subtitle {
     font-size: 14px;
     color: #64748b;
     margin: 0;
 }
+
 
 /* ── Summary Cards Grid ───────────────────── */
 .timeoff-cards-grid {
@@ -2472,6 +2513,7 @@ dialog form {
     gap: 16px;
     margin-bottom: 24px;
 }
+
 
 .timeoff-summary-card {
     background: #ffffff;
@@ -2484,10 +2526,12 @@ dialog form {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+
 .timeoff-summary-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(15, 23, 42, 0.1);
 }
+
 
 .timeoff-card-icon {
     width: 48px;
@@ -2500,20 +2544,24 @@ dialog form {
     font-size: 20px;
 }
 
+
 .timeoff-card-icon--blue {
     background-color: #eff6ff;
     color: #3b82f6;
 }
+
 
 .timeoff-card-icon--green {
     background-color: #f0fdf4;
     color: #16a34a;
 }
 
+
 .timeoff-card-icon--red {
     background-color: #fef2f2;
     color: #dc2626;
 }
+
 
 .timeoff-card-count {
     font-size: 28px;
@@ -2523,10 +2571,12 @@ dialog form {
     line-height: 1;
 }
 
+
 .timeoff-card-label {
     font-size: 14px;
     color: #64748b;
 }
+
 
 /* ── Table Card ───────────────────────────── */
 .timeoff-table-card {
@@ -2537,10 +2587,12 @@ dialog form {
     margin-bottom: 24px;
 }
 
+
 .timeoff-table-card-header {
     padding: 20px 20px 12px 20px;
     border-bottom: 1px solid #edf2f7;
 }
+
 
 .timeoff-table-card-title {
     font-size: 16px;
@@ -2549,11 +2601,13 @@ dialog form {
     margin: 0 0 4px 0;
 }
 
+
 .timeoff-table-card-subtitle {
     font-size: 13px;
     color: #64748b;
     margin: 0;
 }
+
 
 /* ── Table Scroll Wrapper ─────────────────── */
 .timeoff-table-scroll {
@@ -2561,12 +2615,14 @@ dialog form {
     -webkit-overflow-scrolling: touch;
 }
 
+
 /* ── Table Styles ─────────────────────────── */
 .timeoff-custom-table {
     width: 100%;
     border-collapse: collapse;
     min-width: 700px;
 }
+
 
 .timeoff-custom-table thead th {
     font-size: 11px;
@@ -2580,6 +2636,7 @@ dialog form {
     background: #ffffff;
 }
 
+
 .timeoff-custom-table tbody td {
     padding: 14px 16px;
     border-bottom: 1px solid #edf2f7;
@@ -2588,23 +2645,28 @@ dialog form {
     vertical-align: middle;
 }
 
+
 .timeoff-custom-table tbody tr:last-child td {
     border-bottom: 0;
 }
+
 
 .timeoff-custom-table tbody tr:hover td {
     background-color: #f8fafc;
 }
 
+
 .timeoff-th-center {
     text-align: center;
 }
+
 
 .timeoff-td-loading {
     text-align: center;
     color: #64748b;
     padding: 32px 16px;
 }
+
 
 /* ── Employee Cell ────────────────────────── */
 .timeoff-employee-cell {
@@ -2613,10 +2675,12 @@ dialog form {
     gap: 12px;
 }
 
+
 .timeoff-employee-name {
     font-weight: 500;
     color: #2d3748;
 }
+
 
 /* ── Avatar Circle ────────────────────────── */
 .timeoff-avatar {
@@ -2632,6 +2696,7 @@ dialog form {
     color: #ffffff;
 }
 
+
 /* ── Status Badges ────────────────────────── */
 .timeoff-badge-status {
     padding: 4px 12px;
@@ -2642,26 +2707,31 @@ dialog form {
     white-space: nowrap;
 }
 
+
 .timeoff-status-pending {
     background-color: #eff6ff;
     color: #3b82f6;
 }
+
 
 .timeoff-status-approved {
     background-color: #f0fdf4;
     color: #16a34a;
 }
 
+
 .timeoff-status-denied {
     background-color: #fef2f2;
     color: #dc2626;
 }
+
 
 /* ── Action Buttons ───────────────────────── */
 .timeoff-actions-cell {
     text-align: center;
     white-space: nowrap;
 }
+
 
 .timeoff-btn-approve,
 .timeoff-btn-deny {
@@ -2675,6 +2745,7 @@ dialog form {
     display: inline-block;
 }
 
+
 .timeoff-btn-approve {
     border-color: #16a34a;
     color: #16a34a;
@@ -2682,10 +2753,12 @@ dialog form {
     margin-right: 6px;
 }
 
+
 .timeoff-btn-approve:hover {
     background-color: #16a34a;
     color: #ffffff;
 }
+
 
 .timeoff-btn-deny {
     border-color: #dc2626;
@@ -2693,10 +2766,12 @@ dialog form {
     background: transparent;
 }
 
+
 .timeoff-btn-deny:hover {
     background-color: #dc2626;
     color: #ffffff;
 }
+
 
 .timeoff-btn-revert {
     padding: 5px 12px;
@@ -2710,17 +2785,20 @@ dialog form {
     transition: background 0.2s, color 0.2s;
 }
 
+
 .timeoff-btn-revert:hover {
     background-color: #475569;
     color: #ffffff;
     border-color: #475569;
 }
 
+
 /* ── Muted Text ───────────────────────────── */
 .timeoff-muted-text {
     color: #64748b;
     font-size: 13px;
 }
+
 
 /* ── Ref Cell ─────────────────────────────── */
 .timeoff-ref-cell {
@@ -2730,20 +2808,24 @@ dialog form {
     white-space: nowrap;
 }
 
+
 body.dark-mode {
     background-color: #1a1a2e;
-    color: #e0e0e0;
+
 }
+
 
 body.dark-mode .timeoff-main,
 body.dark-mode .timeoff-wrapper {
     background-color: #1a1a2e;
 }
 
+
 body.dark-mode .timeoff-main-header,
 body.dark-mode .timeoff-sidebar {
     background-color: #22263d;
 }
+
 
 body.dark-mode .timeoff-page-title,
 body.dark-mode .timeoff-card-count,
@@ -2753,13 +2835,27 @@ body.dark-mode .timeoff-employee-name {
     color: #ffffff;
 }
 
+
 body.dark-mode .timeoff-page-subtitle,
 body.dark-mode .timeoff-table-card-subtitle,
 body.dark-mode .timeoff-card-label,
 body.dark-mode .timeoff-muted-text,
 body.dark-mode .timeoff-custom-table tbody td,
 body.dark-mode .timeoff-ref-cell {
-    color: #a0a0b8;
+  color: #a0a0b8;
+}
+
+body.dark-mode .timeoff-calendar-card{
+  background: #2d2d44;
+  color: white;
+}
+
+body.dark-mode .timeoff-calendar-card h4{
+  color: white;
+}
+
+body.dark-mode #calendarGrid{
+  background: #2d2d44;
 }
 
 body.dark-mode .timeoff-summary-card,
@@ -2768,6 +2864,7 @@ body.dark-mode .timeoff-table-card {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
 }
 
+
 body.dark-mode .timeoff-table-card-header,
 body.dark-mode .timeoff-custom-table thead th,
 body.dark-mode .timeoff-custom-table tbody td {
@@ -2775,31 +2872,38 @@ body.dark-mode .timeoff-custom-table tbody td {
     background-color: transparent;
 }
 
+
 body.dark-mode .timeoff-custom-table thead th {
     color: #8fa0c5;
     background: #2d2d44;
 }
 
+
 body.dark-mode .timeoff-custom-table tbody tr:hover td {
     background-color: rgba(255, 255, 255, 0.04);
 }
+
 
 body.dark-mode .timeoff-nav-link {
     color: #b0bad4;
 }
 
+
 body.dark-mode .timeoff-nav-link:hover {
     color: #ffffff;
 }
+
 
 body.dark-mode .timeoff-nav-link--active {
     color: #ffffff;
 }
 
+
 body.dark-mode .timeoff-btn-revert {
     border-color: #6b7280;
     color: #d1d5db;
 }
+
 
 body.dark-mode .timeoff-btn-revert:hover {
     background-color: #6b7280;
@@ -2807,50 +2911,61 @@ body.dark-mode .timeoff-btn-revert:hover {
     border-color: #6b7280;
 }
 
+
 body.dark-mode .timeoff-toggle-btn {
     background: rgba(255, 255, 255, 0.05) !important;
     color: #e0e0e0;
 }
+
 
 body.dark-mode .timeoff-toggle-btn:hover {
     background: rgba(255, 255, 255, 0.1) !important;
     color: #ffffff;
 }
 
+
 body.dark-mode .timeoff-sidebar-footer {
     border-top-color: rgba(255, 255, 255, 0.08);
 }
+
 
 @media (max-width: 768px) {
     .timeoff-main-header {
         padding: 12px 16px;
     }
 
+
     .timeoff-main {
         padding: 16px 12px;
     }
+
 
     .timeoff-cards-grid {
         grid-template-columns: 1fr;
         gap: 12px;
     }
 
+
     .timeoff-page-title {
         font-size: 18px;
     }
+
 
     .timeoff-card-count {
         font-size: 24px;
     }
 
+
     .timeoff-table-card-header {
         padding: 16px 16px 10px 16px;
     }
+
 
     .timeoff-sidebar-footer {
         padding-top: 12px;
     }
 }
+
 
 /* ── Responsive: Mobile (≤ 480px) ────────── */
 @media (max-width: 480px) {
@@ -2858,10 +2973,12 @@ body.dark-mode .timeoff-sidebar-footer {
         font-size: 14px;
     }
 
+
     .timeoff-summary-card {
         padding: 14px;
         gap: 12px;
     }
+
 
     .timeoff-card-icon {
         width: 40px;
@@ -2870,9 +2987,11 @@ body.dark-mode .timeoff-sidebar-footer {
         font-size: 17px;
     }
 
+
     .timeoff-page-title {
         font-size: 17px;
     }
+
 
     .timeoff-btn-approve,
     .timeoff-btn-deny {
@@ -2880,6 +2999,395 @@ body.dark-mode .timeoff-sidebar-footer {
         font-size: 12px;
     }
 }
+
+
+
+
+
+
+
+
+/* ==========================================
+   LEAVE CALENDAR
+========================================== */
+
+
+.timeoff-calendar-card{
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    margin-top:30px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+
+.timeoff-calendar-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+    margin-bottom:25px;
+}
+
+
+.timeoff-calendar-header h3{
+    margin:0;
+    color:#0f172a;
+    font-size:1.4rem;
+    font-weight:700;
+}
+
+
+.timeoff-calendar-header p{
+    color:#64748b;
+    margin-top:5px;
+}
+
+
+/* ==========================
+   Legend
+========================== */
+
+
+.timeoff-calendar-legend{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+
+.legend-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:.9rem;
+    font-weight:600;
+    color:#475569;
+}
+
+
+.legend{
+    width:16px;
+    height:16px;
+    border-radius:50%;
+}
+
+
+.legend.approved{
+    background:#22c55e;
+}
+
+
+.legend.pending{
+    background:#facc15;
+}
+
+
+.legend.denied{
+    background:#ef4444;
+}
+
+
+/* ==========================
+   Month Header
+========================== */
+
+
+.calendar-wrapper{
+    width:100%;
+}
+
+
+
+
+.calendar-month h4{
+    margin:0;
+    color:black;
+    font-weight:700;
+    font-size:1.2rem;
+}
+
+
+.calendar-month{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+
+.calendar-title{
+    margin:0;
+    color:#2563eb;
+    font-size:1.3rem;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+
+.calendar-title i{
+    color:#2563eb;
+    font-size:1.4rem;
+}
+/* ==========================
+   Weekdays
+========================== */
+
+
+.calendar-weekdays{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    margin-bottom:12px;
+}
+
+
+.calendar-weekdays div{
+    text-align:center;
+    font-weight:700;
+    color:#475569;
+}
+
+
+/* ==========================
+   Days
+========================== */
+
+
+.calendar-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:10px;
+}
+
+
+.calendar-day{
+    position:relative;
+    min-height:80px;
+    border-radius:14px;
+    background:#f8fafc;
+    display:flex;
+    justify-content:flex-start;
+    align-items:flex-start;
+    padding:10px;
+    cursor:pointer;
+    transition:.25s;
+    border:2px solid transparent;
+}
+
+
+.calendar-day:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(37,99,235,.15);
+}
+
+
+.calendar-day.empty{
+    background:transparent;
+    cursor:default;
+    box-shadow:none;
+}
+
+
+.calendar-day.empty:hover{
+    transform:none;
+}
+
+
+/* ==========================
+   Day Number
+========================== */
+
+
+.day-number{
+    font-weight:700;
+    color:#334155;
+}
+
+
+/* ==========================
+   Status Colours
+========================== */
+
+
+.calendar-approved{
+    background:#dcfce7;
+    border-color:#22c55e;
+}
+
+
+.calendar-pending{
+    background:#fef9c3;
+    border-color:#eab308;
+}
+
+
+.calendar-denied{
+    background:#fee2e2;
+    border-color:#ef4444;
+}
+
+
+/* ==========================
+   Employee Count
+========================== */
+
+
+.leave-count{
+    position:absolute;
+    bottom:8px;
+    right:8px;
+    background:#2563eb;
+    color:#fff;
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:.75rem;
+    font-weight:700;
+}
+
+
+/* ==========================
+   Tooltip
+========================== */
+
+
+.calendar-tooltip{
+    position:absolute;
+    left:50%;
+    bottom:105%;
+    transform:translateX(-50%);
+    background:#0f172a;
+    color:#fff;
+    padding:8px 12px;
+    border-radius:8px;
+    font-size:.75rem;
+    white-space:nowrap;
+    opacity:0;
+    pointer-events:none;
+    transition:.25s;
+    z-index:10;
+}
+
+
+.calendar-day:hover .calendar-tooltip{
+    opacity:1;
+}
+
+
+/* ==========================
+   Responsive
+========================== */
+
+
+@media(max-width:992px){
+
+
+.calendar-grid{
+    gap:8px;
+}
+
+
+.calendar-day{
+    min-height:70px;
+}
+
+
+}
+
+
+@media(max-width:768px){
+
+
+.timeoff-calendar-header{
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+
+.calendar-weekdays div{
+    font-size:.75rem;
+}
+
+
+.calendar-day{
+    min-height:55px;
+    padding:6px;
+}
+
+
+.day-number{
+    font-size:.85rem;
+}
+
+
+.leave-count{
+    width:18px;
+    height:18px;
+    font-size:.65rem;
+}
+
+
+.calendar-month h4{
+    font-size:1rem;
+}
+
+
+}
+
+
+@media(max-width:500px){
+
+
+.calendar-grid{
+    gap:5px;
+}
+
+
+.calendar-day{
+    min-height:45px;
+}
+
+
+.calendar-nav{
+    width:35px;
+    height:35px;
+}
+
+
+}
+
+
+
+
+/* Calendar spacing */
+
+
+.timeoff-calendar-card{
+    width: 100%;
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* payroll css */
 
@@ -3133,7 +3641,7 @@ main.payroll-container {
   margin-bottom: 0;
   font-size: 14px;
   border-collapse: collapse;
-  width: 100%;
+  width: 1000px;
   white-space: nowrap;
 }
 
