@@ -3389,6 +3389,23 @@ body.dark-mode .timeoff-sidebar-footer {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* payroll css */
 
 .pr-body {
@@ -3498,7 +3515,7 @@ main.payroll-container {
   padding: 28px 22px 44px;
   border-radius: 12px;
   background: transparent;
-  width: min(100%, 1200px);
+  width: 100%;
 }
 
 .payroll-wrapper {
@@ -3641,7 +3658,7 @@ main.payroll-container {
   margin-bottom: 0;
   font-size: 14px;
   border-collapse: collapse;
-  width: 1000px;
+  width: 100%;
   white-space: nowrap;
 }
 

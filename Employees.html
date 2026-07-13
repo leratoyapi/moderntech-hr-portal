@@ -23,13 +23,6 @@
             </button>
         </header>
 
-
-
-
-
-
-
-
         <!-- Hidden Sidebar Drawer (Only appears when Burger Menu is clicked) -->
     <div class="offcanvas offcanvas-start offcanvas-sidebar p-3" tabindex="-1" id="reviewAppSidebar" aria-labelledby="reviewAppSidebarLabel">
         <div class="offcanvas-header text-white justify-content-between align-items-center mb-2">
@@ -119,49 +112,49 @@
           </tbody>
         </table>
         <!-- Archived Employees -->
-<div class="em-table-wrap-archived-section">
+  <div class="em-table-wrap-archived-section">
 
-    <h3 class="em-section-title">Archived Employees</h3>
+      <h3 class="em-section-title">Archived Employees</h3>
 
-    <table class="em-table">
+      <table class="em-table">
 
-        <thead class="em-thead">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Department</th>
-                <th>Position</th>
-                <th>Salary</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-        </thead>
+          <thead class="em-thead">
+              <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Department</th>
+                  <th>Position</th>
+                  <th>Salary</th>
+                  <th>Status</th>
+                  <th>Action</th>
+              </tr>
+          </thead>
 
-        <tbody id="archivedEmployeeTableBody">
+          <tbody id="archivedEmployeeTableBody">
 
-        </tbody>
+          </tbody>
 
-    </table>
+      </table>
 
-</div>
-      </div>
   </div>
-  <!-- Simple Add Modal -->
-   <dialog id="addModal">
-    <form id="employeeForm" method="dialog">
-      <h3>Add Employee</h3>
-      <input id="name" placeholder="Full Name" required>
-      <input id="department" placeholder="Department" required>
-      <input id="position" placeholder="Position" required>
-      <input id="salary" type="number" placeholder="Salary" required>
-      <div class="modal-actions">
-        <button type="submit" class="em-btn-primary">Save</button>
-        <button type="button" onclick="addModal.close()">Cancel</button>
-      </div>
-    </form>
-   </dialog>
+        </div>
+    </div>
+    <!-- Simple Add Modal -->
+    <dialog id="addModal">
+      <form id="employeeForm" method="dialog">
+        <h3>Add Employee</h3>
+        <input id="name" placeholder="Full Name" required>
+        <input id="department" placeholder="Department" required>
+        <input id="position" placeholder="Position" required>
+        <input id="salary" type="number" placeholder="Salary" required>
+        <div class="modal-actions">
+          <button type="submit" class="em-btn-primary">Save</button>
+          <button type="button" onclick="addModal.close()">Cancel</button>
+        </div>
+      </form>
+    </dialog>
   <!-- JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="Employees-script.js"></script>
   
 </body>
