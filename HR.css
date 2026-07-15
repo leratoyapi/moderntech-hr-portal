@@ -525,8 +525,11 @@ background: #2d2d44 !important;
 
 
 .attendance-heading h2{
+    font-size: 30.4px;
+    color: black;
+    margin-bottom: 2px;
+    letter-spacing: -0.3px;
     padding: 30px;
-    font-size:38px;
     font-weight:700;
     width: calc(100% - 250px);
 }
@@ -1402,8 +1405,10 @@ td:last-child{
 
 
 .attendance-page-header h2{
-    font-size:38px;
-    color:#162447;
+    font-size: 30.4px;
+    color: black;
+    margin-bottom: 2px;
+    letter-spacing: -0.3px;
     margin-bottom:8px;
     font-weight:700;
 }
@@ -2040,10 +2045,14 @@ td:last-child{
   --border: #e5e7eb;
 }
 .em-body {
-  margin: 0;
+  max-width: 1450px;
+  margin: 0 auto;
+  padding: 0 10px;
+  padding: 0;
+  margin: auto;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  background-color: var(--bg);
-  color: var((--text));
+  /* background-color: var(--bg);
+  color: var((--text)); */
 }
 .em-body.dark {
   --bg: #1a1a2e;
@@ -2129,6 +2138,7 @@ td:last-child{
 }
 /* Table */
 .em-table-wrap {
+    padding: 20px;
   background: var(--card);
   border-radius: 12px;
   border: 1px solid var(--border);
@@ -2180,41 +2190,49 @@ td:nth-child(2) {
   margin-right: 8px;
   vertical-align: middle;
 }
+
 .em-status {
   padding: 4px 10px;
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 600;
 }
+
 .em-status.active {
   background: #d1fae5;
   color: #065f46;
 }
+
 .em-status.leave {
   background: #fef3c7;
   color: #92400e;
 }
+
 .em-status.archived {
   background: yellow;
   color: orangered;
 }
+
 /* Modal */
 dialog {
   border: none;
   border-radius: 12px;
   padding:0;
 }
+
 dialog form {
   padding:20px;
   display: grid;
   gap: 12px;
   min-width: 320px;
 }
+
 .modal-actions {
   display: flex;
   gap: 8px;
   justify-content: flex-end;
 }
+
 .em-btn-delete {
   background: transparent;
   border: none;
@@ -2226,10 +2244,12 @@ dialog form {
   transition: background 0.15s ease;
   color: #6b7280;
 }
+
 .em-btn-delete:hover {
   background: #fee2e2;
   color: #dc2626;
 }
+
 .em-btn-retrieve {
   background: transparent;
   border: none;
@@ -2240,10 +2260,12 @@ dialog form {
   transition: background 0.15s ease;
   color: #2563eb;
 }
+
 .em-btn-retrieve:hover {
   background: #fee2e2;
   color:#10b981;
 }
+
 /* Header  */
 .em-main-header {
   display: flex;
@@ -2260,6 +2282,7 @@ dialog form {
   margin-right: -20px;
   margin-top: -20px;
 }
+
 .em-brand-area {
   display: flex;
   align-items: center;
